@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VastraVerse - Cultural Dressing Virtual Photoshoot & Festival Guide</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed w-full z-10 transition-all duration-300 ease-in-out py-4 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+        <a href="index.html" class="text-xl font-bold">Vastra<span class="text-pink-500">Verse</span></a>
+      </div>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="hover:text-pink-500 transition-colors">Home</a>
+        <a href="about.html" class="hover:text-pink-500 transition-colors">About</a>
+        <a href="chatbot.html" class="hover:text-pink-500 transition-colors">Chatbot</a>
+        <button id="themeToggle" class="hover:text-pink-500 transition-colors">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">Login</button>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors hidden md:block">Sign Up</button>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-200 hover:text-pink-500">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden bg-gray-800 hidden">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+        <a href="index.html" class="block py-2 hover:text-pink-500 transition-colors">Home</a>
+        <a href="about.html" class="block py-2 hover:text-pink-500 transition-colors">About</a>
+        <a href="chatbot.html" class="block py-2 hover:text-pink-500 transition-colors">Chatbot</a>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors w-full mt-2">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center pt-24 pb-16">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
+        <div class="animate-fade-in-up">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <span class="text-pink-500">Welcome to VastraVerse </span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 mb-8">
+            A Cultural Dressing Virtual Photoshoot & Festival Guide Powered by Generative AI
+          </p>
+          <p class="text-gray-400 mb-10">
+            Experience the rich diversity of Indian traditions with our AI-powered cultural outfit visualizer
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+            <button class="px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-pink-400 shadow-lg">
+              Get Started
+            </button>
+            <button class="px-8 py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:bg-opacity-10 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="md:w-1/2 md:pl-10 animate-fade-in">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700">
+          <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold">Virtual Try-On</h2>
+            <p class="text-gray-400">Upload your photo to try traditional Indian outfits</p>
+          </div>
+          
+          <div class="mb-6">
+            <div id="imagePreviewContainer" class="relative hidden mb-4 rounded-lg overflow-hidden bg-gray-700 h-64 flex items-center justify-center">
+              <img id="imagePreview" src="#" alt="Preview" class="max-w-full max-h-full">
+              <button id="removeImage" class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <div id="uploadPlaceholder" class="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center cursor-pointer hover:border-pink-500 transition-colors h-64 flex flex-col items-center justify-center">
+              <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+              <p class="text-gray-300 mb-2">Drag and drop your image here</p>
+              <p class="text-gray-500 text-sm mb-4">- or -</p>
+              <label class="px-4 py-2 rounded-md bg-pink-500 text-white hover:bg-pink-600 transition-colors cursor-pointer">
+                Browse Files
+                <input type="file" id="imageUpload" class="hidden" accept="image/*">
+              </label>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="block text-gray-300 mb-2">Select Festival/Occasion:</label>
+            <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+              <option value="diwali">Diwali</option>
+              <option value="holi">Holi</option>
+              <option value="navaratri">Navaratri</option>
+              <option value="wedding">Traditional Wedding</option>
+              <option value="durga-puja">Durga Puja</option>
+              <option value="onam">Onam</option>
+              <option value="pongal">Pongal</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label class="block text-gray-300 mb-2">Choose Region:</label>
+            <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+              <option value="north">North India</option>
+              <option value="south">South India</option>
+              <option value="east">East India</option>
+              <option value="west">West India</option>
+              <option value="northeast">Northeast India</option>
+            </select>
+          </div>
+          
+          <button id="tryOnButton" class="w-full py-3 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-pink-400 disabled:opacity-50">
+            Try On Outfit
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Explore Indian Cultural Heritage</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-tshirt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Traditional Outfits</h3>
+          <p class="text-gray-400">Experience the beauty of saris, lehengas, kurta pajamas, and more from different regions of India.</p>
+        </div>
+        
+        <div class="bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Festival Guide</h3>
+          <p class="text-gray-400">Discover when and how festivals like Diwali, Holi, and Navaratri are celebrated across India.</p>
+        </div>
+        
+        <div class="bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">AI Assistant</h3>
+          <p class="text-gray-400">Get personalized recommendations and learn about outfit components with our culture-savvy chatbot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cultural Guide Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Upcoming Indian Festivals</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Discover the rich cultural tapestry of India through its vibrant celebrations</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105">
+          <div class="h-48 bg-gradient-to-r from-yellow-500 to-red-500 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-diya text-white text-5xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold">Diwali</h3>
+              <span class="text-sm text-pink-500">October 31, 2025</span>
+            </div>
+            <p class="text-gray-400 mb-4">The festival of lights celebrates the triumph of light over darkness with diyas, rangoli, and festive attire.</p>
+            <a href="#" class="text-pink-500 hover:text-pink-400 inline-flex items-center">
+              Learn more <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105">
+          <div class="h-48 bg-gradient-to-r from-pink-500 to-purple-600 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-dharmachakra text-white text-5xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold">Navaratri</h3>
+              <span class="text-sm text-pink-500">October 3-12, 2025</span>
+            </div>
+            <p class="text-gray-400 mb-4">Nine nights dedicated to Goddess Durga, featuring traditional garba and dandiya raas dances.</p>
+            <a href="#" class="text-pink-500 hover:text-pink-400 inline-flex items-center">
+              Learn more <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105">
+          <div class="h-48 bg-gradient-to-r from-blue-500 to-green-500 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-water text-white text-5xl"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold">Holi</h3>
+              <span class="text-sm text-pink-500">March 14, 2026</span>
+            </div>
+            <p class="text-gray-400 mb-4">The festival of colors welcomes spring with vibrant powder colors, water games, and sweet treats.</p>
+            <a href="#" class="text-pink-500 hover:text-pink-400 inline-flex items-center">
+              Learn more <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-10">
+        <a href="#" class="px-6 py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors inline-flex items-center">
+          View All Festivals <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-pink-500 to-purple-600">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">Ready to Experience Indian Cultural Fashion?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">Join thousands of users exploring and celebrating the rich diversity of Indian traditions</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button class="px-8 py-3 rounded-full bg-white text-pink-600 hover:bg-gray-100 transition-colors font-medium">
+          Try it Free
+        </button>
+        <button class="px-8 py-3 rounded-full border-2 border-white text-white hover:bg-white hover:bg-opacity-10 transition-colors font-medium">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+            <div class="text-xl font-bold">Vastra<span class="text-pink-500">Verse</span></div>
+          </div>
+          <p class="text-gray-400 mb-4">Celebrating the rich diversity of Indian traditional fashion and culture through AI innovation.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-pink-500 transition-colors">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-pink-500 transition-colors">About Us</a></li>
+            <li><a href="chatbot.html" class="text-gray-400 hover:text-pink-500 transition-colors">AI Chatbot</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Festival Calendar</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Traditional Outfits</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Cultural Guides</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Outfit Dictionary</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Regional Styles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h4>
+          <p class="text-gray-400 mb-4">Stay updated with the latest festival guides and traditional fashion trends</p>
+          <form class="mb-4">
+            <div class="flex">
+              <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+              <button type="submit" class="px-4 py-2 bg-pink-500 text-white rounded-r-md hover:bg-pink-600 transition-colors">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+        <p>&copy; 2025 VastraVerse All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

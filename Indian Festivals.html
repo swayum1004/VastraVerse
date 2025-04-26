@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Festivals - VastraVerse</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    .bg-gray-850 {
+      background-color: #1a1c23;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #2d3748;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #ec4899;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d53f8c;
+    }
+
+    /* Festival card hover animation */
+    .festival-item {
+      transition: transform 0.3s ease;
+    }
+    
+    .festival-item:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Modal animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    #festivalModal {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    /* Festival image zoom effect */
+    .festival-image {
+      transition: transform 0.5s ease;
+    }
+    
+    .festival-image:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed w-full z-10 transition-all duration-300 ease-in-out py-4 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+        <a href="index.html" class="text-xl font-bold">Vastra<span class="text-pink-500">Verse</span></a>
+      </div>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="hover:text-pink-500 transition-colors">Home</a>
+        <a href="about.html" class="hover:text-pink-500 transition-colors">About</a>
+        <a href="chatbot.html" class="hover:text-pink-500 transition-colors">Chatbot</a>
+        <button id="themeToggle" class="hover:text-pink-500 transition-colors">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">Login</button>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors hidden md:block">Sign Up</button>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-200 hover:text-pink-500">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden bg-gray-800 hidden">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+        <a href="index.html" class="block py-2 hover:text-pink-500 transition-colors">Home</a>
+        <a href="about.html" class="block py-2 hover:text-pink-500 transition-colors">About</a>
+        <a href="chatbot.html" class="block py-2 hover:text-pink-500 transition-colors">Chatbot</a>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors w-full mt-2">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-24 pb-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Indian <span class="text-yellow-300">Festivals</span></h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Immerse yourself in the vibrant celebrations and rich cultural tapestry of India's diverse festivals
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search and Filter Section -->
+  <section class="py-6 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input type="text" id="festivalSearch" placeholder="Search for festivals..." class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+        </div>
+        <select id="regionFilter" class="px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+          <option value="all">All Regions</option>
+          <option value="north">North India</option>
+          <option value="south">South India</option>
+          <option value="east">East India</option>
+          <option value="west">West India</option>
+          <option value="northeast">Northeast India</option>
+        </select>
+        <select id="seasonFilter" class="px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+          <option value="all">All Seasons</option>
+          <option value="spring">Spring</option>
+          <option value="summer">Summer</option>
+          <option value="monsoon">Monsoon</option>
+          <option value="autumn">Autumn</option>
+          <option value="winter">Winter</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Festivals Section -->
+  <section class="py-12 bg-gray-850">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center">Complete Festival <span class="text-pink-500">Guide</span></h2>
+      
+      <div id="festivalsContainer" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+         <!-- Diwali -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="diwali" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/diwali.png" alt="Diwali" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Diwali</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    The Festival of Lights, a five-day celebration symbolizing the victory of light over darkness and good over evil.
+  </p>
+  <button 
+    onclick="document.getElementById('diwali-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Diwali -->
+<div id="diwali-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">✨ Diwali - The Festival of Lights ✨</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Diwali Celebrated?</strong><br>
+      Diwali celebrates the triumph of good over evil and light over darkness. Across India, it's associated with various legends: Lord Rama’s return to Ayodhya after defeating Ravana, Lord Krishna’s victory over Narakasura, and Goddess Lakshmi’s emergence from the ocean of milk.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Homes are cleaned and decorated with diyas (oil lamps), candles, and colorful rangolis. People wear new clothes, exchange sweets and gifts, perform Lakshmi Puja, and burst fireworks to celebrate joy and prosperity.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Diwali:</strong><br>
+      - Lighting diyas and candles<br>
+      - Worship of Goddess Lakshmi<br>
+      - Delicious festive meals and sweets<br>
+      - Fireworks and crackers (preferably eco-friendly)<br>
+      - Visiting relatives and community gatherings
+    </p>
+  </div>
+</div>
+
+
+      
+      <!-- Holi -->
+      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="holi" data-region="pan-india" data-season="spring">
+        <div class="overflow-hidden rounded-lg mb-3">
+          <img src="images/holi.png" alt="Holi" class="w-full h-32 object-cover object-center festival-image">
+        </div>
+        <h3 class="font-semibold mb-2">Holi</h3>
+        <div class="flex justify-between text-sm text-gray-400 mb-2">
+          <span>Pan-India</span>
+          <span>Spring</span>
+        </div>
+        <p class="text-xs text-gray-400 mb-3">The Festival of Colors, celebrating the arrival of spring and the triumph of good over evil with vibrant colors.</p>
+        <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="holi">View Details</button>
+      </div>
+      
+      <!-- Navratri -->
+      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="navratri" data-region="pan-india" data-season="autumn">
+        <div class="overflow-hidden rounded-lg mb-3">
+          <img src="images/navratri.png" alt="Navratri" class="w-full h-32 object-cover object-center festival-image">
+        </div>
+        <h3 class="font-semibold mb-2">Navratri</h3>
+        <div class="flex justify-between text-sm text-gray-400 mb-2">
+          <span>Pan-India</span>
+          <span>Autumn</span>
+        </div>
+        <p class="text-xs text-gray-400 mb-3">A nine-night festival celebrating the divine feminine, featuring traditional dances and worship of Goddess Durga.</p>
+        <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="navratri">View Details</button>
+      </div>
+      
+        <!-- Durga Puja -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="durga-puja" data-region="east" data-season="autumn">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/durga puja.png" alt="Durga Puja" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Durga Puja</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>East India</span>
+            <span>Autumn</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Grand celebration of Goddess Durga's victory over evil, with elaborate pandals and cultural performances.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="durga-puja">View Details</button>
+        </div>
+        
+        <!-- Pongal -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="pongal" data-region="south" data-season="winter">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/pongal.png" alt="Pongal" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Pongal</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>South India</span>
+            <span>Winter</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Four-day harvest festival thanking the Sun God, featuring special rice dishes and cattle decoration.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="pongal">View Details</button>
+        </div>
+        
+        <!-- Ganesh Chaturthi -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="ganesh-chaturthi" data-region="west" data-season="monsoon">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Ganesh Chaturthi.png" alt="Ganesh Chaturthi" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Ganesh Chaturthi</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>West India</span>
+            <span>Monsoon</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Ten-day festival honoring Lord Ganesha, culminating in immersion of idols in water bodies.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="ganesh-chaturthi">View Details</button>
+        </div>
+        
+        <!-- Baisakhi -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="baisakhi" data-region="north" data-season="spring">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Baisakhi.png" alt="Baisakhi" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Baisakhi</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>North India</span>
+            <span>Spring</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Harvest festival marking Sikh New Year, featuring Bhangra dance, processions, and fairs.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="baisakhi">View Details</button>
+        </div>
+        
+        <!-- Bihu -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="bihu" data-region="northeast" data-season="spring">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/holi.png" alt="Bihu" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Bihu</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Northeast India</span>
+            <span>Spring</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Assamese harvest festival with three variations throughout the year, featuring traditional dance and music.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="bihu">View Details</button>
+        </div>
+        
+        <!-- Onam -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="onam" data-region="south" data-season="monsoon">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/onam.png" alt="Onam" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Onam</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>South India</span>
+            <span>Monsoon</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Kerala's harvest festival with boat races, tiger dances, floral decorations, and grand feasts.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="onam">View Details</button>
+        </div>
+        
+        <!-- Eid ul-Fitr -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="eid-ul-fitr" data-region="pan-india" data-season="varies">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Eid ul Fitr.png" alt="Eid ul-Fitr" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Eid ul-Fitr</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Pan-India</span>
+            <span>Varies</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Festival marking the end of Ramadan with prayers, feasting, gift-giving, and charitable acts.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="eid-ul-fitr">View Details</button>
+        </div>
+        
+        <!-- Christmas -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="christmas" data-region="pan-india" data-season="winter">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Christmas.png" alt="Christmas" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Christmas</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Pan-India</span>
+            <span>Winter</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Celebrating the birth of Jesus Christ with midnight mass, carol singing, and festive decorations.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="christmas">View Details</button>
+        </div>
+        
+        <!-- Chhath Puja -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="chhath-puja" data-region="east" data-season="autumn">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Chhath Puja.png" alt="Chhath Puja" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Chhath Puja</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>East India</span>
+            <span>Autumn</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Four-day festival dedicated to Sun God with fasting and offering prayers at riverbanks at sunrise and sunset.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="chhath-puja">View Details</button>
+        </div>
+        
+        <!-- Raksha Bandhan -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="raksha-bandhan" data-region="north" data-season="monsoon">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/rakshabandhan.png" alt="Raksha Bandhan" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Raksha Bandhan</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>North India</span>
+            <span>Monsoon</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Celebration of brother-sister bond where sisters tie protective threads on brothers' wrists and receive gifts.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="raksha-bandhan">View Details</button>
+        </div>
+        
+        <!-- Janmashtami -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="janmashtami" data-region="north" data-season="monsoon">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/janamashtami.png" alt="Janmashtami" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Janmashtami</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>North India</span>
+            <span>Monsoon</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Celebration of Lord Krishna's birth with devotional songs, dances, fasting, and Dahi Handi competitions.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="janmashtami">View Details</button>
+        </div>
+        <!-- Mahashivratri -->
+<div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="mahashivratri" data-region="pan-india" data-season="winter">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Mahashivratri.png" alt="Mahashivratri" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Mahashivratri</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>Pan-India</span>
+      <span>Winter</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Worship of Lord Shiva with night-long vigils and prayers, celebrating the divine cosmic energy.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="mahashivratri">View Details</button>
+  </div>
+  
+  <!-- Ram Navami -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="ram-navami" data-region="pan-india" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/ram navami.png" alt="Ram Navami" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Ram Navami</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>Pan-India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Celebration of the birth of Lord Ram, the seventh avatar of Lord Vishnu, with devotional singing and readings.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="ram-navami">View Details</button>
+  </div>
+  
+  <!-- Hanuman Jayanti -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="hanuman-jayanti" data-region="pan-india" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Hanuman Jayanti.png" alt="Hanuman Jayanti" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Hanuman Jayanti</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>Pan-India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Celebrating the birth of Lord Hanuman, embodiment of strength and devotion, with prayers and recitation of sacred texts.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="hanuman-jayanti">View Details</button>
+  </div>
+  
+  <!-- Vasant Panchami -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="vasant-panchami" data-region="north" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Vasant Panchami.png" alt="Vasant Panchami" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Vasant Panchami</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>North India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Marks the arrival of spring, dedicated to Goddess Saraswati, deity of knowledge, music, and arts.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="vasant-panchami">View Details</button>
+  </div>
+  
+  <!-- Karva Chauth -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="karva-chauth" data-region="north" data-season="autumn">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Karva Chauth.png" alt="Karva Chauth" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Karva Chauth</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>North India</span>
+      <span>Autumn</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Married women fast from sunrise to moonrise for their husbands' well-being and long life.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="karva-chauth">View Details</button>
+  </div>
+  
+  <!-- Gudi Padwa -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="gudi-padwa" data-region="west" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Gudi Padwa.png" alt="Gudi Padwa" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Gudi Padwa</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>West India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Maharashtrian New Year, celebrated by raising a decorated flag called Gudi and preparing special dishes.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="gudi-padwa">View Details</button>
+  </div>
+  
+  <!-- Ugadi -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="ugadi" data-region="south" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Ugadi.png" alt="Ugadi" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Ugadi</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>South India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Telugu and Kannada New Year, celebrated with special preparations including Ugadi pachadi, a dish with six flavors.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="ugadi">View Details</button>
+  </div>
+  
+  <!-- Akshaya Tritiya -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="akshaya-tritiya" data-region="pan-india" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Akshaya Tritiya.png" alt="Akshaya Tritiya" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Akshaya Tritiya</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>Pan-India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Auspicious day for new beginnings and gold purchases, believed to bring eternal prosperity and good fortune.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="akshaya-tritiya">View Details</button>
+  </div>
+
+  <!-- Vishu -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="vishu" data-region="south" data-season="spring">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Vishu.png" alt="Vishu" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Vishu</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>South India</span>
+      <span>Spring</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Malayali New Year, celebrated with Vishukkani (first sight of auspicious items) and giving gifts called Vishukkaineetam.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="vishu">View Details</button>
+  </div>
+  
+  
+  
+  <!-- Govardhan Puja -->
+  <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="govardhan-puja" data-region="north" data-season="autumn">
+    <div class="overflow-hidden rounded-lg mb-3">
+      <img src="images/Govardhan Puja.png" alt="Govardhan Puja" class="w-full h-32 object-cover object-center festival-image">
+    </div>
+    <h3 class="font-semibold mb-2">Govardhan Puja</h3>
+    <div class="flex justify-between text-sm text-gray-400 mb-2">
+      <span>North India</span>
+      <span>Autumn</span>
+    </div>
+    <p class="text-xs text-gray-400 mb-3">Celebrated a day after Diwali, commemorating Lord Krishna lifting Govardhan Hill to protect villagers from rain and floods.</p>
+    <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="govardhan-puja">View Details</button>
+  </div>
+        
+        <!-- Makar Sankranti -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="makar-sankranti" data-region="pan-india" data-season="winter">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/makar sankarnti.png" alt="Makar Sankranti" class="w-full h-32 object-cover object-center festival-image">
+          </div>
+          <h3 class="font-semibold mb-2">Makar Sankranti</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Pan-India</span>
+            <span>Winter</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Harvest festival marking the sun's transit into Capricorn with kite flying, special sweets, and ritual baths.</p>
+          <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="makar-sankranti">View Details</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Festival Details Modal -->
+  <div id="festivalModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-4">
+      <div class="sticky top-0 bg-gray-900 py-4 px-6 border-b border-gray-700 flex justify-between items-center">
+        <h2 id="modalTitle" class="text-2xl font-bold">Festival Details</h2>
+        <button id="closeModal" class="text-gray-400 hover:text-pink-500 transition-colors">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <div id="modalContent" class="p-6">
+        <!-- Content will be populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+            <div class="text-xl font-bold">Vastra<span class="text-pink-500">Verse</span></div>
+          </div>
+          <p class="text-gray-400 mb-4">Celebrating the rich diversity of Indian traditional fashion and culture through AI innovation.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-pink-500 transition-colors">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-pink-500 transition-colors">About Us</a></li>
+            <li><a href="chatbot.html" class="text-gray-400 hover:text-pink-500 transition-colors">AI Chatbot</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Festival Calendar</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Traditional Outfits</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Cultural Guides</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Outfit Dictionary</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Regional Styles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h4>
+          <p class="text-gray-400 mb-4">Stay updated with the latest festival guides and traditional fashion trends</p>
+          <form class="mb-4">
+            <div class="flex">
+              <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+              <button type="submit" class="px-4 py-2 bg-pink-500 text-white rounded-r-md hover:bg-pink-600 transition-colors">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+        <p>&copy; 2025 VastraVerse. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
