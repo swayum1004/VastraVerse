@@ -190,32 +190,91 @@
 
       
       <!-- Holi -->
-      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="holi" data-region="pan-india" data-season="spring">
-        <div class="overflow-hidden rounded-lg mb-3">
-          <img src="images/holi.png" alt="Holi" class="w-full h-32 object-cover object-center festival-image">
-        </div>
-        <h3 class="font-semibold mb-2">Holi</h3>
-        <div class="flex justify-between text-sm text-gray-400 mb-2">
-          <span>Pan-India</span>
-          <span>Spring</span>
-        </div>
-        <p class="text-xs text-gray-400 mb-3">The Festival of Colors, celebrating the arrival of spring and the triumph of good over evil with vibrant colors.</p>
-        <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="holi">View Details</button>
-      </div>
+<div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="holi" data-region="pan-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/holi.png" alt="Holi" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Holi</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">The Festival of Colors, celebrating the arrival of spring and the triumph of good over evil with vibrant colors.</p>
+  <button 
+    onclick="document.getElementById('holi-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Holi -->
+<div id="holi-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🎨 Holi - The Festival of Colors 🎨</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Holi Celebrated?</strong><br>
+      Holi marks the arrival of spring and celebrates the triumph of good over evil, commemorating the story of Prahlad and Holika. It's also associated with the divine love between Radha and Krishna.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      People throw colored powders (gulal) and water at each other, sing traditional songs, dance to folk music, and enjoy special sweets like gujiya. The night before Holi features Holika Dahan (bonfires) symbolizing the burning of evil.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Holi:</strong><br>
+      - Playing with organic colors and water balloons<br>
+      - Enjoying traditional sweets and snacks<br>
+      - Participating in community dances and music<br>
+      - Holika Dahan (ritual bonfire)<br>
+      - Visiting friends and family to apply colors
+    </p>
+  </div>
+</div>
       
       <!-- Navratri -->
-      <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="navratri" data-region="pan-india" data-season="autumn">
-        <div class="overflow-hidden rounded-lg mb-3">
-          <img src="images/navratri.png" alt="Navratri" class="w-full h-32 object-cover object-center festival-image">
-        </div>
-        <h3 class="font-semibold mb-2">Navratri</h3>
-        <div class="flex justify-between text-sm text-gray-400 mb-2">
-          <span>Pan-India</span>
-          <span>Autumn</span>
-        </div>
-        <p class="text-xs text-gray-400 mb-3">A nine-night festival celebrating the divine feminine, featuring traditional dances and worship of Goddess Durga.</p>
-        <button class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-festival="navratri">View Details</button>
-      </div>
+<div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="navratri" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/navratri.png" alt="Navratri" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Navratri</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">A nine-night festival celebrating the divine feminine, featuring traditional dances and worship of Goddess Durga.</p>
+  <button 
+    onclick="document.getElementById('navratri-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Navratri -->
+<div id="navratri-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🪔 Navratri - The Nine Divine Nights 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Navratri Celebrated?</strong><br>
+      Navratri honors the divine feminine energy (Shakti) and celebrates the victory of Goddess Durga over the buffalo demon Mahishasura. It symbolizes the triumph of good over evil and spiritual enlightenment.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees observe fasts, perform Garba/Dandiya dances, and conduct elaborate pujas. Nine forms of Durga are worshipped across nine nights. In Gujarat, colorful dance festivals dominate, while in Bengal it culminates in Durga Puja celebrations.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Navratri:</strong><br>
+      - Traditional Garba and Dandiya Raas dances<br>
+      - Fasting and special vegetarian meals<br>
+      - Daily Goddess Durga worship rituals<br>
+      - Setting up elaborate pandals and idols<br>
+      - Cultural programs and community gatherings<br>
+      - Kanya Pujan (worship of young girls as goddess forms)
+    </p>
+  </div>
+</div>
       
         <!-- Durga Puja -->
         <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer festival-item" data-festival="durga-puja" data-region="east" data-season="autumn">
@@ -576,7 +635,7 @@
             <li><a href="index.html" class="text-gray-400 hover:text-pink-500 transition-colors">Home</a></li>
             <li><a href="about.html" class="text-gray-400 hover:text-pink-500 transition-colors">About Us</a></li>
             <li><a href="chatbot.html" class="text-gray-400 hover:text-pink-500 transition-colors">AI Chatbot</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Festival Calendar</a></li>
+            <li><a href="Festival Calendar.html" class="text-gray-400 hover:text-pink-500 transition-colors">Festival Calendar</a></li>
             <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Traditional Outfits</a></li>
           </ul>
         </div>

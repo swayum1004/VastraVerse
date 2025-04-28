@@ -6,8 +6,58 @@
   <title>Regional Traditions - VastraVerse</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="styles.css" rel="stylesheet">
-  <link href="regional-traditions.css" rel="stylesheet">
+  <style>
+    .bg-gray-850 {
+      background-color: #1a1c23;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #2d3748;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #ec4899;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d53f8c;
+    }
+
+    /* Tradition card hover animation */
+    .tradition-item {
+      transition: transform 0.3s ease;
+    }
+    
+    .tradition-item:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Modal animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    #traditionModal {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    /* Tradition image zoom effect */
+    .tradition-image {
+      transition: transform 0.5s ease;
+    }
+    
+    .tradition-image:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body class="bg-gray-900 text-white font-sans antialiased">
   <!-- Navbar -->
@@ -41,893 +91,609 @@
       <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
         <a href="index.html" class="block py-2 hover:text-pink-500 transition-colors">Home</a>
         <a href="about.html" class="block py-2 hover:text-pink-500 transition-colors">About</a>
+        <a href="indian-festivals.html" class="block py-2 hover:text-pink-500 transition-colors">Festivals</a>
         <a href="chatbot.html" class="block py-2 hover:text-pink-500 transition-colors">Chatbot</a>
-        <a href="Regional-Traditions.html" class="block py-2 text-pink-500 transition-colors">Regional Traditions</a>
         <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors w-full mt-2">Sign Up</button>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-24 pb-12 bg-gray-950 relative">
-    <div class="absolute inset-0 opacity-10 pattern-bg"></div>
-    <div class="container mx-auto px-4 relative">
+  <section class="pt-24 pb-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white">
+    <div class="container mx-auto px-4">
       <div class="text-center mb-8">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Regional <span class="text-pink-500">Traditions</span> of India</h1>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-          Explore the rich cultural heritage, traditional attire, and customs from diverse regions across India
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Regional <span class="text-yellow-300">Traditions</span></h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Explore the rich tapestry of India's cultural heritage through its diverse regional traditions and customs
         </p>
-      </div>
-      <div class="flex justify-center mt-6">
-        <a href="#regions-section" class="flex items-center justify-center animate-bounce bg-pink-500 hover:bg-pink-600 transition-colors rounded-full w-12 h-12">
-          <i class="fas fa-chevron-down text-white"></i>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Map Section -->
-  <section class="py-16 bg-gray-900" id="regions-section">
+  <!-- Search and Filter Section -->
+  <section class="py-6 bg-gray-800">
     <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto mb-12">
-        <div class="text-center mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Explore India's <span class="text-pink-500">Cultural Map</span></h2>
-          <p class="text-xl text-gray-300">
-            Select a region to discover its unique traditions, attire, and cultural practices
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input type="text" id="traditionSearch" placeholder="Search for traditions..." class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+        </div>
+        <select id="regionFilter" class="px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+          <option value="all">All Regions</option>
+          <option value="north">North India</option>
+          <option value="south">South India</option>
+          <option value="east">East India</option>
+          <option value="west">West India</option>
+          <option value="northeast">Northeast India</option>
+          <option value="central">Central India</option>
+        </select>
+        <select id="categoryFilter" class="px-4 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+          <option value="all">All Categories</option>
+          <option value="dance">Dance Forms</option>
+          <option value="music">Music</option>
+          <option value="art">Art & Crafts</option>
+          <option value="cuisine">Cuisine</option>
+          <option value="ritual">Rituals & Ceremonies</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Traditions Section -->
+  <section class="py-12 bg-gray-850">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center">Discover India's <span class="text-pink-500">Cultural Heritage</span></h2>
+      
+      <div id="traditionsContainer" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Bharatanatyam -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer tradition-item relative" data-tradition="bharatanatyam" data-region="south" data-category="dance">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/bharatnatiyam.png" alt="Bharatanatyam" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2 text-white">Bharatanatyam</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>South India</span>
+            <span>Dance Form</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">
+            Ancient classical dance form originated in Tamil Nadu, known for its grace, expressions, and sculptural poses.
           </p>
+          <button 
+            onclick="document.getElementById('bharatanatyam-details').classList.remove('hidden')" 
+            class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+          >
+            View Details
+          </button>
         </div>
 
-        <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-2xl">
-          <div class="flex flex-col md:flex-row">
-            <div class="w-full md:w-1/2 h-96 bg-gray-750 border-r border-gray-700">
-              <div id="map-container" class="relative h-full flex items-center justify-center overflow-hidden">
-                <!-- SVG Map of India will be inserted here by JavaScript -->
-                <div id="map-loader" class="text-center">
-                  <i class="fas fa-circle-notch fa-spin text-pink-500 text-4xl mb-4"></i>
-                  <p class="text-gray-400">Loading interactive map...</p>
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-1/2 p-6" id="region-info">
-              <h3 class="text-2xl font-bold mb-4">Select a Region</h3>
-              <p class="text-gray-300 mb-6">Click on any region on the map to view detailed information about its cultural traditions.</p>
-              
-              <div class="space-y-4" id="default-info">
-                <div class="bg-gray-750 rounded-lg p-4">
-                  <h4 class="font-medium text-pink-500 mb-2">5 Major Cultural Zones</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-map-marker-alt text-pink-500 mr-2"></i> North India</li>
-                    <li><i class="fas fa-map-marker-alt text-pink-500 mr-2"></i> South India</li>
-                    <li><i class="fas fa-map-marker-alt text-pink-500 mr-2"></i> East India</li>
-                    <li><i class="fas fa-map-marker-alt text-pink-500 mr-2"></i> West India</li>
-                    <li><i class="fas fa-map-marker-alt text-pink-500 mr-2"></i> Northeast India</li>
-                  </ul>
-                </div>
-                
-                <div class="bg-gray-750 rounded-lg p-4">
-                  <h4 class="font-medium text-pink-500 mb-2">Cultural Diversity</h4>
-                  <p class="text-gray-300">India has 28 states and 8 union territories, each with its own distinctive cultural identity, language, cuisine, and traditional attire.</p>
-                </div>
-              </div>
-              
-              <!-- This will be populated by JavaScript when a region is clicked -->
-              <div id="selected-region-info" class="hidden"></div>
-            </div>
+        <!-- Inline Modal for Bharatanatyam -->
+        <div id="bharatanatyam-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+            <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+            <h2 class="text-2xl font-bold mb-4 text-pink-400">✨ Bharatanatyam - The Divine Dance ✨</h2>
+            <p class="text-sm text-gray-300 leading-relaxed mb-2">
+              <strong>Origin and History:</strong><br>
+              Bharatanatyam originated over 2,000 years ago in Tamil Nadu. It was traditionally performed in Hindu temples and royal courts by Devadasis (temple dancers). After falling into disrepute during colonial times, it was revived in the 20th century and is now recognized as one of India's eight classical dance forms.
+            </p>
+            <p class="text-sm text-gray-300 leading-relaxed mb-2">
+              <strong>Key Features:</strong><br>
+              Characterized by bent knees (aramandi), precise hand gestures (mudras), elaborate footwork, and expressive facial movements (abhinaya). The dance represents a perfect balance of nritta (rhythmic dance movements), nritya (expression), and natya (dramatic elements).
+            </p>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              <strong>Cultural Significance:</strong><br>
+              Bharatanatyam narrates stories from Hindu mythology and scriptures, particularly from the Natyashastra. Modern performances explore contemporary themes while maintaining traditional techniques. It remains an important spiritual and artistic expression, showcasing the dancer's devotion to the divine.
+            </p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Regional Zones Overview -->
-  <section class="py-16 bg-gray-950">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">India's <span class="text-pink-500">Cultural Zones</span></h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-          Discover the unique traditions, festivals, and attire that define each cultural region
-        </p>
-      </div>
-
-      <!-- North India -->
-      <div class="mb-16">
-        <div class="max-w-5xl mx-auto">
-          <div class="flex flex-col md:flex-row bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg">
-            <div class="w-full md:w-2/5">
-              <div class="h-80 md:h-full bg-gradient-to-br from-red-700 to-yellow-600 relative">
-                <div class="overlay-pattern absolute inset-0 opacity-20"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <img src="images/north-india.png" alt="North India" class="max-h-64 w-auto">
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-8">
-              <h3 class="text-2xl font-bold mb-2 flex items-center">
-                <span class="w-2 h-8 bg-gradient-to-br from-red-500 to-yellow-500 rounded-full mr-3"></span>
-                North India
-              </h3>
-              <p class="text-gray-300 mb-4">The northern region encompasses states like Rajasthan, Punjab, Haryana, Uttar Pradesh, and Jammu & Kashmir, known for their royal heritage, vibrant folk traditions, and colorful attire.</p>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Traditional Attire</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Women:</strong> Lehenga-Choli, Phulkari dupatta, Patiala salwar</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Men:</strong> Kurta-Pajama, Sherwani, Turbans, Dhoti</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Major Festivals</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Holi, Diwali, Lohri, Baisakhi</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Teej, Karva Chauth, Raksha Bandhan</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Punjabi</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Rajasthani</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Hindi</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Urdu</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Himachali</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Kashmiri</span>
-              </div>
-              
-              <a href="#north-india-detailed" class="region-detail-btn text-pink-500 hover:text-pink-400 flex items-center" data-region="north">
-                Explore North Indian Traditions <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
+        
+        <!-- Kathakali -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="kathakali" data-region="south" data-category="dance">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/kathakali.png" alt="Kathakali" class="w-full h-32 object-cover object-center tradition-image">
           </div>
-        </div>
-      </div>
-
-      <!-- South India -->
-      <div class="mb-16">
-        <div class="max-w-5xl mx-auto">
-          <div class="flex flex-col md:flex-row bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg">
-            <div class="w-full md:w-2/5">
-              <div class="h-80 md:h-full bg-gradient-to-br from-green-700 to-teal-500 relative">
-                <div class="overlay-pattern absolute inset-0 opacity-20"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <img src="images/south-india.png" alt="South India" class="max-h-64 w-auto">
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-8">
-              <h3 class="text-2xl font-bold mb-2 flex items-center">
-                <span class="w-2 h-8 bg-gradient-to-br from-green-500 to-teal-500 rounded-full mr-3"></span>
-                South India
-              </h3>
-              <p class="text-gray-300 mb-4">The southern states of Tamil Nadu, Kerala, Karnataka, Andhra Pradesh, and Telangana are known for their classical arts, temple architecture, and distinctive silk sarees.</p>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Traditional Attire</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Women:</strong> Kanjeevaram silk sarees, Kasavu, Pattu pavadai</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Men:</strong> Veshti/Dhoti, Mundu, Panche, Angavastram</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Major Festivals</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Pongal, Onam, Vishu, Ugadi</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Mysore Dasara, Attukal Pongala</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Tamil</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Malayalam</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Telugu</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Kannada</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Tulu</span>
-              </div>
-              
-              <a href="#south-india-detailed" class="region-detail-btn text-pink-500 hover:text-pink-400 flex items-center" data-region="south">
-                Explore South Indian Traditions <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
+          <h3 class="font-semibold mb-2">Kathakali</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>South India</span>
+            <span>Dance Form</span>
           </div>
+          <p class="text-xs text-gray-400 mb-3">Kerala's theatrical dance-drama known for elaborate makeup, costumes, and facial expressions.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="kathakali">View Details</button>
         </div>
-      </div>
-
-      <!-- East India -->
-      <div class="mb-16">
-        <div class="max-w-5xl mx-auto">
-          <div class="flex flex-col md:flex-row bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg">
-            <div class="w-full md:w-2/5">
-              <div class="h-80 md:h-full bg-gradient-to-br from-purple-700 to-pink-500 relative">
-                <div class="overlay-pattern absolute inset-0 opacity-20"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <img src="images/east-india.png" alt="East India" class="max-h-64 w-auto">
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-8">
-              <h3 class="text-2xl font-bold mb-2 flex items-center">
-                <span class="w-2 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mr-3"></span>
-                East India
-              </h3>
-              <p class="text-gray-300 mb-4">The eastern region includes West Bengal, Odisha, Bihar, and Jharkhand, known for their rich artistic traditions, intricate weaves, and elaborate festivals.</p>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Traditional Attire</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Women:</strong> Tant sarees, Sambalpuri, Baluchari, Kantha</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Men:</strong> Dhoti-Kurta, Panjabi, Gamcha</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Major Festivals</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Durga Puja, Chhath Puja, Rath Yatra</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Poush Mela, Raja Parba, Saraswati Puja</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Bengali</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Odia</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Maithili</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Magahi</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Bhojpuri</span>
-              </div>
-              
-              <a href="#east-india-detailed" class="region-detail-btn text-pink-500 hover:text-pink-400 flex items-center" data-region="east">
-                Explore East Indian Traditions <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
+        
+        <!-- Madhubani Art -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="madhubani" data-region="east" data-category="art">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/madhurbani art.png" alt="Madhubani Art" class="w-full h-32 object-cover object-center tradition-image">
           </div>
-        </div>
-      </div>
-
-      <!-- West India -->
-      <div class="mb-16">
-        <div class="max-w-5xl mx-auto">
-          <div class="flex flex-col md:flex-row bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg">
-            <div class="w-full md:w-2/5">
-              <div class="h-80 md:h-full bg-gradient-to-br from-blue-700 to-indigo-500 relative">
-                <div class="overlay-pattern absolute inset-0 opacity-20"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <img src="images/west-india.png" alt="West India" class="max-h-64 w-auto">
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-8">
-              <h3 class="text-2xl font-bold mb-2 flex items-center">
-                <span class="w-2 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full mr-3"></span>
-                West India
-              </h3>
-              <p class="text-gray-300 mb-4">The western states of Gujarat, Maharashtra, and Goa feature distinctive textile traditions, vibrant folk dances, and a blend of traditional and colonial influences.</p>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Traditional Attire</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Women:</strong> Chaniya choli, Nauvari saree, Kashta, Paithani</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Men:</strong> Kediya, Dhoti-kurta, Phento (Marathi turban)</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Major Festivals</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Navratri/Garba, Ganesh Chaturthi</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Gudi Padwa, Carnival (Goa)</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Gujarati</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Marathi</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Konkani</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Kutchi</span>
-              </div>
-              
-              <a href="#west-india-detailed" class="region-detail-btn text-pink-500 hover:text-pink-400 flex items-center" data-region="west">
-                Explore West Indian Traditions <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
+          <h3 class="font-semibold mb-2">Madhubani Art</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>East India</span>
+            <span>Art & Crafts</span>
           </div>
+          <p class="text-xs text-gray-400 mb-3">Ancient folk art from Bihar with geometric patterns and natural dyes depicting mythology and social events.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="madhubani">View Details</button>
         </div>
-      </div>
-
-      <!-- Northeast India -->
-      <div class="mb-16">
-        <div class="max-w-5xl mx-auto">
-          <div class="flex flex-col md:flex-row bg-gray-800 rounded-xl overflow-hidden border border-gray-700 shadow-lg">
-            <div class="w-full md:w-2/5">
-              <div class="h-80 md:h-full bg-gradient-to-br from-amber-700 to-yellow-500 relative">
-                <div class="overlay-pattern absolute inset-0 opacity-20"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <img src="images/northeast-india.png" alt="Northeast India" class="max-h-64 w-auto">
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-8">
-              <h3 class="text-2xl font-bold mb-2 flex items-center">
-                <span class="w-2 h-8 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-full mr-3"></span>
-                Northeast India
-              </h3>
-              <p class="text-gray-300 mb-4">The seven sister states and Sikkim in the northeast showcase unique tribal traditions, handloom textiles, and colorful attire with distinctive patterns.</p>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Traditional Attire</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Women:</strong> Mekhela Chador, Phanek, Puanchei, Jainsem</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> <strong>Men:</strong> Dhoti, Gamosa, tribal shawls, headgear</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-pink-500 mb-2">Major Festivals</h4>
-                  <ul class="text-gray-300 space-y-1">
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Bihu, Hornbill Festival, Losar</li>
-                    <li><i class="fas fa-circle text-xs text-pink-500 mr-2"></i> Cheiraoba, Chapchar Kut, Wangala</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Assamese</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Manipuri</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Nagamese</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Khasi</span>
-                <span class="text-xs bg-gray-700 px-2 py-1 rounded">Mizo</span>
-              </div>
-              
-              <a href="#northeast-india-detailed" class="region-detail-btn text-pink-500 hover:text-pink-400 flex items-center" data-region="northeast">
-                Explore Northeast Indian Traditions <i class="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
+        
+        <!-- Dhokra Craft -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="dhokra" data-region="east" data-category="art">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/dhokra.png" alt="Dhokra Craft" class="w-full h-32 object-cover object-center tradition-image">
           </div>
+          <h3 class="font-semibold mb-2">Dhokra Craft</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>East India</span>
+            <span>Art & Crafts</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Ancient bell metal craft using lost-wax casting technique to create tribal motifs and figurines.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="dhokra">View Details</button>
         </div>
-      </div>
-    </div>
-  </section>
+        
+        <!-- Kathak -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="kathak" data-region="north" data-category="dance">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/kathak.png" alt="Kathak" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Kathak</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>North India</span>
+            <span>Dance Form</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Classical dance characterized by swift pirouettes, rhythmic footwork, and storytelling through expressions.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="kathak">View Details</button>
+        </div>
+        
+        <!-- Carnatic Music -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="carnatic" data-region="south" data-category="music">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/carnatic.png" alt="Carnatic Music" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Carnatic Music</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>South India</span>
+            <span>Music</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Classical music tradition with emphasis on vocals, intricate ragas, and devotional themes.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="carnatic">View Details</button>
+        </div>
+        
+        <!-- Bandhani Tie-Dye -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="bandhani" data-region="west" data-category="art">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Bandhani Tie-Dye.png" alt="Bandhani Tie-Dye" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Bandhani Tie-Dye</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>West India</span>
+            <span>Art & Crafts</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Ancient tie-dye textile art from Gujarat and Rajasthan creating intricate patterns through binding and dyeing.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="bandhani">View Details</button>
+        </div>
+        
+        <!-- Bihu Dance -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="bihu-dance" data-region="northeast" data-category="dance">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/bihu.png" alt="Bihu Dance" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Bihu Dance</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Northeast India</span>
+            <span>Dance Form</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Vibrant folk dance of Assam performed during Bihu festivals with energetic movements and colorful attire.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="bihu-dance">View Details</button>
+        </div>
+        
+        <!-- Chhau Dance -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="chhau" data-region="east" data-category="dance">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Chhau Dance.jpeg" alt="Chhau Dance" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Chhau Dance</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>East India</span>
+            <span>Dance Form</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Semi-classical dance form from Odisha, West Bengal, and Jharkhand featuring masks and martial art movements.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="chhau">View Details</button>
+        </div>
+        
+        <!-- Ghee Tilak Ceremony -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="ghee-tilak" data-region="north" data-category="ritual">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Ghee Tilak Ceremony.jpeg" alt="Ghee Tilak Ceremony" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Ghee Tilak Ceremony</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>North India</span>
+            <span>Rituals & Ceremonies</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Traditional welcome ritual where a mark of clarified butter is applied to the forehead of guests as a blessing.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="ghee-tilak">View Details</button>
+        </div>
+        
+        <!-- Hyderabadi Biryani -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="hyderabadi-biryani" data-region="south" data-category="cuisine">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Hyderabadi Biryani.jpeg" alt="Hyderabadi Biryani" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Hyderabadi Biryani</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>South India</span>
+            <span>Cuisine</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Iconic Mughlai-influenced rice dish with aromatic spices, meat, and the unique 'dum' cooking method.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="hyderabadi-biryani">View Details</button>
+        </div>
+        
+        <!-- Gond Art -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="gond-art" data-region="central" data-category="art">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Gond Art.jpeg" alt="Gond Art" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Gond Art</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Central India</span>
+            <span>Art & Crafts</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Traditional art form of Gond tribes featuring intricate patterns, natural colors, and nature-inspired motifs.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="gond-art">View Details</button>
+        </div>
+        
+        <!-- Hindustani Classical Music -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="hindustani" data-region="north" data-category="music">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Hindustani Classical Music.jpeg" alt="Hindustani Classical Music" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Hindustani Classical Music</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>North India</span>
+            <span>Music</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Traditional musical form with Persian influences featuring ragas, talas, and improvisation.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="hindustani">View Details</button>
+        </div>
+        
+        <!-- Mehndi Ceremony -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="mehndi" data-region="pan-india" data-category="ritual">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/mehndi.png" alt="Mehndi Ceremony" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Mehndi Ceremony</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Pan-India</span>
+            <span>Rituals & Ceremonies</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Pre-wedding ritual where intricate henna designs are applied to the bride's hands and feet.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="mehndi">View Details</button>
+        </div>
+        
+        <!-- Manipuri Dance -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="manipuri" data-region="northeast" data-category="dance">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Manipuri Dance.jpeg" alt="Manipuri Dance" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Manipuri Dance</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>Northeast India</span>
+            <span>Dance Form</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Gentle and lyrical classical dance from Manipur with graceful movements inspired by Radha and Krishna.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="manipuri">View Details</button>
+        </div>
+        
+        <!-- Pattachitra -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="pattachitra" data-region="east" data-category="art">
+          <div class="overflow-hidden rounded-lg mb-3">
+            <img src="images/Pattachitra.jpeg" alt="Pattachitra" class="w-full h-32 object-cover object-center tradition-image">
+          </div>
+          <h3 class="font-semibold mb-2">Pattachitra</h3>
+          <div class="flex justify-between text-sm text-gray-400 mb-2">
+            <span>East India</span>
+            <span>Art & Crafts</span>
+          </div>
+          <p class="text-xs text-gray-400 mb-3">Ancient cloth-based scroll painting from Odisha with intricate mythological narratives and natural colors.</p>
+          <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="pattachitra">View Details</button>
+        </div>
+        
+        <!-- Warli Art -->
+        <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="warli
+        <!-- Warli Art (completing the cut-off div) -->
+<div class="bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer tradition-item" data-tradition="warli" data-region="west" data-category="art">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/Warli Art.jpeg" alt="Warli Art" class="w-full h-32 object-cover object-center tradition-image">
+  </div>
+  <h3 class="font-semibold mb-2">Warli Art</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>West India</span>
+    <span>Art & Crafts</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">Tribal art form from Maharashtra using simple geometric shapes to depict daily life and social events.</p>
+  <button class="tradition-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-tradition="warli">View Details</button>
+</div>
 
-  <!-- Detailed Region Sections (Initially Hidden) -->
-  <section id="region-details" class="py-16 bg-gray-900 hidden">
-    <div class="container mx-auto px-4">
-      <div class="mb-6">
-        <button id="back-to-regions" class="flex items-center text-gray-300 hover:text-pink-500 transition-colors mb-6">
-          <i class="fas fa-arrow-left mr-2"></i> Back to All Regions
+<!-- Add more tradition items here as needed -->
+
+      </div>
+      
+      <!-- No Results Message -->
+      <div id="noResults" class="hidden text-center py-10">
+        <div class="text-pink-500 text-4xl mb-4"><i class="fas fa-search"></i></div>
+        <h3 class="text-xl font-semibold mb-2">No traditions found</h3>
+        <p class="text-gray-400">Try adjusting your search or filters</p>
+      </div>
+      
+      <!-- Load More Button -->
+      <div class="text-center mt-10">
+        <button id="loadMoreBtn" class="px-6 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+          Load More Traditions
         </button>
       </div>
-      
-      <!-- North India Detailed -->
-      <div id="north-india-detailed" class="region-detail hidden">
-        <div class="max-w-5xl mx-auto mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">North Indian <span class="text-pink-500">Traditions</span></h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <!-- Traditional Clothing -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-red-600 to-pink-500 flex items-center justify-center">
-                <i class="fas fa-tshirt text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Traditional Clothing</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Women's Attire</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Lehenga-Choli:</strong> Elaborate full skirt with fitted blouse</li>
-                      <li><strong>Phulkari:</strong> Punjab's embroidered dupattas</li>
-                      <li><strong>Patiala Salwar:</strong> Pleated loose pants</li>
-                      <li><strong>Kurti-Churidar:</strong> Tunic with fitted pants</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Men's Attire</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2"><li><strong>Kurta-Pajama:</strong> Traditional tunic with fitted or loose pants</li>
-                      <li><strong>Sherwani:</strong> Formal long coat-like garment</li>
-                      <li><strong>Turban (Pagri):</strong> Headwear with regional variations</li>
-                      <li><strong>Dhoti:</strong> Traditional draped lower garment</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Festivals & Celebrations -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center">
-                <i class="fas fa-calendar-day text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Festivals & Celebrations</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Major Festivals</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Holi:</strong> Festival of colors (Feb-March)</li>
-                      <li><strong>Diwali:</strong> Festival of lights (Oct-Nov)</li>
-                      <li><strong>Lohri:</strong> Harvest festival in Punjab (January)</li>
-                      <li><strong>Baisakhi:</strong> Harvest festival & Sikh new year</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Cultural Celebrations</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Teej:</strong> Monsoon festival for women</li>
-                      <li><strong>Karva Chauth:</strong> Women fast for husbands</li>
-                      <li><strong>Raksha Bandhan:</strong> Sibling bond celebration</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Arts & Crafts -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-purple-600 to-blue-500 flex items-center justify-center">
-                <i class="fas fa-paint-brush text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Arts & Crafts</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Traditional Art Forms</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Phulkari:</strong> Geometric embroidery from Punjab</li>
-                      <li><strong>Blue Pottery:</strong> Jaipur's ceramic art</li>
-                      <li><strong>Madhubani:</strong> Folk painting from Bihar</li>
-                      <li><strong>Chikankari:</strong> Lucknow's delicate embroidery</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Textile Traditions</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Bandhani:</strong> Tie-dye technique from Rajasthan</li>
-                      <li><strong>Pashmina:</strong> Fine Kashmir wool shawls</li>
-                      <li><strong>Banarasi:</strong> Silk brocades from Varanasi</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+    </div>
+  </section>
+
+  <!-- Tradition Modal Template -->
+  <div id="traditionModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+      <button id="closeModalBtn" class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4 text-pink-400"></h2>
+      <div id="modalContent" class="text-sm text-gray-300 leading-relaxed"></div>
+    </div>
+  </div>
+
+  <!-- Newsletter Section -->
+  <section class="py-12 bg-gradient-to-r from-purple-700 to-pink-600">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <h2 class="text-3xl font-bold mb-2">Stay Connected to India's Cultural Heritage</h2>
+          <p class="text-lg opacity-90">Subscribe to our newsletter for the latest updates on traditions, festivals, and cultural events.</p>
+        </div>
+        <div class="md:w-1/2 flex">
+          <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800">
+          <button class="px-6 py-3 bg-pink-500 text-white font-semibold rounded-r-lg hover:bg-pink-600 transition-colors">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+            <span class="text-xl font-bold text-white">Vastra<span class="text-pink-500">Verse</span></span>
           </div>
-          
-          <!-- Featured States -->
-          <h3 class="text-2xl font-bold mb-6">Featured States of North India</h3>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <!-- Rajasthan -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-60 relative">
-                <img src="images/rajasthan.png" alt="Rajasthan" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-4">
-                  <h4 class="text-xl font-bold">Rajasthan</h4>
-                  <p class="text-gray-300">Land of Kings</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Traditional Attire</h5>
-                  <p class="text-gray-300">Women wear vibrant lehenga-choli with ghagra (full skirt) and odhani (veil), while men don colorful turbans (pagri), dhoti, and angarkha or kurta.</p>
-                </div>
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Cultural Highlights</h5>
-                  <ul class="text-gray-300 space-y-1">
-                    <li>• Ghoomar and Kalbeliya folk dances</li>
-                    <li>• Desert festivals and camel fairs</li>
-                    <li>• Block printing and bandhani tie-dye textiles</li>
-                    <li>• Elaborate palace architecture</li>
-                  </ul>
-                </div>
-                <a href="#" class="text-pink-500 hover:text-pink-400 flex items-center text-sm">
-                  Learn more about Rajasthani traditions <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Punjab -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-60 relative">
-                <img src="images/punjab.png" alt="Punjab" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-4">
-                  <h4 class="text-xl font-bold">Punjab</h4>
-                  <p class="text-gray-300">Land of Five Rivers</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Traditional Attire</h5>
-                  <p class="text-gray-300">Women wear colorful Patiala salwar-kameez with phulkari dupattas, while men dress in kurta-pajama with turban (pagri) and traditional jutti footwear.</p>
-                </div>
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Cultural Highlights</h5>
-                  <ul class="text-gray-300 space-y-1">
-                    <li>• Bhangra and Giddha folk dances</li>
-                    <li>• Lohri and Baisakhi harvest festivals</li>
-                    <li>• Phulkari embroidery tradition</li>
-                    <li>• Gurudwaras and Sikh heritage</li>
-                  </ul>
-                </div>
-                <a href="#" class="text-pink-500 hover:text-pink-400 flex items-center text-sm">
-                  Learn more about Punjabi traditions <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
+          <p class="text-sm mb-4">Celebrating India's rich cultural heritage through traditional clothing, festivals, and customs.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors"><i class="fab fa-youtube"></i></a>
           </div>
-          
-          <!-- Cultural Showcase -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 p-6">
-            <h3 class="text-xl font-bold mb-4">North Indian Cultural Showcase</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <h4 class="font-medium text-pink-500 mb-2">Folk Dances</h4>
-                <ul class="text-gray-300 space-y-1">
-                  <li>• <strong>Bhangra</strong> - Punjab's energetic harvest dance</li>
-                  <li>• <strong>Ghoomar</strong> - Graceful Rajasthani women's dance</li>
-                  <li>• <strong>Kathak</strong> - Classical dance with Mughal influence</li>
-                  <li>• <strong>Dandiya</strong> - Stick dance during Navratri</li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="font-medium text-pink-500 mb-2">Culinary Traditions</h4>
-                <ul class="text-gray-300 space-y-1">
-                  <li>• Rich, aromatic curries with dairy and bread</li>
-                  <li>• Tandoori cooking techniques</li>
-                  <li>• Street foods like chaat and kebabs</li>
-                  <li>• Regional specialties: dal baati, makki di roti, etc.</li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="font-medium text-pink-500 mb-2">Music & Instruments</h4>
-                <ul class="text-gray-300 space-y-1">
-                  <li>• <strong>Tabla</strong> - Pair of hand drums</li>
-                  <li>• <strong>Sitar</strong> - Stringed instrument</li>
-                  <li>• <strong>Sarangi</strong> - Bowed string instrument</li>
-                  <li>• <strong>Punjabi folk songs</strong> and Sufi music</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-pink-500 transition-colors">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-pink-500 transition-colors">About Us</a></li>
+            <li><a href="chatbot.html" class="text-gray-400 hover:text-pink-500 transition-colors">AI Chatbot</a></li>
+            <li><a href="Festival Calendar.html" class="text-gray-400 hover:text-pink-500 transition-colors">Festival Calendar</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Traditional Outfits</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-white font-semibold mb-4">Resources</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-pink-500 transition-colors">Blog</a></li>
+            <li><a href="#" class="hover:text-pink-500 transition-colors">Cultural Calendar</a></li>
+            <li><a href="#" class="hover:text-pink-500 transition-colors">Research Papers</a></li>
+            <li><a href="#" class="hover:text-pink-500 transition-colors">Media Gallery</a></li>
+            <li><a href="#" class="hover:text-pink-500 transition-colors">FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-white font-semibold mb-4">Contact Us</h3>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-start space-x-2">
+              <i class="fas fa-map-marker-alt mt-1"></i>
+              <span>123 Heritage Lane, Mumbai, India</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <i class="fas fa-phone-alt mt-1"></i>
+              <span>+91 98765 43210</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <i class="fas fa-envelope mt-1"></i>
+              <span>info@vastraverse.com</span>
+            </li>
+          </ul>
         </div>
       </div>
       
-      <!-- South India Detailed -->
-      <div id="south-india-detailed" class="region-detail hidden">
-        <div class="max-w-5xl mx-auto mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">South Indian <span class="text-pink-500">Traditions</span></h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <!-- Traditional Clothing -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-green-600 to-teal-500 flex items-center justify-center">
-                <i class="fas fa-tshirt text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Traditional Clothing</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Women's Attire</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Kanjeevaram Saree:</strong> Silk sarees with gold zari</li>
-                      <li><strong>Kasavu:</strong> Kerala's white and gold saree</li>
-                      <li><strong>Pattu Pavadai:</strong> Traditional girls' attire</li>
-                      <li><strong>Davani:</strong> Half-saree for young women</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Men's Attire</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Veshti/Dhoti:</strong> Draped lower garment</li>
-                      <li><strong>Mundu:</strong> Kerala's white cotton garment</li>
-                      <li><strong>Panche:</strong> Karnataka's dhoti variant</li>
-                      <li><strong>Angavastram:</strong> Upper body cloth drape</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Festivals & Celebrations -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center">
-                <i class="fas fa-calendar-day text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Festivals & Celebrations</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Major Festivals</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Pongal:</strong> Tamil harvest festival (January)</li>
-                      <li><strong>Onam:</strong> Kerala's cultural festival</li>
-                      <li><strong>Ugadi:</strong> New Year celebration</li>
-                      <li><strong>Vishu:</strong> Malayalam New Year</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Cultural Celebrations</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Mysore Dasara:</strong> 10-day royal celebration</li>
-                      <li><strong>Attukal Pongala:</strong> Women's festival</li>
-                      <li><strong>Thiruvathira:</strong> Women's dance festival</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Arts & Crafts -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-purple-600 to-blue-500 flex items-center justify-center">
-                <i class="fas fa-paint-brush text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Arts & Crafts</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Traditional Art Forms</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Tanjore Paintings:</strong> Gold-embellished art</li>
-                      <li><strong>Kolam:</strong> Geometric floor designs</li>
-                      <li><strong>Aipan:</strong> Sacred floor art</li>
-                      <li><strong>Temple Sculptures:</strong> Stone carvings</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Textile Traditions</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Kanjeevaram:</strong> Luxurious Tamil silk</li>
-                      <li><strong>Pochampally:</strong> Ikat weaving from Telangana</li>
-                      <li><strong>Mysore Silk:</strong> Pure silk with gold zari</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Featured States -->
-          <h3 class="text-2xl font-bold mb-6">Featured States of South India</h3>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <!-- Tamil Nadu -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-60 relative">
-                <img src="images/tamil-nadu.png" alt="Tamil Nadu" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-4">
-                  <h4 class="text-xl font-bold">Tamil Nadu</h4>
-                  <p class="text-gray-300">Land of Temples</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Traditional Attire</h5>
-                  <p class="text-gray-300">Women wear nine-yard or six-yard Kanjeevaram silk sarees with traditional gold jewelry, while men wear veshti (dhoti) with angavastram (upper cloth).</p>
-                </div>
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Cultural Highlights</h5>
-                  <ul class="text-gray-300 space-y-1">
-                    <li>• Bharatanatyam classical dance</li>
-                    <li>• Carnatic music tradition</li>
-                    <li>• Pongal harvest festival</li>
-                    <li>• Magnificent Dravidian temples</li>
-                  </ul>
-                </div>
-                <a href="#" class="text-pink-500 hover:text-pink-400 flex items-center text-sm">
-                  Learn more about Tamil traditions <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Kerala -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-60 relative">
-                <img src="images/kerala.png" alt="Kerala" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-4">
-                  <h4 class="text-xl font-bold">Kerala</h4>
-                  <p class="text-gray-300">God's Own Country</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Traditional Attire</h5>
-                  <p class="text-gray-300">Women wear Kerala Kasavu saree (white with gold border) or set mundu, while men wear mundu (white dhoti) often with a shirt or bare-chested for ceremonies.</p>
-                </div>
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Cultural Highlights</h5>
-                  <ul class="text-gray-300 space-y-1">
-                    <li>• Kathakali dance drama</li>
-                    <li>• Onam harvest festival</li>
-                    <li>• Snake boat races</li>
-                    <li>• Ayurvedic traditions</li>
-                  </ul>
-                </div>
-                <a href="#" class="text-pink-500 hover:text-pink-400 flex items-center text-sm">
-                  Learn more about Malayali traditions <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Cultural Showcase -->
-          <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 p-6">
-            <h3 class="text-xl font-bold mb-4">South Indian Cultural Showcase</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <h4 class="font-medium text-pink-500 mb-2">Classical Dance Forms</h4>
-                <ul class="text-gray-300 space-y-1">
-                  <li>• <strong>Bharatanatyam</strong> - Tamil Nadu</li>
-                  <li>• <strong>Kathakali</strong> - Kerala</li>
-                  <li>• <strong>Kuchipudi</strong> - Andhra Pradesh</li>
-                  <li>• <strong>Mohiniyattam</strong> - Kerala</li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="font-medium text-pink-500 mb-2">Culinary Traditions</h4>
-                <ul class="text-gray-300 space-y-1">
-                  <li>• Rice-based meals served on banana leaves</li>
-                  <li>• Coconut and curry leaf flavors</li>
-                  <li>• Dosa, idli, sambar, and rasam</li>
-                  <li>• Filter coffee and distinct regional cuisines</li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="font-medium text-pink-500 mb-2">Music & Instruments</h4>
-                <ul class="text-gray-300 space-y-1">
-                  <li>• <strong>Carnatic music</strong> tradition</li>
-                  <li>• <strong>Veena</strong> - stringed instrument</li>
-                  <li>• <strong>Mridangam</strong> - percussion drum</li>
-                  <li>• <strong>Nadaswaram</strong> - wind instrument</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div class="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm mb-4 md:mb-0">&copy; 2025 VastraVerse. All rights reserved.</p>
+        <div class="flex space-x-4 text-sm">
+          <a href="#" class="hover:text-pink-500 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-pink-500 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-pink-500 transition-colors">Cookie Policy</a>
         </div>
       </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-opacity-95', 'shadow-md', 'py-2');
+        navbar.classList.remove('py-4');
+      } else {
+        navbar.classList.remove('bg-opacity-95', 'shadow-md', 'py-2');
+        navbar.classList.add('py-4');
+      }
+    });
+    
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlTag = document.documentElement;
+    
+    themeToggle.addEventListener('click', () => {
+      htmlTag.classList.toggle('dark');
+      if (htmlTag.classList.contains('dark')) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    });
+    
+    // Tradition Filter and Search Functionality
+    const traditionSearch = document.getElementById('traditionSearch');
+    const regionFilter = document.getElementById('regionFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const traditionItems = document.querySelectorAll('.tradition-item');
+    const noResults = document.getElementById('noResults');
+    
+    function filterTraditions() {
+      const searchTerm = traditionSearch.value.toLowerCase();
+      const region = regionFilter.value;
+      const category = categoryFilter.value;
       
-      <!-- East India Detailed -->
-      <div id="east-india-detailed" class="region-detail hidden">
-        <!-- Similar structure as North and South, with East Indian content -->
-        <div class="max-w-5xl mx-auto mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">East Indian <span class="text-pink-500">Traditions</span></h2>
-          
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <!-- Traditional Clothing -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-purple-600 to-pink-500 flex items-center justify-center">
-                <i class="fas fa-tshirt text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Traditional Clothing</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Women's Attire</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Tant Saree:</strong> Bengali cotton weave</li>
-                      <li><strong>Sambalpuri:</strong> Odisha's ikat textiles</li>
-                      <li><strong>Baluchari:</strong> Narrative silk sarees</li>
-                      <li><strong>Mekhela Chador:</strong> Assamese two-piece saree</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Men's Attire</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Dhoti-Kurta:</strong> Traditional lower and upper</li>
-                      <li><strong>Panjabi:</strong> Bengali kurta variant</li>
-                      <li><strong>Gamcha:</strong> Multipurpose cotton towel</li>
-                      <li><strong>Muga Silk:</strong> Golden silk garments</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Festivals & Celebrations -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center">
-                <i class="fas fa-calendar-day text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Festivals & Celebrations</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Major Festivals</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Durga Puja:</strong> Bengal's grandest festival</li>
-                      <li><strong>Chhath Puja:</strong> Sun worship festival</li>
-                      <li><strong>Rath Yatra:</strong> Chariot festival in Puri</li>
-                      <li><strong>Bihu:</strong> Assamese harvest festival</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Cultural Celebrations</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Poush Mela:</strong> Cultural fair in Shantiniketan</li>
-                      <li><strong>Raja Parba:</strong> Odisha's fertility festival</li>
-                      <li><strong>Saraswati Puja:</strong> Education goddess worship</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Arts & Crafts -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-48 bg-gradient-to-r from-blue-600 to-indigo-500 flex items-center justify-center">
-                <i class="fas fa-paint-brush text-5xl text-white"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-3">Arts & Crafts</h3>
-                <div class="space-y-4">
-                  <div>
-                    <h4 class="font-medium text-pink-500">Traditional Art Forms</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Kantha:</strong> Bengali embroidery tradition</li>
-                      <li><strong>Pattachitra:</strong> Odisha scroll painting</li>
-                      <li><strong>Chhau Masks:</strong> Ceremonial face coverings</li>
-                      <li><strong>Dokra:</strong> Metal casting craft</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-medium text-pink-500">Textile Traditions</h4>
-                    <ul class="text-gray-300 space-y-1 mt-2">
-                      <li><strong>Baluchari:</strong> Narrative silk weaving</li>
-                      <li><strong>Sambalpuri Ikat:</strong> Tie-dye weaving</li>
-                      <li><strong>Muga & Eri Silk:</strong> Assamese specialties</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Featured States -->
-          <h3 class="text-2xl font-bold mb-6">Featured States of East India</h3>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <!-- West Bengal -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-60 relative">
-                <img src="images/west-bengal.png" alt="West Bengal" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-4">
-                  <h4 class="text-xl font-bold">West Bengal</h4>
-                  <p class="text-gray-300">Cultural Capital</p>
-                </div>
-              </div>
-              <div class="p-6">
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Traditional Attire</h5>
-                  <p class="text-gray-300">Women wear tant cotton or Baluchari silk sarees with distinctive red border, while men wear dhoti-kurta or the Bengali-style panjabi with dhuti.</p>
-                </div>
-                <div class="mb-4">
-                  <h5 class="font-medium text-pink-500 mb-2">Cultural Highlights</h5>
-                  <ul class="text-gray-300 space-y-1">
-                    <li>• Durga Puja pandals and processions</li>
-                    <li>• Rabindra Sangeet musical tradition</li>
-                    <li>• Kantha embroidery and handlooms</li>
-                    <li>• Rich literary and intellectual heritage</li>
-                  </ul>
-                </div>
-                <a href="#" class="text-pink-500 hover:text-pink-400 flex items-center text-sm">
-                  Learn more about Bengali traditions <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
-            
-            <!-- Odisha -->
-            <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-              <div class="h-60 relative">
-                <img src="images/odisha.png" alt="Odisha" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-4">
-                  <h4 class="text-xl font-bold">Odisha</h4>
-                  <p class="text-gray-300">Land of Temples</p>
-                </div>
-              </div>
+      let visibleCount = 0;
+      
+      traditionItems.forEach(item => {
+        const itemName = item.querySelector('h3').textContent.toLowerCase();
+        const itemRegion = item.dataset.region;
+        const itemCategory = item.dataset.category;
+        
+        const matchesSearch = itemName.includes(searchTerm);
+        const matchesRegion = region === 'all' || itemRegion === region;
+        const matchesCategory = category === 'all' || itemCategory === category;
+        
+        const shouldShow = matchesSearch && matchesRegion && matchesCategory;
+        
+        if (shouldShow) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+      } else {
+        noResults.classList.add('hidden');
+      }
+    }
+    
+    traditionSearch.addEventListener('input', filterTraditions);
+    regionFilter.addEventListener('change', filterTraditions);
+    categoryFilter.addEventListener('change', filterTraditions);
+    
+    // Tradition Detail Modal
+    const traditionDetailsBtns = document.querySelectorAll('.tradition-details-btn');
+    const traditionModal = document.getElementById('traditionModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    
+    // Tradition details data (you would typically fetch this from a server)
+    const traditionDetails = {
+      'bharatanatyam': {
+        title: '✨ Bharatanatyam - The Divine Dance ✨',
+        content: `
+          <p class="mb-2">
+            <strong>Origin and History:</strong><br>
+            Bharatanatyam originated over 2,000 years ago in Tamil Nadu. It was traditionally performed in Hindu temples and royal courts by Devadasis (temple dancers). After falling into disrepute during colonial times, it was revived in the 20th century and is now recognized as one of India's eight classical dance forms.
+          </p>
+          <p class="mb-2">
+            <strong>Key Features:</strong><br>
+            Characterized by bent knees (aramandi), precise hand gestures (mudras), elaborate footwork, and expressive facial movements (abhinaya). The dance represents a perfect balance of nritta (rhythmic dance movements), nritya (expression), and natya (dramatic elements).
+          </p>
+          <p>
+            <strong>Cultural Significance:</strong><br>
+            Bharatanatyam narrates stories from Hindu mythology and scriptures, particularly from the Natyashastra. Modern performances explore contemporary themes while maintaining traditional techniques. It remains an important spiritual and artistic expression, showcasing the dancer's devotion to the divine.
+          </p>
+        `
+      },
+      'kathakali': {
+        title: '✨ Kathakali - The Storytelling Dance ✨',
+        content: `
+          <p class="mb-2">
+            <strong>Origin and History:</strong><br>
+            Kathakali originated in Kerala during the 17th century, evolving from earlier temple art forms like Koodiyattam. Its name combines "katha" (story) and "kali" (play). It gained royal patronage from the kingdom of Kottarakkara and has since been preserved as a crucial cultural tradition.
+          </p>
+          <p class="mb-2">
+            <strong>Key Features:</strong><br>
+            Distinctive for its elaborate makeup (chutti), vibrant costumes, ornate headgear, and precise facial expressions. Performers undergo rigorous training to master the codified hand gestures, facial expressions, and body movements. Performances typically last all night and are accompanied by percussion instruments.
+          </p>
+          <p>
+            <strong>Cultural Significance:</strong><br>
+            Kathakali primarily depicts stories from Hindu epics like the Mahabharata and Ramayana. It represents a complete art form combining dance, drama, music, and literature. UNESCO recognized it as an Intangible Cultural Heritage in 2012, and it continues to be a symbol of Kerala's cultural identity.
+          </p>
+        `
+      },
+      // Add other tradition details here
+    };
+    
+    traditionDetailsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const traditionId = btn.dataset.tradition || btn.parentElement.dataset.tradition;
+        
+        if (traditionDetails[traditionId]) {
+          modalTitle.innerHTML = traditionDetails[traditionId].title;
+          modalContent.innerHTML = traditionDetails[traditionId].content;
+        } else {
+          modalTitle.innerHTML = 'Tradition Details';
+          modalContent.innerHTML = '<p>Information about this tradition is coming soon. Please check back later.</p>';
+        }
+        
+        traditionModal.classList.remove('hidden');
+      });
+    });
+    
+    closeModalBtn.addEventListener('click', () => {
+      traditionModal.classList.add('hidden');
+    });
+    
+    // Close modal when clicking outside
+    traditionModal.addEventListener('click', (e) => {
+      if (e.target === traditionModal) {
+        traditionModal.classList.add('hidden');
+      }
+    });
+    
+    // Load More button functionality
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    let currentPage = 1;
+    
+    loadMoreBtn.addEventListener('click', () => {
+      // Simulate loading more items
+      loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+      
+      setTimeout(() => {
+        // In a real application, you would fetch more items from a server
+        // For this demo, we'll just hide the button after clicking
+        loadMoreBtn.innerHTML = 'No More Traditions to Load';
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.classList.add('opacity-50');
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

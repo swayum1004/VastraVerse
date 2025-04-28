@@ -196,7 +196,7 @@
             <span class="text-xs bg-gray-700 px-2 py-1 rounded">Harvest</span>
             <span class="text-xs bg-gray-700 px-2 py-1 rounded">+15 more</span>
           </div>
-          <a href="#" class="mt-4 inline-block text-pink-500 hover:text-pink-400">Explore Rituals <i class="fas fa-arrow-right ml-1"></i></a>
+          <a href="Ceremonies & Rituals.html" class="mt-4 inline-block text-pink-500 hover:text-pink-400">Explore Rituals <i class="fas fa-arrow-right ml-1"></i></a>
         </div>
       </div>
     </div>
@@ -242,54 +242,199 @@
       <h3 class="text-2xl font-bold mb-6">Featured Rituals & Traditions</h3>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Wedding Tradition -->
-        <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-          <img src="images/wedding.png" alt="Indian Wedding" class="w-full h-48 object-cover object-center">
-          <div class="p-4">
-            <h4 class="font-semibold mb-1">Wedding Traditions</h4>
-            <p class="text-sm text-gray-400 mb-2">Varies across regions</p>
-            <p class="text-gray-300 text-sm">Indian weddings are elaborate affairs with numerous pre-wedding and post-wedding rituals that vary significantly by region and community.</p>
-            <a href="#" class="text-pink-500 text-sm mt-2 inline-block hover:text-pink-400">Learn more</a>
-          </div>
-        </div>
+       <!-- Wedding Traditions -->
+<div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer relative">
+  <div class="overflow-hidden">
+    <img src="images/wedding.png" alt="Indian Wedding" class="w-full h-48 object-cover object-center">
+  </div>
+  <div class="p-4">
+    <h4 class="font-semibold mb-1 text-white">Wedding Traditions</h4>
+    <p class="text-sm text-gray-400 mb-2">Varies across regions</p>
+    <p class="text-gray-300 text-sm mb-3">Indian weddings are elaborate affairs with numerous pre-wedding and post-wedding rituals that vary significantly by region and community.</p>
+    <button 
+      onclick="document.getElementById('wedding-traditions-details').classList.remove('hidden')" 
+      class="text-pink-500 text-sm w-full py-1 border border-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+    >
+      Learn more
+    </button>
+  </div>
+</div>
+
+<!-- Inline Modal for Wedding Traditions -->
+<div id="wedding-traditions-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">💍 Indian Wedding Traditions 🌸</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Cultural Significance:</strong><br>
+      Indian weddings symbolize the sacred union of two souls and families. They incorporate ancient Vedic rituals mixed with regional customs, emphasizing commitment, family bonds, and social harmony.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Key Components:</strong><br>
+      - Pre-wedding rituals (Haldi, Mehendi, Sangeet)<br>
+      - Main ceremony with Vedic mantras and fire rituals<br>
+      - Post-wedding traditions like Griha Pravesh<br>
+      - Elaborate attire and jewelry traditions<br>
+      - Community feasts lasting several days
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Regional Variations:</strong><br>
+      - North: Chooda ceremony in Punjabi weddings<br>
+      - South: Kanyadaanam in Tamil weddings<br>
+      - East: Gaye Holud in Bengali traditions<br>
+      - West: Saat Phere in Marwari customs<br>
+      - Destination weddings becoming modern trend
+    </p>
+  </div>
+</div>
         
         <!-- Diwali -->
-        <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-          <img src="images/diwali.png" alt="Diwali Festival" class="w-full h-48 object-cover object-center">
-          <div class="p-4">
-            <h4 class="font-semibold mb-1">Diwali</h4>
-            <p class="text-sm text-gray-400 mb-2">Festival of Lights</p>
-            <p class="text-gray-300 text-sm">A five-day festival celebrating the victory of light over darkness with diyas (oil lamps), rangoli, fireworks, and family gatherings.</p>
-            <a href="#" class="text-pink-500 text-sm mt-2 inline-block hover:text-pink-400">Learn more</a>
-          </div>
-        </div>
+<div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer relative">
+  <div class="overflow-hidden">
+    <img src="images/diwali.png" alt="Diwali Festival" class="w-full h-48 object-cover object-center">
+  </div>
+  <div class="p-4">
+    <h4 class="font-semibold mb-1 text-white">Diwali</h4>
+    <p class="text-sm text-gray-400 mb-2">Festival of Lights</p>
+    <p class="text-gray-300 text-sm mb-3">A five-day festival celebrating the victory of light over darkness with diyas (oil lamps), rangoli, fireworks, and family gatherings.</p>
+    <button 
+      onclick="document.getElementById('diwali-details').classList.remove('hidden')" 
+      class="text-pink-500 text-sm w-full py-1 border border-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+    >
+      Learn more
+    </button>
+  </div>
+</div>
+
+<!-- Inline Modal for Diwali -->
+<div id="diwali-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">✨ Diwali - Festival of Lights 🪔</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Significance:</strong><br>
+      Celebrates Lord Rama's return to Ayodhya after 14-year exile and victory over Ravana. Also marks the worship of Goddess Lakshmi for prosperity and Lord Ganesha for wisdom.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Traditions:</strong><br>
+      - Lighting diyas and decorative lights<br>
+      - Creating colorful rangoli designs<br>
+      - Exchanging sweets and gifts<br>
+      - Lakshmi Puja ceremonies<br>
+      - Fireworks displays<br>
+      - Family reunions and feasts
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Regional Variations:</strong><br>
+      - North: Focus on Rama's return<br>
+      - East: Kali Puja in West Bengal<br>
+      - South: Oil bath tradition<br>
+      - West: Special rangoli patterns<br>
+      - All regions: New clothes and home decorations
+    </p>
+  </div>
+</div>
         
-        <!-- Onam -->
-        <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-          <img src="images/onam.png" alt="Onam Festival" class="w-full h-48 object-cover object-center">
-          <div class="p-4">
-            <h4 class="font-semibold mb-1">Onam</h4>
-            <p class="text-sm text-gray-400 mb-2">Kerala Harvest Festival</p>
-            <p class="text-gray-300 text-sm">Kerala's harvest festival features boat races, tiger dances, floral arrangements (pookalam), and elaborate vegetarian feasts (sadhya).</p>
-            <a href="#" class="text-pink-500 text-sm mt-2 inline-block hover:text-pink-400">Learn more</a>
-          </div>
-        </div>
+       <!-- Onam -->
+<div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer relative">
+  <div class="overflow-hidden">
+    <img src="images/onam.png" alt="Onam Festival" class="w-full h-48 object-cover object-center">
+  </div>
+  <div class="p-4">
+    <h4 class="font-semibold mb-1 text-white">Onam</h4>
+    <p class="text-sm text-gray-400 mb-2">Kerala Harvest Festival</p>
+    <p class="text-gray-300 text-sm mb-3">Kerala's harvest festival features boat races, tiger dances, floral arrangements (pookalam), and elaborate vegetarian feasts (sadhya).</p>
+    <button 
+      onclick="document.getElementById('onam-details').classList.remove('hidden')" 
+      class="text-pink-500 text-sm w-full py-1 border border-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+    >
+      Learn more
+    </button>
+  </div>
+</div>
+
+<!-- Inline Modal for Onam -->
+<div id="onam-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🛶 Onam - Kerala's Cultural Extravaganza 🌺</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Significance:</strong><br>
+      Celebrates King Mahabali's annual return and Kerala's harvest season. Symbolizes equality, prosperity, and the unique cultural identity of Kerala. Observed by all communities regardless of religion.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Key Traditions:</strong><br>
+      - Intricate flower carpets (Pookalam)<br>
+      - Snake boat races (Vallamkali)<br>
+      - Pulikali tiger dances<br>
+      - Onasadhya (27-dish vegetarian feast)<br>
+      - Traditional Kaikottikali clap dance<br>
+      - Thrikkakara Temple celebrations
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Cultural Highlights:</strong><br>
+      - Ten-day festival culminating on Thiruvonam<br>
+      - Elephant processions with caparisons<br>
+      - Traditional Kerala attire (Mundu & Settu)<br>
+      - Folk art performances like Kathakali<br>
+      - Village sports (Talappanthukali)<br>
+      - Handicraft exhibitions and fairs
+    </p>
+  </div>
+</div>
         
         <!-- Durga Puja -->
-        <div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-          <img src="images/durga puja.png" alt="Durga Puja" class="w-full h-48 object-cover object-center">
-          <div class="p-4">
-            <h4 class="font-semibold mb-1">Durga Puja</h4>
-            <p class="text-sm text-gray-400 mb-2">Bengali Festival</p>
-            <p class="text-gray-300 text-sm">A 10-day celebration honoring Goddess Durga with elaborate pandals (temporary temples), cultural performances, and processions.</p>
-            <a href="#" class="text-pink-500 text-sm mt-2 inline-block hover:text-pink-400">Learn more</a>
-          </div>
-        </div>
-      </div>
+<div class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-pink-500 transition-colors cursor-pointer relative">
+  <div class="overflow-hidden">
+    <img src="images/durga puja.png" alt="Durga Puja" class="w-full h-48 object-cover object-center">
+  </div>
+  <div class="p-4">
+    <h4 class="font-semibold mb-1 text-white">Durga Puja</h4>
+    <p class="text-sm text-gray-400 mb-2">Bengali Festival</p>
+    <p class="text-gray-300 text-sm mb-3">A 10-day celebration honoring Goddess Durga with elaborate pandals (temporary temples), cultural performances, and processions.</p>
+    <button 
+      onclick="document.getElementById('durga-puja-details').classList.remove('hidden')" 
+      class="text-pink-500 text-sm w-full py-1 border border-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+    >
+      Learn more
+    </button>
+  </div>
+</div>
+
+<!-- Inline Modal for Durga Puja -->
+<div id="durga-puja-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌸 Durga Puja - The Grand Bengal Celebration 🎪</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Significance:</strong><br>
+      Celebrates Goddess Durga's victory over the buffalo demon Mahishasura. Symbolizes the triumph of good over evil and the power of feminine energy (Shakti). Primarily observed in West Bengal, Assam, and Bengali communities worldwide.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Key Rituals:</strong><br>
+      - Elaborate pandal installations with artistic themes<br>
+      - Bodhon (invocation ceremony)<br>
+      - Sandhi Puja at twilight<br>
+      - Sindoor Khela (vermilion game)<br>
+      - Immersion procession (Visarjan)<br>
+      - Dhunuchi folk dance with clay lamps
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Cultural Highlights:</strong><br>
+      - Artistic pandal competitions<br>
+      - Traditional Dhak drum performances<br>
+      - New clothes and Bijoya greetings<br>
+      - Community feasts (Bhog)<br>
+      - Cultural programs and theater<br>
+      - Lighting of 1008 lamps during Aarti
+    </p>
+  </div>
+</div>
     </div>
     
-    <!-- Search and Filter -->
-    <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+   
+     <!-- Search and Filter -->
+     <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
       <h3 class="text-xl font-semibold mb-4">Find Rituals & Traditions</h3>
       
       <div class="flex flex-col md:flex-row gap-4 mb-6">

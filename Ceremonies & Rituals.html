@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ceremonies & Rituals - VastraVerse</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    .bg-gray-850 {
+      background-color: #1a1c23;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #2d3748;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #ec4899;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d53f8c;
+    }
+
+    /* Ceremony card hover animation */
+    .ceremony-item {
+      transition: transform 0.3s ease;
+    }
+    
+    .ceremony-item:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Modal animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    #ceremonyModal {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    /* Ceremony image zoom effect */
+    .ceremony-image {
+      transition: transform 0.5s ease;
+    }
+    
+    .ceremony-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Category pills hover effect */
+    .category-pill {
+      transition: all 0.3s ease;
+    }
+    
+    .category-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(236, 72, 153, 0.2);
+    }
+
+    /* Featured ceremonies carousel */
+    .carousel-container {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed w-full z-10 transition-all duration-300 ease-in-out py-4 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+        <a href="index.html" class="text-xl font-bold">Vastra<span class="text-pink-500">Verse</span></a>
+      </div>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="hover:text-pink-500 transition-colors">Home</a>
+        <a href="about.html" class="hover:text-pink-500 transition-colors">About</a>
+        <a href="chatbot.html" class="hover:text-pink-500 transition-colors">Chatbot</a>
+        <button id="themeToggle" class="hover:text-pink-500 transition-colors">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">Login</button>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors hidden md:block">Sign Up</button>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-200 hover:text-pink-500">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden bg-gray-800 hidden">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+        <a href="index.html" class="block py-2 hover:text-pink-500 transition-colors">Home</a>
+        <a href="about.html" class="block py-2 hover:text-pink-500 transition-colors">About</a>
+        <a href="indian-festivals.html" class="block py-2 hover:text-pink-500 transition-colors">Festivals</a>
+        <a href="regional-traditions.html" class="block py-2 hover:text-pink-500 transition-colors">Traditions</a>
+        <a href="ceremonies-rituals.html" class="block py-2 text-pink-500 font-medium">Ceremonies</a>
+        <a href="chatbot.html" class="block py-2 hover:text-pink-500 transition-colors">Chatbot</a>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors w-full mt-2">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-24 pb-8 bg-gradient-to-r from-purple-700 to-pink-600 text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Ceremonies & <span class="text-yellow-300">Rituals</span></h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Learn about important life ceremonies and religious rituals across communities that form the spiritual fabric of India's cultural heritage
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Featured Ceremonies Carousel -->
+  <section class="py-10 bg-gray-850">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Featured <span class="text-pink-500">Ceremonies</span></h2>
+        <div class="flex space-x-2">
+          <button id="prev-slide" class="p-2 bg-gray-700 rounded-full hover:bg-pink-500 transition-colors">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button id="next-slide" class="p-2 bg-gray-700 rounded-full hover:bg-pink-500 transition-colors">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="relative">
+        <div id="carousel" class="carousel-container flex space-x-6 overflow-x-auto scrollbar-hide pb-4">
+          <!-- Mehndi Ceremony -->
+          <div class="ceremony-item flex-shrink-0 w-80 bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <div class="h-48 overflow-hidden">
+              <img src="images/mehndi.png" alt="Mehndi Ceremony" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Mehndi Ceremony</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Wedding</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">A pre-wedding ritual where intricate henna designs are applied to the bride's hands and feet</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="mehndi">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Griha Pravesh -->
+          <div class="ceremony-item flex-shrink-0 w-80 bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <div class="h-48 overflow-hidden">
+              <img src="images/Griha Pravesh.png" alt="Griha Pravesh" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Griha Pravesh</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">House Warming</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">A Hindu ritual performed before entering a new home, seeking blessings and prosperity</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="griha-pravesh">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Annaprashan -->
+          <div class="ceremony-item flex-shrink-0 w-80 bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <div class="h-48 overflow-hidden">
+              <img src="images/Annaprashan.png" alt="Annaprashan" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Annaprashan</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Birth</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">The ceremony marking a baby's first intake of solid food, typically performed at six months</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="annaprashan">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Kumbh Mela -->
+          <div class="ceremony-item flex-shrink-0 w-80 bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <div class="h-48 overflow-hidden">
+              <img src="images/kumbh.jpeg" alt="Kumbh Mela" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Kumbh Mela</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Pilgrimage</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">The world's largest religious gathering, held every 12 years, where devotees bathe in sacred rivers</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="kumbh-mela">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Thread Ceremony -->
+          <div class="ceremony-item flex-shrink-0 w-80 bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+            <div class="h-48 overflow-hidden">
+              <img src="images/thread.jpeg" alt="Thread Ceremony" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Thread Ceremony</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Coming of Age</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">Upanayana marks a boy's transition to adolescence and the beginning of formal education</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="thread-ceremony">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <!-- All Ceremonies Grid -->
+  <section class="py-12 bg-gray-850">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center">Explore Sacred <span class="text-pink-500">Ceremonies & Rituals</span></h2>
+      
+      <div id="ceremoniesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Mehndi Ceremony -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="mehndi" data-region="pan-india" data-religion="hindu" data-category="wedding">
+          <div class="h-48 overflow-hidden">
+            <img src="images/mehndi.png" alt="Mehndi Ceremony" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Mehndi Ceremony</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Wedding</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism, Islam</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">A pre-wedding ritual where intricate henna designs are applied to the bride's hands and feet, symbolizing beauty, joy, and marital happiness.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="mehndi">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Saptapadi (Seven Steps) -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="saptapadi" data-region="pan-india" data-religion="hindu" data-category="wedding">
+          <div class="h-48 overflow-hidden">
+            <img src="images/WEDDING- SAPTAPADI.jpeg" alt="Saptapadi" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Saptapadi (Seven Steps)</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Wedding</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">The most important Hindu wedding ritual where the couple takes seven steps together around the sacred fire, making vows for their married life.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="saptapadi">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Annaprashan -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="annaprashan" data-region="east" data-religion="hindu" data-category="birth">
+          <div class="h-48 overflow-hidden">
+            <img src="images/annaprashan.png" alt="Annaprashan" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Annaprashan</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Birth</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> East India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">The ceremony marking a baby's first intake of solid food, typically performed at six months of age with family and relatives present.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="annaprashan">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Namkaran -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="namkaran" data-region="pan-india" data-religion="hindu" data-category="birth">
+          <div class="h-48 overflow-hidden">
+            <img src="images/namkaran.jpeg" alt="Namkaran" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Namkaran</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Birth</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">The Hindu naming ceremony where a newborn child is officially given a name in the presence of family members, usually performed on the 11th day after birth.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="namkaran">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Ganga Aarti -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="ganga-aarti" data-region="north" data-religion="hindu" data-category="prayers">
+          <div class="h-48 overflow-hidden">
+            <img src="images/Ganga Aarti.jpeg" alt="Ganga Aarti" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Ganga Aarti</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Prayers</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> North India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">A mesmerizing evening ritual performed daily at Varanasi, Haridwar, and Rishikesh where priests offer prayer to the River Ganges with fire lamps.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="ganga-aarti">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Pongal -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="pongal" data-region="south" data-religion="hindu" data-category="harvest">
+          <div class="h-48 overflow-hidden">
+            <img src="images/pongal.png" alt="Pongal" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Pongal</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Harvest</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> South India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">A four-day harvest festival in Tamil Nadu where freshly harvested rice is cooked with milk and jaggery as an offering of thanksgiving to nature.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="pongal">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Mundan (Hair Shaving) -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="mundan" data-region="pan-india" data-religion="hindu" data-category="birth">
+          <div class="h-48 overflow-hidden">
+            <img src="images/mundan.jpeg" alt="Mundan" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Mundan (Hair Shaving)</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Birth</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mb-3">
+              <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+              <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+            </div>
+            <p class="text-sm text-gray-400 mb-4">The ritual of shaving a child's first hair, believed to purify the child from past life negativities and promote healthy hair growth.</p>
+            <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="mundan">View Details</button>
+          </div>
+        </div>
+        
+        <!-- Nikah -->
+        <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="nikah" data-region="pan-india" data-religion="muslim" data-category="wedding">
+          <div class="h-48 overflow-hidden">
+            <img src="images/nikah.jpeg" alt="Nikah" class="w-full h-full object-cover object-center ceremony-image">
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="font-bold text-lg">Nikah</h3>
+              <span class="px-2 py-1 bg-pink-500 bg-opacity-20
+              <div class="flex justify-between text-xs text-gray-400 mb-3">
+                <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+                <span><i class="fas fa-pray mr-1"></i> Islam</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">The Islamic marriage ceremony where the couple signs a marriage contract (Nikah-nama) in the presence of witnesses and an Islamic scholar.</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="nikah">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Anand Karaj -->
+          <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="anand-karaj" data-region="north" data-religion="sikh" data-category="wedding">
+            <div class="h-48 overflow-hidden">
+              <img src="images/Anand Karaj.jpeg" alt="Anand Karaj" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Anand Karaj</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Wedding</span>
+              </div>
+              <div class="flex justify-between text-xs text-gray-400 mb-3">
+                <span><i class="fas fa-map-marker-alt mr-1"></i> North India</span>
+                <span><i class="fas fa-pray mr-1"></i> Sikhism</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">The Sikh marriage ceremony conducted in the presence of Guru Granth Sahib where the couple takes four rounds (Lavaan) around the holy scripture.</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="anand-karaj">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Thread Ceremony -->
+          <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="thread-ceremony" data-region="pan-india" data-religion="hindu" data-category="coming-of-age">
+            <div class="h-48 overflow-hidden">
+              <img src="images/thread.jpeg" alt="Thread Ceremony" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Thread Ceremony</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Coming of Age</span>
+              </div>
+              <div class="flex justify-between text-xs text-gray-400 mb-3">
+                <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+                <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">Upanayana marks a boy's transition to adolescence and the beginning of formal education with the sacred thread ceremony.</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="thread-ceremony">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Griha Pravesh -->
+          <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="griha-pravesh" data-region="pan-india" data-religion="hindu" data-category="house-warming">
+            <div class="h-48 overflow-hidden">
+              <img src="images/grih pravesh.jpeg" alt="Griha Pravesh" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Griha Pravesh</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">House Warming</span>
+              </div>
+              <div class="flex justify-between text-xs text-gray-400 mb-3">
+                <span><i class="fas fa-map-marker-alt mr-1"></i> Pan India</span>
+                <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">A Hindu ritual performed before entering a new home, seeking blessings and prosperity for the household and its members.</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="griha-pravesh">View Details</button>
+            </div>
+          </div>
+          
+          <!-- Kumbh Mela -->
+          <div class="bg-gray-800 rounded-lg overflow-hidden ceremony-item" data-ceremony="kumbh-mela" data-region="north" data-religion="hindu" data-category="pilgrimage">
+            <div class="h-48 overflow-hidden">
+              <img src="images/kumbh.jpeg" alt="Kumbh Mela" class="w-full h-full object-cover object-center ceremony-image">
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold text-lg">Kumbh Mela</h3>
+                <span class="px-2 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-xs">Pilgrimage</span>
+              </div>
+              <div class="flex justify-between text-xs text-gray-400 mb-3">
+                <span><i class="fas fa-map-marker-alt mr-1"></i> North India</span>
+                <span><i class="fas fa-pray mr-1"></i> Hinduism</span>
+              </div>
+              <p class="text-sm text-gray-400 mb-4">The world's largest religious gathering, held every 12 years, where devotees bathe in sacred rivers to cleanse their sins.</p>
+              <button class="ceremony-details-btn w-full py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors" data-ceremony="kumbh-mela">View Details</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Load More Button -->
+        <div class="text-center mt-10">
+          <button id="loadMoreBtn" class="px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-colors">
+            Load More Ceremonies <i class="fas fa-chevron-down ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+  
+
+  
+    <!-- Modal for Ceremony Details -->
+    <div id="ceremonyModal" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden">
+      <div class="bg-gray-800 rounded-xl max-w-4xl w-full mx-4 max-h-90vh overflow-y-auto">
+        <div class="sticky top-0 bg-gray-800 p-4 border-b border-gray-700 flex justify-between items-center">
+          <h3 id="modalTitle" class="text-xl font-bold">Ceremony Details</h3>
+          <button id="closeModal" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        
+        <div id="modalContent" class="p-6">
+          <!-- Content will be dynamically loaded here -->
+        </div>
+      </div>
+    </div>
+  
+ 
+  
+    <!-- Footer -->
+    <!-- Footer -->
+  <footer class="bg-gray-900 pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="text-pink-500 text-2xl"><i class="fas fa-tshirt"></i></div>
+            <div class="text-xl font-bold">Vastra<span class="text-pink-500">Verse</span></div>
+          </div>
+          <p class="text-gray-400 mb-4">Celebrating the rich diversity of Indian traditional fashion and culture through AI innovation.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-pink-500 transition-colors">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-pink-500 transition-colors">About Us</a></li>
+            <li><a href="chatbot.html" class="text-gray-400 hover:text-pink-500 transition-colors">AI Chatbot</a></li>
+            <li><a href="Festival Calendar.html" class="text-gray-400 hover:text-pink-500 transition-colors">Festival Calendar</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Traditional Outfits</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Cultural Guides</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Outfit Dictionary</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Regional Styles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h4>
+          <p class="text-gray-400 mb-4">Stay updated with the latest festival guides and traditional fashion trends</p>
+          <form class="mb-4">
+            <div class="flex">
+              <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-pink-500 w-full">
+              <button type="submit" class="px-4 py-2 bg-pink-500 text-white rounded-r-md hover:bg-pink-600 transition-colors">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+        <p>&copy; 2025 VastraVerse All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" class="fixed bottom-6 right-6 p-3 bg-pink-500 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-pink-600">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  
+    <!-- JavaScript -->
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      
+      // Navbar Scroll Effect
+      const navbar = document.getElementById('navbar');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('py-2', 'shadow-lg');
+          navbar.classList.remove('py-4');
+        } else {
+          navbar.classList.add('py-4');
+          navbar.classList.remove('py-2', 'shadow-lg');
+        }
+      });
+      
+      // Carousel Navigation
+      const carousel = document.getElementById('carousel');
+      const prevBtn = document.getElementById('prev-slide');
+      const nextBtn = document.getElementById('next-slide');
+      
+      prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -320, behavior: 'smooth' });
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: 320, behavior: 'smooth' });
+      });
+      
+      // Ceremony Modal
+      const ceremonyModal = document.getElementById('ceremonyModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalContent = document.getElementById('modalContent');
+      const closeModal = document.getElementById('closeModal');
+      const ceremonyDetailsBtns = document.querySelectorAll('.ceremony-details-btn');
+      
+      // Ceremony data - in real implementation this would come from a database
+      const ceremonyData = {
+        'mehndi': {
+          title: 'Mehndi Ceremony',
+          content: `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <img src="images/mehndi-ceremony-large.png" alt="Mehndi Ceremony" class="w-full h-64 object-cover rounded-lg">
+              <div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-sm">Wedding</span>
+                  <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Pan India</span>
+                  <span class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-500 rounded-full text-sm">Hinduism</span>
+                  <span class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-500 rounded-full text-sm">Islam</span>
+                </div>
+                <h4 class="text-lg font-medium mb-2">Overview</h4>
+                <p class="text-gray-400">The Mehndi ceremony is a pre-wedding ritual where intricate henna designs are applied to the bride's hands and feet, symbolizing beauty, joy, and marital happiness. It's typically celebrated with music, dance, and festivity.</p>
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-lg font-medium mb-2">Description</h4>
+              <p class="text-gray-400 mb-4">
+                The Mehndi ceremony is one of the most important pre-wedding ceremonies in Indian culture, celebrated in both Hindu and Muslim communities. The ritual involves applying intricate henna designs to the bride's hands, arms, feet, and legs. These designs often include floral patterns, peacocks, and sometimes hidden inscriptions of the groom's name.
+              </p>
+              <p class="text-gray-400 mb-4">
+                The ceremony is typically held 1-2 days before the wedding and is hosted by the bride's family. It's a joyous occasion filled with music, dance, and celebration where female friends and relatives gather to bless the bride.
+              </p>
+              <p class="text-gray-400">
+                According to tradition, the darker the color of the mehndi on the bride's hands, the deeper the love between the couple or the better the relationship with her mother-in-law will be. It's also believed that the bride shouldn't do any housework until her mehndi fades away.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">Best Time</h5>
+                <p class="text-sm text-gray-400">1-2 days before wedding</p>
+              </div>
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">Duration</h5>
+                <p class="text-sm text-gray-400">4-6 hours</p>
+              </div>
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">Participants</h5>
+                <p class="text-sm text-gray-400">Bride and female relatives</p>
+              </div>
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">Significance</h5>
+                <p class="text-sm text-gray-400">Beauty, joy, blessing, protection</p>
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-lg font-medium mb-2">How It's Performed</h4>
+              <ol class="list-decimal list-inside text-gray-400 space-y-2">
+                <li>The bride is seated in a decorated area</li>
+                <li>Professional mehndi artists or skilled relatives apply the henna paste</li>
+                <li>Intricate designs are created on hands, arms, feet, and legs</li>
+                <li>The designs are left to dry for several hours</li>
+                <li>Lemon juice and sugar solution may be applied to enhance color</li>
+                <li>The dried mehndi is scrapped off to reveal the stained design</li>
+              </ol>
+            </div>
+            
+            <div>
+              <h4 class="text-lg font-medium mb-2">Regional Variations</h4>
+              <div class="space-y-4">
+                <div class="bg-gray-700 p-4 rounded-lg">
+                  <h5 class="font-medium mb-1">North Indian Style</h5>
+                  <p class="text-sm text-gray-400">Features fine lines, paisleys, and intricate geometric patterns with dense filling.</p>
+                </div>
+                <div class="bg-gray-700 p-4 rounded-lg">
+                  <h5 class="font-medium mb-1">Rajasthani Style</h5>
+                  <p class="text-sm text-gray-400">Known for its bold, elaborate patterns with peacock motifs and dense coverage.</p>
+                </div>
+                <div class="bg-gray-700 p-4 rounded-lg">
+                  <h5 class="font-medium mb-1">Arabic Style</h5>
+                  <p class="text-sm text-gray-400">Features floral patterns with larger spaces and less density, often preferred in Muslim ceremonies.</p>
+                </div>
+                <div class="bg-gray-700 p-4 rounded-lg">
+                  <h5 class="font-medium mb-1">South Indian Style</h5>
+                  <p class="text-sm text-gray-400">Typically simpler with emphasis on traditional patterns and temple-inspired designs.</p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        
+        // Add more ceremony data as needed
+        'griha-pravesh': {
+          title: 'Griha Pravesh Ceremony',
+          content: `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <img src="images/griha-pravesh.png" alt="Griha Pravesh" class="w-full h-64 object-cover rounded-lg">
+              <div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-500 rounded-full text-sm">House Warming</span>
+                  <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-500 rounded-full text-sm">Pan India</span>
+                  <span class="px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-500 rounded-full text-sm">Hinduism</span>
+                </div>
+                <h4 class="text-lg font-medium mb-2">Overview</h4>
+                <p class="text-gray-400">Griha Pravesh is a Hindu house warming ceremony performed before entering a new home. The ritual seeks blessings for prosperity, happiness, and positive energy in the new dwelling and for those who will reside in it.</p>
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-lg font-medium mb-2">Description</h4>
+              <p class="text-gray-400 mb-4">
+                Griha Pravesh, literally meaning "entering the house," is an important Hindu ritual performed when moving into a new home. The ceremony is performed to purify the home and invoke divine blessings from gods and goddesses, particularly from Lord Ganesh (remover of obstacles) and Goddess Lakshmi (goddess of wealth and prosperity).
+              </p>
+              <p class="text-gray-400 mb-4">
+                The ritual is typically performed on an auspicious date and time calculated based on Vedic astrology. The ceremony is led by a priest who guides the homeowners through various rituals including prayers, offerings, and circumambulation of the house.
+              </p>
+              <p class="text-gray-400">
+                It's believed that performing Griha Pravesh properly ensures happiness, protection from negative energies, and prosperity for the residents of the new home.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">Best Time</h5>
+                <p class="text-sm text-gray-400">Auspicious date based on astrology</p>
+              </div>
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">Duration</h5>
+                <p class="text-sm text-gray-400">2-3 hours</p>
+              </div>
+              <div class="bg-gray-700 p-4 rounded-lg">
+                <h5 class="font-medium mb-2">
