@@ -1,5 +1,20 @@
+/**
+ * VastraVerse Main Styles
+ * Global styles for the entire website
+ */
 /* Base styles */
 :root {
+  --primary: #EC4899;
+  --primary-dark: #DB2777;
+  --secondary: #8B5CF6;
+  --dark-bg: #111827;
+  --darker-bg: #0F172A;
+  --dark-card: #1F2937;
+  --light-bg: #F9FAFB;
+  --light-card: #FFFFFF;
+  --dark-text: #111827;
+  --light-text: #F3F4F6;
+  --gray-text: #9CA3AF;
   --primary-color: #0d9488;
   --primary-dark: #115e59;
   --primary-light: #99f6e4;
@@ -12,6 +27,55 @@
   --bg-card-dark: #1f2937;
   --transition-speed: 0.3s;
   --accent-color: #ec4899; /* Pink color for VastraVerse branding */
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography adjustments */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Links */
+a {
+  transition: all 0.2s ease;
+}
+
+/* Layout utilities */
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Theme transitions */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(236, 72, 153, 0.5);
+  border-radius: 4px;
 }
 
 .dark {
