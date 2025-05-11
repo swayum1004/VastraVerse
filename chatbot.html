@@ -7,6 +7,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body class="bg-gray-900 text-white font-sans antialiased">
   <!-- Navbar -->
@@ -208,13 +209,17 @@
         <p class="text-gray-400">Explore traditions by region - select a state to learn about its unique cultural heritage</p>
       </div>
       <div class="p-4 flex flex-col md:flex-row">
-        <div class="w-full md:w-1/2 h-96 bg-gray-700 rounded-lg flex items-center justify-center mb-4 md:mb-0 md:mr-4">
-          <!-- Map Placeholder - This would be an interactive SVG/JS map in implementation -->
-          <div class="text-center p-6">
-            <i class="fas fa-map-marked-alt text-5xl text-gray-500 mb-4"></i>
-            <p class="text-gray-400">Interactive map of India showing cultural regions</p>
-            <p class="text-gray-500 text-sm mt-2">Click on any state to explore its traditions</p>
-          </div>
+        <div class="w-full md:w-1/2 h-96 bg-gray-700 rounded-lg flex items-center justify-center mb-4 md:mb-0 md:mr-4" id="india-map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000000!2d78.9629!3d22.5937!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzM3LjMiTiA3OMKwNTcnNDYuNCJF!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius: 0.5rem;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Google Map of India"
+          ></iframe>
         </div>
         <div class="w-full md:w-1/2 bg-gray-700 rounded-lg p-6">
           <h4 class="font-semibold mb-2">Selected Region: <span class="text-pink-500">All India</span></h4>
@@ -434,7 +439,7 @@
     
    
      <!-- Search and Filter -->
-     <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+     <div class="bg-gray-800 rounded-xl p-6 border border-gray-700 mt-12">
       <h3 class="text-xl font-semibold mb-4">Find Rituals & Traditions</h3>
       
       <div class="flex flex-col md:flex-row gap-4 mb-6">
@@ -576,5 +581,21 @@
 
   <script src="script.js"></script>
   <script src="chatbot.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var map = L.map('india-map').setView([22.5937, 78.9629], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Example marker for Delhi
+    var marker = L.marker([28.6139, 77.2090]).addTo(map);
+    marker.bindPopup("<b>Delhi</b><br>Explore Delhi's traditions!");
+
+    // Add more markers for other states as needed
+  });
+  </script>
 </body>
 </html>

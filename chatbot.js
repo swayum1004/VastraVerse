@@ -248,8 +248,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle form submission
     chatForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
       const message = messageInput.value.trim();
+      
       if (message === '') return;
       
       // Add user message to chat

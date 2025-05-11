@@ -73,6 +73,166 @@
     .culture-map-dot:hover + .culture-map-popup {
       display: block;
     }
+    
+    /* New UI/UX Improvements */
+    .quick-jump-menu {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(31, 41, 55, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1rem;
+      z-index: 40;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .quick-jump-item {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #9CA3AF;
+      transition: all 0.3s ease;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .quick-jump-item:hover {
+      background: rgba(236, 72, 153, 0.1);
+      color: #EC4899;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #EC4899;
+      color: white;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 40;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Enhanced Card Effects */
+    .region-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    
+    .region-card:hover {
+      transform: translateY(-5px) rotateX(5deg);
+    }
+    
+    /* Loading Skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, #1F2937 25%, #374151 50%, #1F2937 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+    
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    
+    /* Parallax Effect */
+    .parallax-container {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      transform: translateZ(-1px) scale(2);
+      z-index: -1;
+    }
+    
+    /* Dark/Light Mode Styles */
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f3f4f6;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --accent-color: #ec4899;
+    }
+    
+    .dark {
+      --bg-primary: #111827;
+      --bg-secondary: #1f2937;
+      --text-primary: #f9fafb;
+      --text-secondary: #d1d5db;
+    }
+    
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    /* Progress Bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent-color);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+      z-index: 50;
+    }
+    
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+    }
+    
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.5rem 1rem;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .tooltip:hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-0.5rem);
+    }
   </style>
 </head>
 <body class="bg-gray-900 text-white font-sans antialiased">
@@ -152,42 +312,17 @@
         </div>
         
         <div class="relative h-96 border border-gray-700 rounded-lg bg-gray-900">
-          <img src="/api/placeholder/800/400" alt="Map of India" class="w-full h-full object-cover rounded-lg opacity-80">
-          
-          <!-- North India Marker -->
-          <div class="culture-map-dot" style="top: 30%; left: 40%"></div>
-          <div class="culture-map-popup" style="top: 20%; left: 42%">
-            <h4 class="font-bold text-pink-500">North India</h4>
-            <p class="text-sm">Known for Kurta Pajama, Sherwani, Lehenga Choli, and Phulkari embroidery from Punjab.</p>
-          </div>
-          
-          <!-- South India Marker -->
-          <div class="culture-map-dot" style="top: 70%; left: 45%"></div>
-          <div class="culture-map-popup" style="top: 60%; left: 47%">
-            <h4 class="font-bold text-pink-500">South India</h4>
-            <p class="text-sm">Famous for Kanjeevaram silk sarees, Mundu, Kasavu, and traditional temple jewelry.</p>
-          </div>
-          
-          <!-- East India Marker -->
-          <div class="culture-map-dot" style="top: 50%; left: 70%"></div>
-          <div class="culture-map-popup" style="top: 40%; left: 72%">
-            <h4 class="font-bold text-pink-500">East India</h4>
-            <p class="text-sm">Home to Jamdani and Tant sarees from Bengal, and Muga silk from Assam.</p>
-          </div>
-          
-          <!-- West India Marker -->
-          <div class="culture-map-dot" style="top: 50%; left: 25%"></div>
-          <div class="culture-map-popup" style="top: 40%; left: 5%">
-            <h4 class="font-bold text-pink-500">West India</h4>
-            <p class="text-sm">Known for Bandhani, Ghagra Choli, Patola sarees, and mirror work from Gujarat and Rajasthan.</p>
-          </div>
-          
-          <!-- Northeast India Marker -->
-          <div class="culture-map-dot" style="top: 25%; left: 80%"></div>
-          <div class="culture-map-popup" style="top: 15%; left: 60%">
-            <h4 class="font-bold text-pink-500">Northeast India</h4>
-            <p class="text-sm">Rich in tribal attire like Mekhela Chador, Phanek, and elaborate handloom textiles.</p>
-          </div>
+          <!-- Google Maps Embed for India, zoomed in to show state boundaries -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12000000!2d78.9629!3d22.5937!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDM1JzM3LjMiTiA3OMKwNTcnNDYuNCJF!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius: 0.75rem;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Google Map of India"
+          ></iframe>
         </div>
       </div>
   </section>
@@ -1358,6 +1493,14 @@
     </div>
   </footer>
 
+  <!-- Add Back to Top Button -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Add Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
   <script>
     // Mobile Menu Toggle
     document.getElementById('mobileMenuBtn').addEventListener('click', function() {
@@ -1473,25 +1616,27 @@
     
     outfitDetailsBtns.forEach(btn => {
       btn.addEventListener('click', function() {
+        const outfitCard = this.closest('.outfit-card');
         const outfit = this.getAttribute('data-outfit');
-        document.getElementById('modalTitle').textContent = this.closest('.outfit-card').querySelector('h4').textContent;
-        
-        // For demo purposes, we'll just show a placeholder content
-        // In a real application, you would load the appropriate content for each outfit
+        const title = outfitCard.querySelector('h4').textContent;
+        const imgSrc = outfitCard.querySelector('img').getAttribute('src');
+        const imgAlt = outfitCard.querySelector('img').getAttribute('alt');
+
+        document.getElementById('modalTitle').textContent = title;
+
         document.getElementById('modalContent').innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <img src="images/saree.png" alt="${outfit}" class="w-full rounded-lg">
+              <img src="${imgSrc}" alt="${imgAlt}" class="w-full rounded-lg">
               <div class="grid grid-cols-3 gap-2 mt-2">
-                <img src="images/saree.png" alt="Detail 1" class="w-full rounded-lg cursor-pointer">
-                <img src="images/saree.png" alt="Detail 2" class="w-full rounded-lg cursor-pointer">
-                <img src="images/saree.png" alt="Detail 3" class="w-full rounded-lg cursor-pointer">
+                <img src="${imgSrc}" alt="Detail 1" class="w-full rounded-lg cursor-pointer">
+                <img src="${imgSrc}" alt="Detail 2" class="w-full rounded-lg cursor-pointer">
+                <img src="${imgSrc}" alt="Detail 3" class="w-full rounded-lg cursor-pointer">
               </div>
             </div>
             <div>
               <h3 class="text-xl font-bold mb-4">Description</h3>
               <p class="text-gray-300 mb-6">This is a detailed description of the ${outfit} traditional outfit, including its history, cultural significance, and occasions where it's typically worn.</p>
-              
               <div class="mb-6">
                 <h4 class="font-bold mb-2">Key Features</h4>
                 <ul class="list-disc pl-5 text-gray-300 space-y-1">
@@ -1501,19 +1646,17 @@
                   <li>Seasonal adaptations</li>
                 </ul>
               </div>
-              
               <div class="mb-6">
                 <h4 class="font-bold mb-2">How to Wear</h4>
                 <p class="text-gray-300">Step-by-step guidance on how to properly wear and style this traditional outfit for authentic cultural representation.</p>
               </div>
-              
               <div>
                 <a href="#" class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors">View Styling Tutorial</a>
               </div>
             </div>
           </div>
         `;
-        
+
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
       });
@@ -1556,6 +1699,127 @@
       const searchTerm = this.value.toLowerCase();
       console.log('Searching for:', searchTerm);
       // Implement actual search functionality here
+    });
+    
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Smooth Scroll for Quick Jump Menu
+    document.querySelectorAll('.quick-jump-item').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Intersection Observer for Quick Jump Menu
+    const sections = document.querySelectorAll('section[id]');
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelector(`.quick-jump-item[href="#${id}"]`)?.classList.add('text-pink-500');
+        } else {
+          const id = entry.target.getAttribute('id');
+          document.querySelector(`.quick-jump-item[href="#${id}"]`)?.classList.remove('text-pink-500');
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => observer.observe(section));
+    
+    // Add Loading Skeleton
+    function showLoadingSkeleton() {
+      const skeleton = document.createElement('div');
+      skeleton.className = 'skeleton w-full h-48 rounded-lg mb-4';
+      return skeleton;
+    }
+    
+    // Enhanced Card Hover Effects
+    document.querySelectorAll('.region-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+      });
+    });
+    
+    // Reading Progress
+    const readingProgress = document.getElementById('readingProgress');
+    
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      readingProgress.style.transform = `scaleX(${scrolled / 100})`;
+    });
+    
+    // Add tooltips to interactive elements
+    document.querySelectorAll('[data-tooltip]').forEach(element => {
+      element.classList.add('tooltip');
+    });
+    
+    // Add smooth reveal animation for sections
+    const revealSections = document.querySelectorAll('section');
+    
+    const revealOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeIn');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, revealOptions);
+    
+    revealSections.forEach(section => {
+      section.style.opacity = '0';
+      revealObserver.observe(section);
     });
   </script>
 </body>

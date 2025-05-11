@@ -63,9 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
       region: ['north', 'south', 'east', 'west'],
       category: 'harvest',
       description: 'A harvest festival celebrating the sun\'s transit into Capricorn, marked by flying kites and preparing special sweets.',
-      traditional_attire: 'Women wear colorful sarees, while men dress in kurta-pajama or dhoti-kurta.',
+      traditional_attire: 'Women wear colorful sarees, while men dress in kurta-pajama or dhoti.',
       locations: 'Celebrated throughout India with regional variations.',
-      ritual: 'Taking holy dips in rivers, flying kites, preparing til (sesame) sweets, and offering prayers to the Sun God.'
+      ritual: 'Taking holy dips in rivers, flying kites, preparing til (sesame) sweets, and offering prayers to the Sun God.',
+      color: 'yellow'
     },
     {
       id: 'pongal',
@@ -76,7 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'A four-day harvest festival in South India, giving thanks to the Sun God for agricultural abundance.',
       traditional_attire: 'Women wear silk sarees, while men wear dhoti and shirts.',
       locations: 'Tamil Nadu, Andhra Pradesh, and parts of Karnataka.',
-      ritual: 'Boiling freshly harvested rice with milk and jaggery, decorating cattle, and preparing special feasts.'
+      ritual: 'Boiling freshly harvested rice with milk and jaggery, decorating cattle, and preparing special feasts.',
+      color: 'yellow'
     },
     {
       id: 'republic-day',
@@ -87,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'National holiday celebrating the adoption of the Indian Constitution.',
       traditional_attire: 'Many wear traditional attire representing their state or region.',
       locations: 'Throughout India with the main parade in New Delhi.',
-      ritual: 'Flag hoisting, parades, cultural performances, and patriotic celebrations.'
+      ritual: 'Flag hoisting, parades, cultural performances, and patriotic celebrations.',
+      color: 'green'
     },
     {
       id: 'basant-panchami',
@@ -98,7 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Festival marking the arrival of spring and worshipping Goddess Saraswati.',
       traditional_attire: 'Yellow-colored clothes are traditionally worn.',
       locations: 'North and East India, particularly in educational institutions.',
-      ritual: 'Worshipping Goddess Saraswati, wearing yellow clothes, flying kites, and eating yellow-colored sweets.'
+      ritual: 'Worshipping Goddess Saraswati, wearing yellow clothes, flying kites, and eating yellow-colored sweets.',
+      color: 'purple'
     },
     {
       id: 'maha-shivratri',
@@ -109,7 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Great night of Lord Shiva, celebrated with night-long vigils and prayers.',
       traditional_attire: 'Men wear dhoti-kurta, women dress in sarees or salwar kameez, often in white or light colors.',
       locations: 'Throughout India, especially at Shiva temples.',
-      ritual: 'Fasting, offering bel leaves to Shivalinga, night-long prayers, and meditation.'
+      ritual: 'Fasting, offering bel leaves to Shivalinga, night-long prayers, and meditation.',
+      color: 'purple'
     },
     {
       id: 'holi',
@@ -120,7 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'The festival of colors celebrating the arrival of spring and the triumph of good over evil.',
       traditional_attire: 'White clothes that become colored during celebrations.',
       locations: 'Most popular in North India, especially in Mathura, Vrindavan, and Barsana.',
-      ritual: 'Playing with colors, water guns, gathering for community celebrations, and consuming special foods and drinks like thandai.'
+      ritual: 'Playing with colors, water guns, gathering for community celebrations, and consuming special foods and drinks like thandai.',
+      color: 'purple'
     },
     {
       id: 'ugadi',
@@ -131,7 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Telugu and Kannada New Year, marking the beginning of a new Hindu lunar calendar.',
       traditional_attire: 'Traditional silk sarees for women and kurta-pyjama or dhoti for men.',
       locations: 'Andhra Pradesh, Telangana, and Karnataka.',
-      ritual: 'House cleaning, decorating with mango leaves, preparing special dishes, and consuming "Ugadi pachadi" with six different flavors.'
+      ritual: 'House cleaning, decorating with mango leaves, preparing special dishes, and consuming "Ugadi pachadi" with six different flavors.',
+      color: 'purple'
     },
     {
       id: 'gudi-padwa',
@@ -142,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Maharashtrian New Year, symbolizing prosperity and auspicious beginnings.',
       traditional_attire: 'Women wear traditional Maharashtrian sarees, men wear kurta-pyjama or dhoti.',
       locations: 'Maharashtra and Goa.',
-      ritual: 'Raising the gudi (bamboo stick with cloth, neem leaves, and garland), house cleaning, and preparing traditional dishes.'
+      ritual: 'Raising the gudi (bamboo stick with cloth, neem leaves, and garland), house cleaning, and preparing traditional dishes.',
+      color: 'purple'
     },
     {
       id: 'baisakhi',
@@ -153,7 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Harvest festival in Punjab and creation of the Khalsa Panth by Guru Gobind Singh.',
       traditional_attire: 'Men wear kurta-pajama with turban, women dress in bright salwar kameez or Punjabi suits.',
       locations: 'Punjab, Haryana, and among Sikh communities worldwide.',
-      ritual: 'Visiting gurudwaras, community gatherings, performing Bhangra and Giddha dances, and agricultural celebrations.'
+      ritual: 'Visiting gurudwaras, community gatherings, performing Bhangra and Giddha dances, and agricultural celebrations.',
+      color: 'yellow'
     },
     {
       id: 'bihu',
@@ -164,7 +173,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Assamese New Year and harvest festival with three distinct Bihu celebrations throughout the year.',
       traditional_attire: 'Traditional Assamese attire - men wear dhoti and kurta, women wear mekhela chador.',
       locations: 'Assam and neighboring northeastern states.',
-      ritual: 'Traditional Bihu dance, feasting, exchange of gifts, and agricultural rituals.'
+      ritual: 'Traditional Bihu dance, feasting, exchange of gifts, and agricultural rituals.',
+      color: 'yellow'
     },
     {
       id: 'rama-navami',
@@ -175,7 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Birthday celebration of Lord Rama, the seventh avatar of Vishnu.',
       traditional_attire: 'Traditional clothes in light colors, women in sarees or salwar kameez, men in kurta-pajama.',
       locations: 'Throughout India, especially in Ayodhya.',
-      ritual: 'Temple visits, recitation of the Ramayana, bhajans (devotional songs), and community feasts.'
+      ritual: 'Temple visits, recitation of the Ramayana, bhajans (devotional songs), and community feasts.',
+      color: 'purple'
     },
     {
       id: 'buddha-purnima',
@@ -186,7 +197,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Celebrates the birth, enlightenment, and death of Gautama Buddha.',
       traditional_attire: 'Simple white clothes for both men and women.',
       locations: 'Buddhist communities across India, particularly in Bihar, Sikkim, and Ladakh.',
-      ritual: 'Visiting Buddhist temples, meditation, giving to charity, and participating in prayer ceremonies.'
+      ritual: 'Visiting Buddhist temples, meditation, giving to charity, and participating in prayer ceremonies.',
+      color: 'purple'
     },
     {
       id: 'rath-yatra',
@@ -197,7 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Chariot festival of Lord Jagannath, his brother Balabhadra and sister Subhadra.',
       traditional_attire: 'Traditional Odia attire - women wear sarees, men wear dhoti-kurta.',
       locations: 'Primarily in Puri, Odisha, but also observed in other parts of India.',
-      ritual: 'Pulling massive wooden chariots carrying the deities through the streets of Puri.'
+      ritual: 'Pulling massive wooden chariots carrying the deities through the streets of Puri.',
+      color: 'purple'
     },
     {
       id: 'independence-day',
@@ -208,7 +221,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'National holiday celebrating India\'s independence from British rule in 1947.',
       traditional_attire: 'Many wear clothes resembling the colors of the Indian flag or traditional regional attire.',
       locations: 'Throughout India with the main ceremony at the Red Fort in Delhi.',
-      ritual: 'Flag hoisting, singing patriotic songs, cultural performances, and remembering freedom fighters.'
+      ritual: 'Flag hoisting, singing patriotic songs, cultural performances, and remembering freedom fighters.',
+      color: 'green'
     },
     {
       id: 'janmashtami',
@@ -219,7 +233,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Celebrates the birth of Lord Krishna, the eighth avatar of Vishnu.',
       traditional_attire: 'Traditional Indian clothes, often in yellow and peacock colors associated with Krishna.',
       locations: 'Throughout India, especially in Mathura, Vrindavan, and Dwarka.',
-      ritual: 'Fasting, singing bhajans, dahi handi competitions, midnight celebrations, and decorating Krishna idols.'
+      ritual: 'Fasting, singing bhajans, dahi handi competitions, midnight celebrations, and decorating Krishna idols.',
+      color: 'purple'
     },
     {
       id: 'ganesh-chaturthi',
@@ -230,7 +245,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Birthday celebration of Lord Ganesha with elaborate installations of Ganesha idols.',
       traditional_attire: 'Traditional regional attire, often new clothes.',
       locations: 'Maharashtra, Goa, Karnataka, and many other parts of India.',
-      ritual: 'Installation of Ganesha idols at home and in public, daily worship for 1-10 days, and immersion in water bodies.'
+      ritual: 'Installation of Ganesha idols at home and in public, daily worship for 1-10 days, and immersion in water bodies.',
+      color: 'purple'
     },
     {
       id: 'onam',
@@ -241,7 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Harvest festival of Kerala celebrating King Mahabali\'s annual visit.',
       traditional_attire: 'Women wear the traditional Kerala saree (Kasavu), men wear mundu (dhoti).',
       locations: 'Kerala and among Malayali communities worldwide.',
-      ritual: 'Creating flower carpets (pookalam), preparing elaborate feasts (Onam Sadhya), boat races, and cultural performances.'
+      ritual: 'Creating flower carpets (pookalam), preparing elaborate feasts (Onam Sadhya), boat races, and cultural performances.',
+      color: 'yellow'
     },
     {
       id: 'navratri',
@@ -252,7 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Nine nights dedicated to the nine forms of Goddess Durga.',
       traditional_attire: 'Varies by region - traditional lehenga-choli, saree, or kurta with bright colors in Gujarat and Rajasthan.',
       locations: 'Throughout India with regional variations.',
-      ritual: 'Varies by region - Garba and Dandiya Raas dances in Gujarat, Durga Puja in Bengal, fasting, and temple visits.'
+      ritual: 'Varies by region - Garba and Dandiya Raas dances in Gujarat, Durga Puja in Bengal, fasting, and temple visits.',
+      color: 'purple'
     },
     {
       id: 'dussehra',
@@ -263,7 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Celebrates the victory of Lord Rama over Ravana, symbolizing the triumph of good over evil.',
       traditional_attire: 'Traditional regional attire, often new clothes for the occasion.',
       locations: 'Throughout India with notable celebrations in Delhi, Mysore, and Kullu.',
-      ritual: 'Burning effigies of Ravana, theatrical reenactments of the Ramayana (Ram Lila), and processions.'
+      ritual: 'Burning effigies of Ravana, theatrical reenactments of the Ramayana (Ram Lila), and processions.',
+      color: 'purple'
     },
     {
       id: 'diwali',
@@ -274,7 +293,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Festival of lights celebrating the return of Lord Rama to Ayodhya and the victory of light over darkness.',
       traditional_attire: 'New traditional clothes - women wear sarees or lehenga-choli, men wear kurta-pajama or sherwani.',
       locations: 'Throughout India and among Indian communities worldwide.',
-      ritual: 'Lighting oil lamps and candles, fireworks, prayers to Goddess Lakshmi, exchange of gifts, and family gatherings.'
+      ritual: 'Lighting oil lamps and candles, fireworks, prayers to Goddess Lakshmi, exchange of gifts, and family gatherings.',
+      color: 'purple'
     },
     {
       id: 'chhath-puja',
@@ -285,7 +305,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Ancient Hindu festival dedicated to the Sun God and Chhathi Maiya (the sixth form of Devi).',
       traditional_attire: 'Traditional attire - women wear sarees, men wear dhoti-kurta.',
       locations: 'Bihar, Jharkhand, Eastern UP, and parts of Nepal.',
-      ritual: 'Fasting, standing in water, offering prayers to the setting and rising sun, preparing traditional prasad.'
+      ritual: 'Fasting, standing in water, offering prayers to the setting and rising sun, preparing traditional prasad.',
+      color: 'purple'
     },
     {
       id: 'guru-nanak-jayanti',
@@ -296,7 +317,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Birthday celebration of Guru Nanak Dev Ji, the first Sikh Guru and founder of Sikhism.',
       traditional_attire: 'Traditional Punjabi attire or modest clothing for gurudwara visits.',
       locations: 'Throughout India, especially in Punjab and Sikh communities worldwide.',
-      ritual: 'Akhand Path (48-hour non-stop reading of the Guru Granth Sahib), processions (Nagar Kirtan), langar (community meals).'
+      ritual: 'Akhand Path (48-hour non-stop reading of the Guru Granth Sahib), processions (Nagar Kirtan), langar (community meals).',
+      color: 'purple'
     },
     {
       id: 'christmas',
@@ -307,7 +329,8 @@ document.addEventListener('DOMContentLoaded', function() {
       description: 'Celebration of the birth of Jesus Christ, observed by Christians worldwide.',
       traditional_attire: 'Formal or festive clothes, often in red, green, and white colors.',
       locations: 'Throughout India, especially in regions with Christian populations like Goa, Kerala, and Northeast India.',
-      ritual: 'Attending midnight mass, decorating Christmas trees, exchanging gifts, and family feasts.'
+      ritual: 'Attending midnight mass, decorating Christmas trees, exchanging gifts, and family feasts.',
+      color: 'blue'
     }
   ];
 
@@ -410,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
       festivalElement.className = 'bg-gray-800 rounded-xl overflow-hidden shadow-lg';
       festivalElement.innerHTML = `
         <div class="md:flex">
-          <div class="md:w-1/4 bg-gradient-to-br from-${getColorForCategory(festival.category)}-500 to-${getColorForCategory(festival.category)}-700 flex items-center justify-center py-6 md:py-0">
+          <div class="md:w-1/4 bg-gradient-to-br from-${festival.color}-500 to-${festival.color}-700 flex items-center justify-center py-6 md:py-0">
             <div class="text-center">
               <div class="text-2xl font-bold">${festival.date.getDate()}</div>
               <div>${getMonthName(festival.date.getMonth())}</div>
@@ -420,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="p-6 md:w-3/4">
             <div class="flex justify-between items-start mb-2">
               <h3 class="text-xl font-bold">${festival.name}</h3>
-              <span class="ml-2 text-xs font-semibold px-2 py-1 rounded-full bg-${getColorForCategory(festival.category)}-500">${capitalizeFirstLetter(festival.category)}</span>
+              <span class="ml-2 text-xs font-semibold px-2 py-1 rounded-full bg-${festival.color}-500">${capitalizeFirstLetter(festival.category)}</span>
             </div>
             <p class="text-gray-400 mb-4">${truncateText(festival.description, 120)}</p>
             <div class="flex justify-between items-center">
@@ -495,7 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cellContent += `<div class="space-y-1">`;
         dayFestivals.forEach(festival => {
           cellContent += `
-            <div class="text-xs p-1 rounded bg-${getColorForCategory(festival.category)}-500 bg-opacity-40 truncate cursor-pointer festival-cell" data-festival-id="${festival.id}">
+            <div class="text-xs p-1 rounded bg-${festival.color}-500 bg-opacity-40 truncate cursor-pointer festival-cell" data-festival-id="${festival.id}">
               ${festival.name}
             </div>
           `;
@@ -528,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
     festivalModalContent.innerHTML = `
       <div class="text-center mb-6">
         <h2 class="text-3xl font-bold mb-2">${festival.name}</h2>
-        <div class="inline-block px-3 py-1 rounded-full bg-${getColorForCategory(festival.category)}-500 text-sm">
+        <div class="inline-block px-3 py-1 rounded-full bg-${festival.color}-500 text-sm">
           ${capitalizeFirstLetter(festival.category)}
         </div>
       </div>
