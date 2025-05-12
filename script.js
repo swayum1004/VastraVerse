@@ -119,6 +119,49 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize page-specific features based on current page
     initializePageFeatures();
+
+    // Example for traditions search
+    const traditionNames = [
+      "Bharatanatyam", "Kathakali", "Madhubani", "Dhokra", "Kathak", "Carnatic", "Bandhani"
+      // ...add all tradition names
+    ];
+    const traditionInput = document.getElementById('traditionSearch');
+    if (traditionInput) attachAutocomplete(traditionInput, traditionNames);
+
+    // Example for outfits search
+    const outfitNames = [
+      "Saree", "Kurta Pajama", "Lehenga Choli", "Dhoti Kurta", "Salwar Kameez", "Mekhela Chador", "Pathani Suit", "Mundu", "Kasavu Set", "Bandhgala", "Phiran", "Ghaghara Choli"
+      // ...add all outfit names
+    ];
+    const outfitInput = document.getElementById('outfitSearch');
+    if (outfitInput) attachAutocomplete(outfitInput, outfitNames);
+
+    // Example for FAQ search
+    const faqQuestions = [
+      "What is the Cultural Dressing Virtual Photoshoot?",
+      "How does the AI try-on work?",
+      "Is my data safe?",
+      // ...add all FAQ questions
+    ];
+    const faqInput = document.getElementById('faqSearch');
+    if (faqInput) attachAutocomplete(faqInput, faqQuestions);
+
+    // Example for blog search
+    const blogTitles = [
+      "The Evolution of Sarees: From Ancient Drapes to Modern Fashion",
+      "Karwa Chauth: Traditions, Outfits and Modern Celebrations",
+      // ...add all blog titles
+    ];
+    const blogInput = document.querySelector('input[placeholder=\"Search articles...\"]');
+    if (blogInput) attachAutocomplete(blogInput, blogTitles);
+
+    // Example for outfit dictionary
+    const dictionaryNames = [
+      "Saree", "Lehenga Choli", "Salwar Kameez", "Juttis", "Kolhapuri Chappals", "Payal", "Kamarband", "Jhumka"
+      // ...add all dictionary names
+    ];
+    const dictInput = document.querySelector('input[placeholder=\"Search by name...\"]');
+    if (dictInput) attachAutocomplete(dictInput, dictionaryNames);
   });
   
   // Check authentication state and update UI accordingly
@@ -883,3 +926,110 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.observe(el);
     });
   });
+
+  // --- Autocomplete & Search Suggestion ---
+  (function() {
+    // Inject minimal CSS for suggestion dropdown if not already present
+    if (!document.getElementById('vastraverse-autocomplete-style')) {
+      const style = document.createElement('style');
+      style.id = 'vastraverse-autocomplete-style';
+      style.textContent = `
+        .autocomplete-suggestions {
+          position: absolute;
+          z-index: 1000;
+          background: #222;
+          color: #fff;
+          border: 1px solid #ec4899;
+          border-radius: 0.5rem;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+          max-height: 220px;
+          overflow-y: auto;
+          width: 100%;
+          margin-top: 2px;
+        }
+        .autocomplete-suggestion {
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .autocomplete-suggestion.active, .autocomplete-suggestion:hover {
+          background: #ec4899;
+          color: #fff;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    // Main autocomplete function
+    window.attachAutocomplete = function(input, suggestions) {
+      let dropdown;
+      let currentFocus = -1;
+      input.setAttribute('autocomplete', 'off');
+      input.parentNode.style.position = 'relative';
+
+      function closeDropdown() {
+        if (dropdown) {
+          dropdown.parentNode.removeChild(dropdown);
+          dropdown = null;
+        }
+        currentFocus = -1;
+      }
+
+      function showSuggestions(val) {
+        closeDropdown();
+        if (!val && !input.matches(':focus')) return;
+        const filtered = suggestions.filter(s => s.toLowerCase().includes(val.toLowerCase()));
+        if (filtered.length === 0) return;
+        dropdown = document.createElement('div');
+        dropdown.className = 'autocomplete-suggestions';
+        filtered.forEach((s, idx) => {
+          const item = document.createElement('div');
+          item.className = 'autocomplete-suggestion';
+          item.innerHTML = s.replace(new RegExp(val, 'ig'), match => `<b>${match}</b>`);
+          item.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            input.value = s;
+            closeDropdown();
+            input.dispatchEvent(new Event('input'));
+          });
+          dropdown.appendChild(item);
+        });
+        input.parentNode.appendChild(dropdown);
+      }
+
+      input.addEventListener('input', function(e) {
+        showSuggestions(this.value);
+      });
+      input.addEventListener('focus', function(e) {
+        showSuggestions(this.value);
+      });
+      input.addEventListener('blur', function(e) {
+        setTimeout(closeDropdown, 100); // Delay to allow click
+      });
+      input.addEventListener('keydown', function(e) {
+        if (!dropdown) return;
+        const items = dropdown.querySelectorAll('.autocomplete-suggestion');
+        if (e.key === 'ArrowDown') {
+          currentFocus++;
+          if (currentFocus >= items.length) currentFocus = 0;
+          setActive(items);
+          e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+          currentFocus--;
+          if (currentFocus < 0) currentFocus = items.length - 1;
+          setActive(items);
+          e.preventDefault();
+        } else if (e.key === 'Enter') {
+          if (currentFocus > -1 && items[currentFocus]) {
+            items[currentFocus].dispatchEvent(new Event('mousedown'));
+            e.preventDefault();
+          }
+        }
+      });
+      function setActive(items) {
+        items.forEach((item, idx) => {
+          item.classList.toggle('active', idx === currentFocus);
+        });
+      }
+    };
+  })();
