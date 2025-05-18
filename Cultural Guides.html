@@ -304,26 +304,7 @@
       <h1 class="text-4xl md:text-5xl font-bold mb-6"><span class="text-pink-500">Cultural</span> Guides</h1>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10">Explore the rich tapestry of Indian cultural attire across different regions, traditions, and festivals</p>
       
-      <div class="flex flex-wrap justify-center gap-4 mb-10">
-        <button id="regionFilterAll" class="tab-btn active px-5 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors">
-          All Regions
-        </button>
-        <button id="regionFilterNorth" class="tab-btn px-5 py-2 rounded-full bg-gray-700 text-white hover:bg-pink-600 transition-colors">
-          North India
-        </button>
-        <button id="regionFilterSouth" class="tab-btn px-5 py-2 rounded-full bg-gray-700 text-white hover:bg-pink-600 transition-colors">
-          South India
-        </button>
-        <button id="regionFilterEast" class="tab-btn px-5 py-2 rounded-full bg-gray-700 text-white hover:bg-pink-600 transition-colors">
-          East India
-        </button>
-        <button id="regionFilterWest" class="tab-btn px-5 py-2 rounded-full bg-gray-700 text-white hover:bg-pink-600 transition-colors">
-          West India
-        </button>
-        <button id="regionFilterNorthEast" class="tab-btn px-5 py-2 rounded-full bg-gray-700 text-white hover:bg-pink-600 transition-colors">
-          Northeast India
-        </button>
-      </div>
+    
       
       <div class="relative mx-auto max-w-4xl mb-12 bg-gray-800 rounded-xl p-4">
         <div class="text-left mb-4">
@@ -354,7 +335,7 @@
       <div id="regionCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-20 animate-fadeIn">
         <!-- North India -->
         <div class="region-card bg-gray-800 rounded-xl overflow-hidden shadow-lg" data-region="north">
-          <div class="region-image" style="background-image: url('images/north.png')"></div>
+          <div class="region-image" style="background-image: url('images/north.jpg')"></div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">North India</h3>
             <p class="text-gray-400 mb-4">Known for rich colors, heavy embroidery, and royal heritage designs.</p>
@@ -366,7 +347,7 @@
         
         <!-- South India -->
         <div class="region-card bg-gray-800 rounded-xl overflow-hidden shadow-lg" data-region="south">
-          <div class="region-image" style="background-image: url('images/south.png')"></div>
+          <div class="region-image" style="background-image: url('images/south.webp')"></div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">South India</h3>
             <p class="text-gray-400 mb-4">Traditional silk sarees with gold zari work and temple-inspired designs.</p>
@@ -378,7 +359,7 @@
         
         <!-- East India -->
         <div class="region-card bg-gray-800 rounded-xl overflow-hidden shadow-lg" data-region="east">
-          <div class="region-image" style="background-image: url('images/east.png')"></div>
+          <div class="region-image" style="background-image: url('images/east.jpg')"></div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">East India</h3>
             <p class="text-gray-400 mb-4">Elegant sarees with intricate weaving techniques and natural motifs.</p>
@@ -390,7 +371,7 @@
         
         <!-- West India -->
         <div class="region-card bg-gray-800 rounded-xl overflow-hidden shadow-lg" data-region="west">
-          <div class="region-image" style="background-image: url('images/west.png')"></div>
+          <div class="region-image" style="background-image: url('images/west.jpg')"></div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">West India</h3>
             <p class="text-gray-400 mb-4">Vibrant colors with mirror work, bandhani, and intricate tie-dye patterns.</p>
@@ -402,7 +383,7 @@
         
         <!-- Northeast India -->
         <div class="region-card bg-gray-800 rounded-xl overflow-hidden shadow-lg" data-region="northeast">
-          <div class="region-image" style="background-image: url('images/northeast.png')"></div>
+          <div class="region-image" style="background-image: url('images/north-east.jpg')"></div>
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">Northeast India</h3>
             <p class="text-gray-400 mb-4">Tribal weaves with geometric patterns and distinctive handloom techniques.</p>
@@ -439,7 +420,7 @@
               
               <!-- Featured Outfit 2 -->
 <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-  <img src="images/lengha.png" alt="Lehenga Choli" class="w-full h-64 object-cover rounded-lg">
+  <img src="images/lehnga-choli.jpeg" alt="Lehenga Choli" class="w-full h-64 object-cover rounded-lg">
   <div class="p-6">
     <div class="flex justify-between items-center mb-3">
       <h4 class="text-xl font-bold">Lehenga Choli</h4>
@@ -454,7 +435,7 @@
 
              <!-- Featured Outfit 3 -->
 <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-  <img src="images/dhoti.png" alt="Dhoti Kurta" class="w-full h-64 object-cover rounded-lg">
+  <img src="images/dhoti-kurta.jpeg" alt="Dhoti Kurta" class="w-full h-64 object-cover rounded-lg">
   <div class="p-6">
     <div class="flex justify-between items-center mb-3">
       <h4 class="text-xl font-bold">Dhoti Kurta</h4>
@@ -502,11 +483,14 @@
                 </div>
               </div>
               
-              <div class="text-center mt-6">
-                <button id="viewAllFestivals" class="px-5 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">
-                  View All Festival Attire
-                </button>
-              </div>
+             <div class="text-center mt-6">
+  <a href="Indian Festivals.html">
+    <button id="viewAllFestivals" class="px-5 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">
+      View All Festival Attire
+    </button>
+  </a>
+</div>
+
             </div>
           </div>
           
@@ -519,7 +503,7 @@
                 <h4 class="text-xl font-bold mb-4">Outfit Components</h4>
                 
                 <div class="relative w-full h-64 bg-gray-900 rounded-lg flex items-center justify-center mb-4">
-                  <img src="images/outfit.png" alt="Interactive Outfit" class="h-full">
+                  <img src="images/outfit.webp" alt="Interactive Outfit" class="h-full">
                   
                   <!-- Interactive hotspots would be implemented with JavaScript -->
                   <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-pink-500 rounded-full cursor-pointer opacity-70 hover:opacity-100 transition-opacity" data-component="head"></div>
@@ -570,7 +554,7 @@
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div class="col-span-1 md:col-span-1">
-              <img src="images/north.png" alt="North Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
+              <img src="images/North-attire.webp" alt="North Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
             </div>
             <div class="col-span-1 md:col-span-2 bg-gray-800 p-6 rounded-xl">
               <h3 class="text-2xl font-semibold mb-4">Regional Overview</h3>
@@ -604,7 +588,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <!-- Outfit 1 -->
               <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-                <img src="images/lengha.png" alt="Lehenga Choli" class="w-full h-48 object-cover">
+                <img src="images/lehnga-choli.jpeg" alt="Lehenga Choli" class="w-full h-48 object-cover">
                 <div class="p-6">
                   <h4 class="text-xl font-bold mb-2">Lehenga Choli</h4>
                   <p class="text-gray-400 mb-4">A three-piece ensemble with a long skirt (lehenga), fitted blouse (choli), and a dupatta. Popular for weddings and festive occasions.</p>
@@ -616,7 +600,7 @@
               
               <!-- Outfit 2 -->
               <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-                <img src="/api/placeholder/400/300" alt="Anarkali Suit" class="w-full h-48 object-cover">
+                <img src="images/anarkali-suit.png" alt="Anarkali Suit" class="w-full h-48 object-cover">
                 <div class="p-6">
                   <h4 class="text-xl font-bold mb-2">Anarkali Suit</h4>
                   <p class="text-gray-400 mb-4">A long, frock-style kurta with a fitted bodice and flared bottom, paired with churidar and dupatta.</p>
@@ -628,7 +612,7 @@
               
               <!-- Outfit 3 -->
               <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-                <img src="/api/placeholder/400/300" alt="Sherwani" class="w-full h-48 object-cover">
+                <img src="images/sherrwani.png" alt="Sherwani" class="w-full h-48 object-cover">
                 <div class="p-6">
                   <h4 class="text-xl font-bold mb-2">Sherwani</h4>
                   <p class="text-gray-400 mb-4">A long coat-like garment worn by men for formal occasions and weddings, paired with churidar or straight pants.</p>
@@ -647,7 +631,7 @@
               <!-- Technique 1 -->
               <div class="bg-gray-800 rounded-xl p-6 flex items-center">
                 <div class="w-1/3 mr-4">
-                  <img src="/api/placeholder/200/200" alt="Zardozi" class="w-full h-auto rounded-lg">
+                  <img src="images/zardozi.webp" alt="Zardozi" class="w-full h-auto rounded-lg">
                 </div>
                 <div class="w-2/3">
                   <h4 class="text-xl font-bold mb-2">Zardozi</h4>
@@ -658,7 +642,7 @@
               <!-- Technique 2 -->
               <div class="bg-gray-800 rounded-xl p-6 flex items-center">
                 <div class="w-1/3 mr-4">
-                  <img src="/api/placeholder/200/200" alt="Phulkari" class="w-full h-auto rounded-lg">
+                  <img src="images/phulkari.jpg" alt="Phulkari" class="w-full h-auto rounded-lg">
                 </div>
                 <div class="w-2/3">
                   <h4 class="text-xl font-bold mb-2">Phulkari</h4>
@@ -669,7 +653,7 @@
               <!-- Technique 3 -->
               <div class="bg-gray-800 rounded-xl p-6 flex items-center">
                 <div class="w-1/3 mr-4">
-                  <img src="/api/placeholder/200/200" alt="Chikankari" class="w-full h-auto rounded-lg">
+                  <img src="images/chikankari.webp" alt="Chikankari" class="w-full h-auto rounded-lg">
                 </div>
                 <div class="w-2/3">
                   <h4 class="text-xl font-bold mb-2">Chikankari</h4>
@@ -680,7 +664,7 @@
               <!-- Technique 4 -->
               <div class="bg-gray-800 rounded-xl p-6 flex items-center">
                 <div class="w-1/3 mr-4">
-                  <img src="/api/placeholder/200/200" alt="Gota Patti" class="w-full h-auto rounded-lg">
+                  <img src="images/Gota-Patti.webp" alt="Gota Patti" class="w-full h-auto rounded-lg">
                 </div>
                 <div class="w-2/3">
                   <h4 class="text-xl font-bold mb-2">Gota Patti</h4>
@@ -704,7 +688,7 @@
   
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
     <div class="col-span-1 md:col-span-1">
-      <img src="images/south.png" alt="South Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
+      <img src="images/south-indian-aatire.png" alt="South Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
     </div>
     <div class="col-span-1 md:col-span-2 bg-gray-800 p-6 rounded-xl">
       <h3 class="text-2xl font-semibold mb-4">Regional Overview</h3>
@@ -738,7 +722,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Outfit 1 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Kanjivaram Saree" class="w-full h-48 object-cover">
+        <img src="images/kanjeevaram-saree.jpeg" alt="Kanjivaram Saree" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Kanjivaram Saree</h4>
           <p class="text-gray-400 mb-4">Heavy silk sarees with gold zari work, traditionally woven in Kanchipuram. Essential for weddings and religious ceremonies.</p>
@@ -750,7 +734,7 @@
       
       <!-- Outfit 2 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Mundu & Veshti" class="w-full h-48 object-cover">
+        <img src="images/mundu-and-veshti.jpeg" alt="Mundu & Veshti" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Mundu & Veshti</h4>
           <p class="text-gray-400 mb-4">Traditional white dhoti worn by men, often with a golden border. Common formal wear for festivals and ceremonies.</p>
@@ -762,7 +746,7 @@
       
       <!-- Outfit 3 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Kasavu Saree" class="w-full h-48 object-cover">
+        <img src="images/kasavu-set.webp" alt="Kasavu Saree" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Kasavu Saree</h4>
           <p class="text-gray-400 mb-4">Cream-colored cotton saree with gold border from Kerala, typically worn with traditional blouse and jewelry.</p>
@@ -781,7 +765,7 @@
       <!-- Technique 1 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Kasuti Embroidery" class="w-full h-auto rounded-lg">
+          <img src="images/Kasuti.webp" alt="Kasuti Embroidery" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Kasuti</h4>
@@ -792,7 +776,7 @@
       <!-- Technique 2 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Kalamkari" class="w-full h-auto rounded-lg">
+          <img src="images/Kalamkari.jpeg" alt="Kalamkari" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Kalamkari</h4>
@@ -803,7 +787,7 @@
       <!-- Technique 3 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Temple Silk" class="w-full h-auto rounded-lg">
+          <img src="images/Temple Silk.png" alt="Temple Silk" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Temple Silk</h4>
@@ -814,7 +798,7 @@
       <!-- Technique 4 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Toda Embroidery" class="w-full h-auto rounded-lg">
+          <img src="images/Toda Embroidery.png" alt="Toda Embroidery" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Toda Embroidery</h4>
@@ -837,7 +821,7 @@
   
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
     <div class="col-span-1 md:col-span-1">
-      <img src="images/east.png" alt="East Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
+      <img src="images/east-india.webp" alt="East Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
     </div>
     <div class="col-span-1 md:col-span-2 bg-gray-800 p-6 rounded-xl">
       <h3 class="text-2xl font-semibold mb-4">Regional Overview</h3>
@@ -871,7 +855,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Outfit 1 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Mekhela Chador" class="w-full h-48 object-cover">
+        <img src="images/mekhela-chador.webp" alt="Mekhela Chador" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Mekhela Chador</h4>
           <p class="text-gray-400 mb-4">Traditional Assamese two-piece garment with a cylindrical skirt (mekhela) and a draped cloth (chador), usually made of Muga or Pat silk.</p>
@@ -883,7 +867,7 @@
       
       <!-- Outfit 2 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Bengali Tant Saree" class="w-full h-48 object-cover">
+        <img src="images/bengali-tant-saree.png" alt="Bengali Tant Saree" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Bengali Tant Saree</h4>
           <p class="text-gray-400 mb-4">Lightweight cotton saree with broad borders and minimalist designs, typically worn with minimal jewelry.</p>
@@ -895,7 +879,7 @@
       
       <!-- Outfit 3 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Dhoti Kurta" class="w-full h-48 object-cover">
+        <img src="images/dhoti-kurta.jpeg" alt="Dhoti Kurta" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Dhoti Kurta</h4>
           <p class="text-gray-400 mb-4">Traditional male attire consisting of a draped lower garment (dhoti) paired with a kurta, often in white or off-white colors.</p>
@@ -914,7 +898,7 @@
       <!-- Technique 1 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Muga Silk" class="w-full h-auto rounded-lg">
+          <img src="images/muga-silk.jpg" alt="Muga Silk" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Muga Silk</h4>
@@ -925,7 +909,7 @@
       <!-- Technique 2 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Kantha Stitch" class="w-full h-auto rounded-lg">
+          <img src="images/Kantha Stitch.jpeg" alt="Kantha Stitch" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Kantha Stitch</h4>
@@ -936,7 +920,7 @@
       <!-- Technique 3 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Tussar Silk" class="w-full h-auto rounded-lg">
+          <img src="images/Tussar Silk.jpg" alt="Tussar Silk" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Tussar Silk</h4>
@@ -947,7 +931,7 @@
       <!-- Technique 4 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Baluchari Saree" class="w-full h-auto rounded-lg">
+          <img src="images/Baluchari Saree.jpg" alt="Baluchari Saree" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Baluchari Saree</h4>
@@ -970,7 +954,7 @@
   
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
     <div class="col-span-1 md:col-span-1">
-      <img src="images/west.png" alt="West Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
+      <img src="images/weat-india.jpeg" alt="West Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
     </div>
     <div class="col-span-1 md:col-span-2 bg-gray-800 p-6 rounded-xl">
       <h3 class="text-2xl font-semibold mb-4">Regional Overview</h3>
@@ -1004,7 +988,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Outfit 1 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Ghagra Choli" class="w-full h-48 object-cover">
+        <img src="images/ghagara-choli.png" alt="Ghagra Choli" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Ghagra Choli</h4>
           <p class="text-gray-400 mb-4">A colorful skirt (ghagra) paired with a blouse (choli) and odhni, often featuring mirror work and embroidery. Popular in Rajasthan and Gujarat.</p>
@@ -1016,7 +1000,7 @@
       
       <!-- Outfit 2 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Peshwai Angarkha" class="w-full h-48 object-cover">
+        <img src="images/angrakha.png" alt="Peshwai Angarkha" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Peshwai Angarkha</h4>
           <p class="text-gray-400 mb-4">A traditional Maharashtrian men's attire featuring a long, overlapping kurta with distinctive Maratha-style draping.</p>
@@ -1028,7 +1012,7 @@
       
       <!-- Outfit 3 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Dhoti-Kurta with Mojari" class="w-full h-48 object-cover">
+        <img src="images/dhoti-kurta.jpeg" alt="Dhoti-Kurta with Mojari" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Dhoti-Kurta with Mojari</h4>
           <p class="text-gray-400 mb-4">Traditional men's wear consisting of a draped dhoti, kurta, and colorful mojari footwear, commonly worn in Rajasthan and Gujarat.</p>
@@ -1047,7 +1031,7 @@
       <!-- Technique 1 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Bandhani" class="w-full h-auto rounded-lg">
+          <img src="images/Bandhani.jpeg" alt="Bandhani" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Bandhani</h4>
@@ -1058,7 +1042,7 @@
       <!-- Technique 2 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Kutch Embroidery" class="w-full h-auto rounded-lg">
+          <img src="images/Kutch Embroidery.webp" alt="Kutch Embroidery" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Kutch Embroidery</h4>
@@ -1069,7 +1053,7 @@
       <!-- Technique 3 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Paithani" class="w-full h-auto rounded-lg">
+          <img src="images/Paithani.jpg" alt="Paithani" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Paithani</h4>
@@ -1080,7 +1064,7 @@
       <!-- Technique 4 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Lambani Embroidery" class="w-full h-auto rounded-lg">
+          <img src="images/Lambani Embroidery.jpg" alt="Lambani Embroidery" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Lambani Embroidery</h4>
@@ -1103,7 +1087,7 @@
   
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
     <div class="col-span-1 md:col-span-1">
-      <img src="images/northeast.png" alt="Northeast Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
+      <img src="images/northeastern-attire.webp" alt="Northeast Indian Traditional Attire" class="w-full h-full object-cover rounded-xl">
     </div>
     <div class="col-span-1 md:col-span-2 bg-gray-800 p-6 rounded-xl">
       <h3 class="text-2xl font-semibold mb-4">Regional Overview</h3>
@@ -1137,7 +1121,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Outfit 1 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Mekhela Chador" class="w-full h-48 object-cover">
+        <img src="images/mekhela-chador.webp" alt="Mekhela Chador" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Mekhela Chador</h4>
           <p class="text-gray-400 mb-4">Traditional Assamese attire consisting of a skirt-like lower garment (mekhela) and a wrap (chador) draped around the upper body.</p>
@@ -1149,7 +1133,7 @@
       
       <!-- Outfit 2 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Naga Shawl" class="w-full h-48 object-cover">
+        <img src="images/naga-shawl.jpeg" alt="Naga Shawl" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Naga Shawl</h4>
           <p class="text-gray-400 mb-4">Vibrant, patterned shawls worn by Naga tribes, each with distinct designs representing different tribes and social status.</p>
@@ -1161,7 +1145,7 @@
       
       <!-- Outfit 3 -->
       <div class="outfit-card bg-gray-800 rounded-xl overflow-hidden shadow-lg">
-        <img src="/api/placeholder/400/300" alt="Bamboo Jewelry Set" class="w-full h-48 object-cover">
+        <img src="images/Bamboo Jewelry Set.webp" alt="Bamboo Jewelry Set" class="w-full h-48 object-cover">
         <div class="p-6">
           <h4 class="text-xl font-bold mb-2">Bamboo Jewelry Set</h4>
           <p class="text-gray-400 mb-4">Unique jewelry made from bamboo, beads, and sometimes metal, worn by various tribes across the Northeast.</p>
@@ -1180,7 +1164,7 @@
       <!-- Technique 1 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Eri Silk Weaving" class="w-full h-auto rounded-lg">
+          <img src="images/Eri Silk Weaving.jpg" alt="Eri Silk Weaving" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Eri Silk Weaving</h4>
@@ -1191,7 +1175,7 @@
       <!-- Technique 2 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Mizo Puan" class="w-full h-auto rounded-lg">
+          <img src="images/Mizo Puan.jpg" alt="Mizo Puan" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Mizo Puan</h4>
@@ -1202,7 +1186,7 @@
       <!-- Technique 3 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Manipuri Phanek" class="w-full h-auto rounded-lg">
+          <img src="images/Manipuri Phanek.jpg" alt="Manipuri Phanek" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Manipuri Phanek</h4>
@@ -1213,7 +1197,7 @@
       <!-- Technique 4 -->
       <div class="bg-gray-800 rounded-xl p-6 flex items-center">
         <div class="w-1/3 mr-4">
-          <img src="/api/placeholder/200/200" alt="Arunachal Weaving" class="w-full h-auto rounded-lg">
+          <img src="images/Arunachal Weaving.jpeg" alt="Arunachal Weaving" class="w-full h-auto rounded-lg">
         </div>
         <div class="w-2/3">
           <h4 class="text-xl font-bold mb-2">Arunachal Weaving</h4>
@@ -1282,7 +1266,7 @@
                       </ul>
                     </div>
                     <div>
-                      <img src="images/wedding attries.png" alt="Wedding Attire" class="w-full h-64 object-cover rounded-lg">
+                      <img src="images/wedding attire.jpg" alt="Wedding Attire" class="w-full h-64 object-cover rounded-lg">
                     </div>
                   </div>
                 </div>
@@ -1300,7 +1284,7 @@
                       </ul>
                     </div>
                     <div>
-                      <img src="images/regional attrie.png"<img src="/api/placeholder/400/300" alt="Religious Ceremony Attire" class="w-full h-64 object-cover rounded-lg">
+                      <img src="images/regional-attire.jpg" src="/api/placeholder/400/300" alt="Religious Ceremony Attire" class="w-full h-64 object-cover rounded-lg">
                     </div>
                   </div>
                 </div>
@@ -1318,7 +1302,7 @@
                       </ul>
                     </div>
                     <div>
-                      <img src="images/everyday.png" alt="Everyday Traditional Wear" class="w-full h-64 object-cover rounded-lg">
+                      <img src="images/day-to-day.png" alt="Everyday Traditional Wear" class="w-full h-64 object-cover rounded-lg">
                     </div>
                   </div>
                 </div>
@@ -1336,7 +1320,7 @@
                       </ul>
                     </div>
                     <div>
-                      <img src="images/seasonal.png" alt="Seasonal Clothing" class="w-full h-64 object-cover rounded-lg">
+                      <img src="images/seasonal.jpeg" alt="Seasonal Clothing" class="w-full h-64 object-cover rounded-lg">
                     </div>
                   </div>
                 </div>
