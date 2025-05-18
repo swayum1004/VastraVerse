@@ -6,9 +6,6 @@
   <title>Indian Festivals - VastraVerse</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link href="styles.css" rel="stylesheet">
-  <!-- LottieFiles CDN for animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
   <style>
     .bg-gray-850 {
       background-color: #1a1c23;
@@ -60,23 +57,6 @@
     .festival-image:hover {
       transform: scale(1.05);
     }
-
-    /* Shimmer base style for skeleton loaders */
-    .shimmer {
-      position: relative;
-      overflow: hidden;
-      background: #23272f;
-    }
-    .shimmer::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -150px; width: 150px; height: 100%;
-      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
-      animation: shimmer 1.5s infinite;
-    }
-    @keyframes shimmer {
-      100% { left: 100%; }
-    }
   </style>
 </head>
 <body class="bg-gray-900 text-white font-sans antialiased">
@@ -97,17 +77,13 @@
         </button>
       </div>
       
-      <div class="auth-buttons flex items-center space-x-4">
-        <a href="login.html" class="px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">Login</a>
-        <a href="signup.html" class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors hidden md:block">Sign Up</a>
+      <div class="flex items-center space-x-4">
+        <button class="px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">Login</button>
+        <button class="px-4 py-2 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors hidden md:block">Sign Up</button>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-200 hover:text-pink-500">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
       </div>
-      <div class="user-menu hidden items-center space-x-4">
-        <span class="text-gray-400">Hello, <span class="user-name">User</span></span>
-        <button id="logoutButton" class="px-4 py-2 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">Logout</button>
-      </div>
-      <button id="mobileMenuBtn" class="md:hidden text-gray-200 hover:text-pink-500">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
     </div>
     
     <!-- Mobile Menu -->
@@ -579,7 +555,7 @@
 <!-- Eid ul-Fitr Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="eid-ul-fitr" data-region="pan-india" data-season="varies">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/eid-ul-fitr.png" alt="Eid ul-Fitr" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/eid-ul-fitr.jpg" alt="Eid ul-Fitr" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Eid ul-Fitr</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1314,7 +1290,7 @@
 <!-- Hornbill Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="hornbill" data-region="northeast" data-season="winter">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/hornbill.png" alt="Hornbill Festival" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/hornbill.jpg" alt="Hornbill Festival" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Hornbill Festival</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1356,55 +1332,56 @@
   </div>
 </div>
 
-<!-- Chhath Puja Festival Card -->
-<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="chhath-puja" data-region="east" data-season="autumn">
+<!-- Republic Day Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-blue-500 transition-colors cursor-pointer festival-item relative" data-festival="republicday" data-region="all-india" data-season="winter">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/chhath-puja.png" alt="Chhath Puja" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/republic-day.jpg" alt="Republic Day" class="w-full h-32 object-cover object-center festival-image">
   </div>
-  <h3 class="font-semibold mb-2 text-white">Chhath Puja</h3>
+  <h3 class="font-semibold mb-2 text-white">Republic Day</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
-    <span>East India</span>
-    <span>Autumn</span>
+    <span>All India</span>
+    <span>Winter</span>
   </div>
   <p class="text-xs text-gray-400 mb-3">
-    Four-day festival dedicated to Sun God with fasting and offering prayers at riverbanks at sunrise and sunset.
+    Celebrating the adoption of the Indian Constitution with parades, patriotism, and cultural displays.
   </p>
   <button 
-    onclick="document.getElementById('chhath-puja-details').classList.remove('hidden')" 
-    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+    onclick="document.getElementById('republicday-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors"
   >
     View Details
   </button>
 </div>
 
-<!-- Inline Modal for Chhath Puja -->
-<div id="chhath-puja-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+<!-- Inline Modal for Republic Day -->
+<div id="republicday-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
   <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
-    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
-    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌞 Chhath Puja - Festival of the Sun 🌞</h2>
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-blue-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-blue-400">🇮🇳 Republic Day - Honoring the Constitution 🇮🇳</h2>
     <p class="text-sm text-gray-300 leading-relaxed mb-2">
-      <strong>Why is Chhath Puja Celebrated?</strong><br>
-      Chhath Puja is dedicated to the worship of the Sun God, thanking him for sustaining life on Earth and seeking blessings for health, prosperity, and well-being.
+      <strong>Why is Republic Day Celebrated?</strong><br>
+      Republic Day marks the date when the Constitution of India came into effect on January 26, 1950, making India a sovereign republic.
     </p>
     <p class="text-sm text-gray-300 leading-relaxed mb-2">
       <strong>How is it Celebrated?</strong><br>
-      The festival spans four days, during which devotees fast and offer prayers to the Sun God at riverbanks, typically at sunrise and sunset.
+      The highlight is the grand parade held at Rajpath, New Delhi, showcasing India's cultural diversity, military strength, and achievements.
     </p>
     <p class="text-sm text-gray-300 leading-relaxed">
-      <strong>Activities During Chhath Puja:</strong><br>
-      - Fasting and abstaining from food and water<br>
-      - Offering prayers to the Sun God at riverbanks<br>
-      - Taking holy dips in rivers<br>
-      - Preparing and offering traditional prasad (food offerings)<br>
-      - Singing devotional songs and participating in community gatherings
+      <strong>Activities During Republic Day:</strong><br>
+      - Flag hoisting ceremonies<br>
+      - Republic Day parade and tableaux<br>
+      - Cultural programs in schools and communities<br>
+      - Awards and honors distribution<br>
+      - Patriotic songs and decorations
     </p>
   </div>
 </div>
 
+
 <!-- Raja Parba Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="raja-parba" data-region="east" data-season="monsoon">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/raja-parba.png" alt="Raja Parba" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/raja-parba.jpg" alt="Raja Parba" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Raja Parba</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1449,7 +1426,7 @@
 <!-- Guru Purnima Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="guru-purnima" data-region="pan-india" data-season="monsoon">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/guru-purnima.png" alt="Guru Purnima" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/guru-purnima.jpg" alt="Guru Purnima" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Guru Purnima</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1494,7 +1471,7 @@
 <!-- Vat Savitri Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="vat-savitri" data-region="north" data-season="summer">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/vat-savitri.png" alt="Vat Savitri" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/vat-savitri.webp" alt="Vat Savitri" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Vat Savitri</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1539,7 +1516,7 @@
 <!-- Mahalakshmi Vrata Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="mahalakshmi-vrata" data-region="south" data-season="monsoon">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/mahalakshmi-vrata.png" alt="Mahalakshmi Vrata" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/mahalakshmi-vrata.webp" alt="Mahalakshmi Vrata" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Mahalakshmi Vrata</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1584,7 +1561,7 @@
 <!-- Thaipusam Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="thaipusam" data-region="south" data-season="winter">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/thaipusam.png" alt="Thaipusam" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/thaipusam.webp" alt="Thaipusam" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Thaipusam</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1629,7 +1606,7 @@
 <!-- Jallikattu Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="jallikattu" data-region="south" data-season="winter">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/jallikattu.png" alt="Jallikattu" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/jallikattu.webp" alt="Jallikattu" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Jallikattu</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1674,7 +1651,7 @@
 <!-- Karni Mata Fair Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="karni-mata-fair" data-region="north" data-season="spring">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/karni-mata-fair.png" alt="Karni Mata Fair" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/karni-mata-fair.webp" alt="Karni Mata Fair" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Karni Mata Fair</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1719,7 +1696,7 @@
 <!-- Sama Chakeva Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="sama-chakeva" data-region="north" data-season="winter">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/sama-chakeva.png" alt="Sama Chakeva" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/sama-chakeva.webp" alt="Sama Chakeva" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Sama Chakeva</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1764,7 +1741,7 @@
 <!-- Wangala Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="wangala" data-region="northeast" data-season="autumn">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/wangala.png" alt="Wangala Festival" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/wangala.jpg" alt="Wangala Festival" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Wangala Festival</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1809,7 +1786,7 @@
 <!-- Myoko Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="myoko" data-region="northeast" data-season="spring">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/myoko.png" alt="Myoko Festival" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/myoko.webp" alt="Myoko Festival" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Myoko Festival</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1854,7 +1831,7 @@
 <!-- Ziro Festival of Music Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="ziro-festival" data-region="northeast" data-season="autumn">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/ziro-festival.png" alt="Ziro Festival of Music" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/ziro-festival.webp" alt="Ziro Festival of Music" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Ziro Festival of Music</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1899,7 +1876,7 @@
 <!-- Mopin Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="mopin" data-region="northeast" data-season="spring">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/mopin.png" alt="Mopin Festival" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/mopin.jpg" alt="Mopin Festival" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Mopin Festival</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1944,7 +1921,7 @@
 <!-- Hemis Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="hemis" data-region="north" data-season="summer">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/hemis.png" alt="Hemis Festival" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/hemis.jpeg" alt="Hemis Festival" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Hemis Festival</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -1989,7 +1966,7 @@
 <!-- Saga Dawa Festival Card -->
 <div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="saga-dawa" data-region="north" data-season="summer">
   <div class="overflow-hidden rounded-lg mb-3">
-    <img src="images/saga-dawa.png" alt="Saga Dawa" class="w-full h-32 object-cover object-center festival-image">
+    <img src="images/saga-dawa.webp" alt="Saga Dawa" class="w-full h-32 object-cover object-center festival-image">
   </div>
   <h3 class="font-semibold mb-2 text-white">Saga Dawa</h3>
   <div class="flex justify-between text-sm text-gray-400 mb-2">
@@ -2030,6 +2007,2057 @@
     </p>
   </div>
 </div>
+<!-- Aadi Amavasai Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="aadi-amavasai" data-region="south-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/aadi-amavasai.jpg" alt="Aadi Amavasai" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Aadi Amavasai</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>South India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Day to honor ancestors with special rituals like Tarpanam, mainly observed along rivers and seashores.
+  </p>
+  <button 
+    onclick="document.getElementById('aadi-amavasai-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Aadi Amavasai -->
+<div id="aadi-amavasai-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕯️ Aadi Amavasai - Honoring the Ancestors 🕯️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Aadi Amavasai Celebrated?</strong><br>
+      Aadi Amavasai is observed to offer respect and gratitude to ancestors through rituals like Tarpanam. It is believed that ancestral blessings bring peace, prosperity, and protection to families.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees perform Tarpanam by offering water and food to ancestors, especially along rivers like the Kaveri and in pilgrimage sites such as Rameswaram. Prayers, fasting, and silent contemplation are commonly practiced.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Aadi Amavasai:</strong><br>
+      - Performing Tarpanam rituals<br>
+      - Taking holy dips in sacred rivers<br>
+      - Offering food to ancestors and Brahmins<br>
+      - Visiting temples<br>
+      - Observing fasting and silence
+    </p>
+  </div>
+</div>
+<!-- Aadi Perukku Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="aadi-perukku" data-region="south-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/aadi-perukku.jpg" alt="Aadi Perukku" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Aadi Perukku</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>South India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A festival celebrating water's life-giving force, observed with offerings and rituals near rivers, especially in Tamil Nadu.
+  </p>
+  <button 
+    onclick="document.getElementById('aadi-perukku-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Aadi Perukku -->
+<div id="aadi-perukku-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌊 Aadi Perukku - Celebration of Water and Prosperity 🌊</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Aadi Perukku Celebrated?</strong><br>
+      Aadi Perukku is celebrated to honor water bodies and pray for agricultural abundance. It falls on the 18th day of the Tamil month Aadi, when rivers are in full flow due to monsoon rains.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Families gather near riverbanks, offer flowers, rice, and lamps to the river, and pray for prosperity and fertility. It's also an auspicious occasion for women to begin new ventures and wear new clothes.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Aadi Perukku:</strong><br>
+      - Offering rituals to rivers<br>
+      - Preparing special rice dishes (variety rice)<br>
+      - Family picnics by the riverside<br>
+      - Women praying for family well-being<br>
+      - Starting new endeavors with blessings
+    </p>
+  </div>
+</div>
+<!-- Ahoi Ashtami Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="ahoi-ashtami" data-region="north-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/ahoi-ashtami.jpg" alt="Ahoi Ashtami" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Ahoi Ashtami</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>North India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A fasting day observed by mothers for the well-being and longevity of their children, marked by evening prayers and rituals.
+  </p>
+  <button 
+    onclick="document.getElementById('ahoi-ashtami-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Ahoi Ashtami -->
+<div id="ahoi-ashtami-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌌 Ahoi Ashtami - A Mother's Devotion 🌌</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Ahoi Ashtami Celebrated?</strong><br>
+      Ahoi Ashtami is observed by mothers to pray for the health, prosperity, and longevity of their children. It falls eight days before Diwali, during the waning phase of the moon in the month of Kartik.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Mothers observe a strict fast from sunrise to sighting of the stars. In the evening, they worship Ahoi Mata by drawing her image and offering food, especially jaggery, wheat, and water.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Ahoi Ashtami:</strong><br>
+      - Day-long fasting by mothers<br>
+      - Drawing and worship of Ahoi Mata<br>
+      - Storytelling and listening to the Ahoi Ashtami Vrat Katha<br>
+      - Breaking the fast after sighting stars<br>
+      - Offering food and prayers for children
+    </p>
+  </div>
+</div>
+<!-- All Saints' Day Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="all-saints-day" data-region="global" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/all-saints-day.jpg" alt="All Saints' Day" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">All Saints' Day</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Global</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Christian solemnity honoring all saints, known and unknown, with prayers and church services.
+  </p>
+  <button 
+    onclick="document.getElementById('all-saints-day-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for All Saints' Day -->
+<div id="all-saints-day-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕊️ All Saints' Day - Honoring the Holy 🕊️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is All Saints' Day Celebrated?</strong><br>
+      All Saints' Day commemorates all Christian saints and martyrs, especially those without their own feast days.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      People attend special church services, light candles, and offer prayers in memory of the saints and their loved ones.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During All Saints' Day:</strong><br>
+      - Church services and sermons<br>
+      - Lighting candles for departed souls<br>
+      - Visiting cemeteries<br>
+      - Family gatherings and prayers
+    </p>
+  </div>
+</div>
+<!-- Ambedkar Jayanti Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="ambedkar-jayanti" data-region="pan-india" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/ambedkar- jayanti.png" alt="Ambedkar Jayanti" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Ambedkar Jayanti</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrates the birth of Dr. B.R. Ambedkar, social reformer and architect of the Indian Constitution.
+  </p>
+  <button 
+    onclick="document.getElementById('ambedkar-jayanti-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Ambedkar Jayanti -->
+<div id="ambedkar-jayanti-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">📘 Ambedkar Jayanti - Remembering the Reformer 📘</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Ambedkar Jayanti Celebrated?</strong><br>
+      It honors the birth anniversary of Dr. B.R. Ambedkar, a champion of social justice, Dalit rights, and the principal architect of India's Constitution.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Public gatherings, processions, cultural programs, and speeches are held across India. Educational institutions pay homage with special events.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Ambedkar Jayanti:</strong><br>
+      - Garlanding Ambedkar statues<br>
+      - Public rallies and awareness drives<br>
+      - School and college events<br>
+      - Community service and social pledges
+    </p>
+  </div>
+</div>
+
+<!-- Amla Navami Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="amla-navami" data-region="north-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/amla-navami.jpg" alt="Amla Navami" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Amla Navami</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>North India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A sacred day to worship the Amla (Indian gooseberry) tree, symbolizing health and divinity.
+  </p>
+  <button 
+    onclick="document.getElementById('amla-navami-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Amla Navami -->
+<div id="amla-navami-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌿 Amla Navami - Worship of the Sacred Tree 🌿</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Amla Navami Celebrated?</strong><br>
+      It is believed that Lord Vishnu resides in the Amla tree on this day. Worshiping it brings health, prosperity, and divine blessings.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      People worship the Amla tree with flowers, water, and food offerings. Some perform rituals under the tree and consume its fruit as prasad.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Amla Navami:</strong><br>
+      - Worshiping the Amla tree<br>
+      - Offering food and sweets<br>
+      - Consuming Amla-based dishes<br>
+      - Reciting Vishnu Sahasranama
+    </p>
+  </div>
+</div>
+<!-- Ashura (Muharram) Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="ashura-muharram" data-region="global" data-season="varies">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/ashura-muharram.jpg" alt="Ashura (Muharram)" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Ashura (Muharram)</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Global</span>
+    <span>Varies</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A solemn day for Muslims commemorating the martyrdom of Imam Hussain, grandson of Prophet Muhammad, at Karbala.
+  </p>
+  <button 
+    onclick="document.getElementById('ashura-muharram-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Ashura (Muharram) -->
+<div id="ashura-muharram-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">☪️ Ashura (Muharram) - A Day of Remembrance ☪️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Ashura Celebrated?</strong><br>
+      Ashura marks the martyrdom of Imam Hussain in the Battle of Karbala, symbolizing the struggle against injustice and oppression.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Observed?</strong><br>
+      Shia Muslims commemorate the day with mourning processions, majlis (gatherings), and re-enactments. Sunni Muslims may fast in remembrance of the Prophet Moses’ victory over Pharaoh.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Ashura:</strong><br>
+      - Mourning rituals and processions<br>
+      - Fasting<br>
+      - Recitation of elegies<br>
+      - Charity and community services<br>
+      - Re-enactments of the Battle of Karbala
+    </p>
+  </div>
+</div>
+
+<!-- Bakrid (Eid-ul-Adha) Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="bakrid-eid-ul-adha" data-region="global" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/eid-al-adha.jpg" alt="Bakrid (Eid-ul-Adha)" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Bakrid (Eid-ul-Adha)</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Global</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A major Islamic festival celebrating the sacrifice of Prophet Ibrahim (Abraham) and the importance of charity and faith.
+  </p>
+  <button 
+    onclick="document.getElementById('bakrid-eid-ul-adha-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Bakrid (Eid-ul-Adha) -->
+<div id="bakrid-eid-ul-adha-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🐑 Bakrid (Eid-ul-Adha) - Festival of Sacrifice 🐑</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Bakrid Celebrated?</strong><br>
+      Bakrid celebrates the willingness of Prophet Ibrahim to sacrifice his son in obedience to God. The festival honors sacrifice, faith, and charity.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Muslims perform the Eid prayers, offer sacrifices, and share meat with the poor. It is a time for family gatherings, feasts, and reflecting on faith and devotion.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Bakrid:</strong><br>
+      - Eid prayers at mosques<br>
+      - Sacrifice of animals (goat, sheep, cow, etc.)<br>
+      - Charity to the needy<br>
+      - Family feasts and gatherings<br>
+      - Giving gifts and visiting relatives
+    </p>
+  </div>
+</div>
+
+<!-- Banda Singh Bahadur Martyrdom Day Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="banda-singh-bahadur-martyrdom-day" data-region="pan-india" data-season="winter">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/banda-singh-bahadur-martyrdom-day.jpeg" alt="Banda Singh Bahadur Martyrdom Day" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Banda Singh Bahadur Martyrdom Day</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Winter</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A day to honor the bravery and sacrifice of Banda Singh Bahadur, who fought for Sikh rights and martyrdom in the battle against Mughal forces.
+  </p>
+  <button 
+    onclick="document.getElementById('banda-singh-bahadur-martyrdom-day-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Banda Singh Bahadur Martyrdom Day -->
+<div id="banda-singh-bahadur-martyrdom-day-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">⚔️ Banda Singh Bahadur Martyrdom Day - A Tribute to Sacrifice ⚔️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Banda Singh Bahadur Martyrdom Day Celebrated?</strong><br>
+      This day commemorates the martyrdom of Banda Singh Bahadur, a courageous Sikh warrior who led the fight against the Mughal empire for Sikh rights and justice.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Observed?</strong><br>
+      The day is marked by prayers, processions, and paying homage to Banda Singh Bahadur at Gurdwaras and memorial sites. Sikhs honor his sacrifices and bravery.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Banda Singh Bahadur Martyrdom Day:</strong><br>
+      - Prayers and memorial services at Gurdwaras<br>
+      - Processions and speeches honoring his legacy<br>
+      - Reflection on the ideals of bravery, justice, and sacrifice<br>
+      - Cultural performances celebrating Sikh history and heroism
+    </p>
+  </div>
+</div>
+<!-- Bathukamma Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="bathukamma" data-region="telangana" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/bathukamma.jpg" alt="Bathukamma" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Bathukamma</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Telangana</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A vibrant floral festival celebrated in Telangana, honoring Goddess Gauri and symbolizing the beauty of nature.
+  </p>
+  <button 
+    onclick="document.getElementById('bathukamma-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Bathukamma -->
+<div id="bathukamma-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌸 Bathukamma - A Floral Festival 🌸</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Bathukamma Celebrated?</strong><br>
+      Bathukamma is a festival celebrated to honor Goddess Gauri and to celebrate the rich floral diversity of the region.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Women gather flowers, create floral arrangements (Bathukamma), and carry them in processions. It is a time for singing, dancing, and celebrating the beauty of nature.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Bathukamma:</strong><br>
+      - Creating Bathukamma (flower stacks)<br>
+      - Singing traditional songs<br>
+      - Dancing around Bathukamma in community gatherings<br>
+      - Bathing and preparing special foods for the festival<br>
+      - Visiting temples to offer prayers
+    </p>
+  </div>
+</div>
+<!-- Bhai Dooj Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="bhai-dooj" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/bhai-dooj.jpg" alt="Bhai Dooj" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Bhai Dooj</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A celebration of the bond between brothers and sisters, marked by rituals of love and protection.
+  </p>
+  <button 
+    onclick="document.getElementById('bhai-dooj-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Bhai Dooj -->
+<div id="bhai-dooj-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">💫 Bhai Dooj - Celebrating Sibling Bonds 💫</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Bhai Dooj Celebrated?</strong><br>
+      Bhai Dooj celebrates the special bond between brothers and sisters. Sisters invite their brothers over, apply a tilak on their foreheads, and pray for their well-being.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Sisters perform a ritual where they offer sweets and apply a tilak on their brothers' foreheads. Brothers, in turn, give gifts and vow to protect their sisters.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Bhai Dooj:</strong><br>
+      - Sister applies tilak on brother’s forehead<br>
+      - Offering sweets and gifts<br>
+      - Prayers for the brother’s well-being and longevity<br>
+      - Brothers give gifts in return<br>
+      - Family gatherings and celebrations
+    </p>
+  </div>
+</div>
+<!-- Bhogali Bihu Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="bhogali-bihu" data-region="assam" data-season="winter">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/bhogali-bihu.webp" alt="Bhogali Bihu" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Bhogali Bihu</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Assam</span>
+    <span>Winter</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A harvest festival of Assam, marking the end of the harvesting season with feasts, bonfires, and community celebrations.
+  </p>
+  <button 
+    onclick="document.getElementById('bhogali-bihu-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Bhogali Bihu -->
+<div id="bhogali-bihu-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🔥 Bhogali Bihu - Harvest Festival of Assam 🔥</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Bhogali Bihu Celebrated?</strong><br>
+      Bhogali Bihu is a harvest festival celebrated in Assam, marking the end of the agricultural year. It celebrates the successful harvest and offers gratitude for the bountiful crops.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The festival is marked by grand feasts, bonfires, and various community events. People build makeshift huts from hay and bamboo (called "Bhelaghars") where they gather for feasts and rituals.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Bhogali Bihu:</strong><br>
+      - Building Bhelaghars (temporary huts)<br>
+      - Bonfires and feasts with family and friends<br>
+      - Traditional Bihu dances and songs<br>
+      - Offering prayers to deities for good harvests<br>
+      - Sharing food with the community
+    </p>
+  </div>
+</div>
+<!-- Bonalu Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="bonalu" data-region="telangana" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/bonalu.jpeg" alt="Bonalu" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Bonalu</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Telangana</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A traditional festival dedicated to Goddess Mahakali, celebrated with the offering of rice, curd, and jaggery to seek blessings.
+  </p>
+  <button 
+    onclick="document.getElementById('bonalu-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Bonalu -->
+<div id="bonalu-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🔥 Bonalu - A Festival of Gratitude 🔥</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Bonalu Celebrated?</strong><br>
+      Bonalu is a significant festival in Telangana that is dedicated to Goddess Mahakali. The festival is celebrated to seek her blessings for health, prosperity, and well-being.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees offer Bonalu (a traditional offering of rice, curd, and jaggery) to the goddess, often in a procession with elaborate rituals. The main celebrations happen in the temples of Goddess Mahakali.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Bonalu:</strong><br>
+      - Offering Bonalu (food offerings) to Goddess Mahakali<br>
+      - Participating in processions and rituals<br>
+      - Traditional folk dances (such as Kolatam and Lambadi)<br>
+      - Visiting temples for blessings and prayers<br>
+      - Community feasts and gatherings
+    </p>
+  </div>
+</div>
+<!-- Buddha Purnima Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="buddha-purnima" data-region="pan-india" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/buddha-purnima.avif" alt="Buddha Purnima" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Buddha Purnima</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A sacred day marking the birth, enlightenment, and death of Lord Buddha, celebrated with prayers and peace.
+  </p>
+  <button 
+    onclick="document.getElementById('buddha-purnima-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Buddha Purnima -->
+<div id="buddha-purnima-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌕 Buddha Purnima - Celebrating Enlightenment 🌕</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Buddha Purnima Celebrated?</strong><br>
+      Buddha Purnima commemorates the birth, enlightenment, and Mahaparinirvana (death) of Lord Gautama Buddha. It is the most sacred day for Buddhists across the world.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees visit Buddhist temples, offer flowers and candles, recite sermons, meditate, and practice kindness and charity. Many observe fasts and engage in spiritual reflection.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Buddha Purnima:</strong><br>
+      - Visiting Buddha temples and stupas<br>
+      - Chanting Buddhist scriptures and meditating<br>
+      - Offering alms and food to monks<br>
+      - Practicing compassion and charity<br>
+      - Lighting lamps and decorating temples
+    </p>
+  </div>
+</div>
+<!-- Carnival Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="carnival" data-region="western-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/carnival.jpg" alt="Carnival" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Carnival</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Western India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A lively celebration marked by parades, music, costumes, and community festivities just before the Lenten season.
+  </p>
+  <button 
+    onclick="document.getElementById('carnival-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Carnival -->
+<div id="carnival-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🎉 Carnival - A Burst of Color and Joy 🎉</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Carnival Celebrated?</strong><br>
+      Carnival is a festive tradition celebrated before the Christian season of Lent. It is a time of joy, indulgence, and community celebration before the period of fasting begins.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Streets are filled with colorful parades, lively music, folk dances, and costumed performers. The festival is known for its inclusive atmosphere and vibrant displays.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Carnival:</strong><br>
+      - Parades with decorated floats and music<br>
+      - Traditional dances and live performances<br>
+      - Wearing colorful costumes and masks<br>
+      - Food fairs and local delicacies<br>
+      - Cultural programs and open-air celebrations
+    </p>
+  </div>
+</div>
+
+<!-- Chapchar Kut Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="chapchar-kut" data-region="northeast-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/chapchar-kut.webp" alt="Chapchar Kut" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Chapchar Kut</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Northeast India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A vibrant harvest festival celebrated with dance, music, and feasting after clearing of bamboo forests for farming.
+  </p>
+  <button 
+    onclick="document.getElementById('chapchar-kut-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Chapchar Kut -->
+<div id="chapchar-kut-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌿 Chapchar Kut - A Festival of Fields and Joy 🌿</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Chapchar Kut Celebrated?</strong><br>
+      Chapchar Kut is a traditional spring festival celebrated after the bamboo forests are cleared for jhum cultivation. It marks a break before sowing begins, honoring nature and community.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      People wear traditional attire, perform folk dances like Cheraw (bamboo dance), sing local songs, and enjoy traditional food and rice beer in a joyous community gathering.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Chapchar Kut:</strong><br>
+      - Traditional dances including the bamboo dance<br>
+      - Folk songs and musical performances<br>
+      - Wearing cultural costumes and headgear<br>
+      - Community feasts with local delicacies<br>
+      - Celebrating unity and harmony with nature
+    </p>
+  </div>
+</div>
+
+<!-- Cheti Chand Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="cheti-chand" data-region="western-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/cheti-chand.webp" alt="Cheti Chand" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Cheti Chand</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Western India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrated as the Sindhi New Year, this festival honors the birth of Jhulelal, the community’s patron saint.
+  </p>
+  <button 
+    onclick="document.getElementById('cheti-chand-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Cheti Chand -->
+<div id="cheti-chand-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌊 Cheti Chand - Sindhi New Year 🌊</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Cheti Chand Celebrated?</strong><br>
+      Cheti Chand marks the birth of Jhulelal, the revered water deity and protector of the Sindhi community. It also coincides with the arrival of the Sindhi New Year.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees perform processions, sing devotional songs, offer prayers to Jhulelal, and visit rivers or lakes to offer symbolic water rituals.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Cheti Chand:</strong><br>
+      - Processions with jhankis of Jhulelal<br>
+      - Devotional singing and aartis<br>
+      - River worship and water offerings<br>
+      - Community gatherings and prayers<br>
+      - Sharing traditional Sindhi food and sweets
+    </p>
+  </div>
+</div>
+<!-- Chithirai Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="chithirai-festival" data-region="south-india" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/chithirai-festival.jpg" alt="Chithirai Festival" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Chithirai Festival</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>South India</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A grand Tamil festival celebrating the celestial wedding of Meenakshi and Lord Sundareswarar in Madurai.
+  </p>
+  <button 
+    onclick="document.getElementById('chithirai-festival-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Chithirai Festival -->
+<div id="chithirai-festival-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌸 Chithirai Festival - Divine Wedding Celebration 🌸</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Chithirai Festival Celebrated?</strong><br>
+      The festival marks the celestial wedding of Goddess Meenakshi and Lord Sundareswarar, and the coronation of Meenakshi as the queen of Madurai, celebrated with great fervor.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The celebrations span over several days with processions, temple rituals, and reenactments of divine events, attracting thousands of devotees to Madurai.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Chithirai Festival:</strong><br>
+      - Grand temple processions<br>
+      - Celestial wedding ceremony reenactment<br>
+      - Cultural performances and music<br>
+      - Community feasts and gatherings<br>
+      - Devotional rituals at Meenakshi Amman Temple
+    </p>
+  </div>
+</div>
+<!-- Dahi Handi Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="dahi-handi" data-region="western-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/dahi-handi.jpg" alt="Dahi Handi" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Dahi Handi</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Western India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrated the day after Janmashtami, this vibrant festival involves human pyramids to break a hanging pot of curd.
+  </p>
+  <button 
+    onclick="document.getElementById('dahi-handi-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Dahi Handi -->
+<div id="dahi-handi-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🪢 Dahi Handi - A Tribute to Krishna’s Mischief 🪢</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Dahi Handi Celebrated?</strong><br>
+      Dahi Handi commemorates Lord Krishna’s childhood act of stealing butter, symbolizing joy, unity, and bravery. It is observed the day after Janmashtami.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Teams of youths form tall human pyramids to reach and break a pot (handi) filled with curd or butter, tied at a great height in public spaces.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Dahi Handi:</strong><br>
+      - Forming and climbing human pyramids<br>
+      - Breaking the curd-filled handi<br>
+      - Loud music and DJ performances<br>
+      - Community cheering and prizes<br>
+      - Celebrations inspired by Krishna's childhood
+    </p>
+  </div>
+</div>
+<!-- Dhamma Day Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="dhamma-day" data-region="pan-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/dhamma-day.jpeg" alt="Dhamma Day" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Dhamma Day</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Also known as Asalha Puja, it commemorates Buddha’s first sermon and the founding of the Buddhist Sangha.
+  </p>
+  <button 
+    onclick="document.getElementById('dhamma-day-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Dhamma Day -->
+<div id="dhamma-day-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Dhamma Day - First Turning of the Wheel of Dharma 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Dhamma Day Celebrated?</strong><br>
+      Dhamma Day, or Asalha Puja, marks the day when Lord Buddha delivered his first sermon at Sarnath, initiating the Buddhist Sangha and spreading the core teachings of the Four Noble Truths.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Buddhists visit temples, offer prayers, meditate, and reflect on the Dhamma. Monasteries may hold discourses and special rituals in honor of the teachings.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Dhamma Day:</strong><br>
+      - Attending sermons on Buddha’s teachings<br>
+      - Meditation and mindfulness practices<br>
+      - Offering alms and prayers at temples<br>
+      - Chanting of sacred texts<br>
+      - Acts of compassion and generosity
+    </p>
+  </div>
+</div>
+<!-- Dree Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="dree-festival" data-region="northeast-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/dree-festival.jpg" alt="Dree Festival" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Dree Festival</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Northeast India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Agricultural festival of the Apatani tribe, celebrated to pray for a bountiful harvest and protection of crops.
+  </p>
+  <button 
+    onclick="document.getElementById('dree-festival-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Dree Festival -->
+<div id="dree-festival-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌾 Dree Festival - Celebrating Harvest and Harmony 🌾</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Dree Festival Celebrated?</strong><br>
+      Dree is celebrated by the Apatani tribe of Arunachal Pradesh to invoke blessings for a good harvest and to protect crops from diseases, drought, and pests.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Ritual sacrifices and offerings are made to deities like Tamu, Metii, Danyi, and Harniang. Cultural dances, folk songs, and community feasts are integral to the celebrations.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Dree Festival:</strong><br>
+      - Ritual prayers and offerings<br>
+      - Traditional dance and music<br>
+      - Cultural competitions and sports<br>
+      - Community feasts<br>
+      - Wearing traditional Apatani attire
+    </p>
+  </div>
+</div>
+<!-- Dussehra Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="dussehra" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/dusshera.jpg" alt="Dussehra" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Dussehra (Vijayadashami)</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrates the victory of good over evil, marking Lord Rama’s triumph over Ravana, symbolizing the victory of truth and righteousness.
+  </p>
+  <button 
+    onclick="document.getElementById('dussehra-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Dussehra -->
+<div id="dussehra-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🏹 Dussehra - Victory of Good Over Evil 🏹</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Dussehra Celebrated?</strong><br>
+      Dussehra marks the victory of Lord Rama over the demon king Ravana, symbolizing the triumph of good over evil. It also celebrates Goddess Durga’s victory over the buffalo demon Mahishasura.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Huge effigies of Ravana are burnt, signifying the destruction of evil. Ramlila plays, processions, and feasts are common during this festive period.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Dussehra:</strong><br>
+      - Burning of Ravana effigies<br>
+      - Ramlila performances<br>
+      - Community prayers and rituals<br>
+      - Fairs and processions<br>
+      - Cultural events and performances
+    </p>
+  </div>
+</div>
+
+
+<!-- Easter Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="easter" data-region="pan-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/easter.jpg" alt="Easter" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Easter</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Christian holiday celebrating the resurrection of Jesus Christ from the dead, symbolizing hope and renewal.
+  </p>
+  <button 
+    onclick="document.getElementById('easter-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Easter -->
+<div id="easter-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">✝️ Easter - Resurrection and Renewal ✝️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Easter Celebrated?</strong><br>
+      Easter commemorates the resurrection of Jesus Christ, symbolizing victory over death and the promise of eternal life. It is the most important holiday in the Christian calendar.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Easter is celebrated with church services, festive meals, and egg hunts. Christians observe this day by reflecting on the resurrection and new beginnings.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Easter:</strong><br>
+      - Church services and prayers<br>
+      - Easter egg hunts for children<br>
+      - Family gatherings and meals<br>
+      - Singing hymns and celebrating the resurrection<br>
+      - Giving and sharing as a symbol of renewal and hope
+    </p>
+  </div>
+</div>
+
+<!-- Eid-e-Milad Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="eid-e-milad" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/eid-e-milad.png" alt="Eid-e-Milad" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Eid-e-Milad (Milad-un-Nabi)</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrates the birth of the Prophet Muhammad, with prayers, charity, and community gatherings.
+  </p>
+  <button 
+    onclick="document.getElementById('eid-e-milad-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Eid-e-Milad -->
+<div id="eid-e-milad-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕌 Eid-e-Milad - Honoring the Birth of Prophet Muhammad 🕌</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Eid-e-Milad Celebrated?</strong><br>
+      Eid-e-Milad commemorates the birth of Prophet Muhammad, revered as the last prophet in Islam. The day is observed with prayers, charity, and reflection on his teachings.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The day begins with special prayers and processions in honor of the Prophet. Muslims visit mosques for sermons, perform charitable acts, and engage in feasts with family and community.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Eid-e-Milad:</strong><br>
+      - Offering prayers and reading the Quran<br>
+      - Processions in honor of the Prophet<br>
+      - Distributing charity (Zakat) to those in need<br>
+      - Community feasts and gatherings<br>
+      - Reflecting on the Prophet’s teachings and life
+    </p>
+  </div>
+</div>
+
+<!-- Gandhi Jayanti Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="gandhi-jayanti" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/gandhi-jayanti.avif" alt="Gandhi Jayanti" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Gandhi Jayanti</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A national holiday in India, commemorating the birth of Mahatma Gandhi, who led the country to independence through non-violent civil disobedience.
+  </p>
+  <button 
+    onclick="document.getElementById('gandhi-jayanti-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Gandhi Jayanti -->
+<div id="gandhi-jayanti-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🇮🇳 Gandhi Jayanti - Honoring the Father of the Nation 🇮🇳</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Gandhi Jayanti Celebrated?</strong><br>
+      Gandhi Jayanti honors the birth of Mahatma Gandhi, the leader who championed non-violent resistance and played a key role in India’s independence movement.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The day is marked by prayer services, commemorative speeches, and community service activities. It is also observed as the International Day of Nonviolence.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Gandhi Jayanti:</strong><br>
+      - Prayer meetings at Gandhi’s memorial (Raj Ghat)<br>
+      - Community service and cleanliness drives<br>
+      - Discussions and speeches on nonviolence and Gandhian philosophy<br>
+      - Cultural programs and exhibitions focusing on his life and teachings
+    </p>
+  </div>
+</div>
+
+<!-- Ganga Dussehra Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="ganga-dussehra" data-region="pan-india" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/ganga-dussehra.png" alt="Ganga Dussehra" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Ganga Dussehra</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrates the descent of the river Ganga to Earth, observed with rituals, bathing, and prayers to purify oneself and seek blessings.
+  </p>
+  <button 
+    onclick="document.getElementById('ganga-dussehra-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Ganga Dussehra -->
+<div id="ganga-dussehra-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌊 Ganga Dussehra - The Descent of the Sacred Ganga 🌊</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Ganga Dussehra Celebrated?</strong><br>
+      Ganga Dussehra marks the day when the river Ganga descended to Earth, bringing purification, peace, and prosperity. It is a celebration of her sacred presence.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The festival is observed by bathing in the holy river, performing pujas, and seeking blessings for spiritual and material well-being. Special prayers are held along the banks of the river.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Ganga Dussehra:</strong><br>
+      - Taking holy dips in the river Ganga<br>
+      - Offering prayers and performing rituals on the riverbanks<br>
+      - Singing devotional songs and hymns<br>
+      - Charitable activities such as feeding the poor and giving alms<br>
+      - Community gatherings and spiritual discourses
+    </p>
+  </div>
+</div>
+
+<!-- Gangaur Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="gangaur" data-region="rajasthan" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/gangaur.png" alt="Gangaur" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Gangaur</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Rajasthan</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A vibrant festival of Rajasthan, honoring the goddess Gauri and celebrating marital bliss and prosperity with rituals, prayers, and processions.
+  </p>
+  <button 
+    onclick="document.getElementById('gangaur-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Gangaur -->
+<div id="gangaur-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🪔 Gangaur - Celebrating Goddess Gauri 🪔</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Gangaur Celebrated?</strong><br>
+      Gangaur is a festival dedicated to Gauri, a form of Goddess Parvati, symbolizing marital bliss, fertility, and prosperity. It celebrates the bond between husband and wife.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Women observe fasts, perform rituals, and pray for the well-being of their husbands. The festival is marked by colorful processions, music, and dancing.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Gangaur:</strong><br>
+      - Observing fasts and performing rituals<br>
+      - Participating in processions with beautifully decorated idols of Goddess Gauri<br>
+      - Singing folk songs and dancing<br>
+      - Offering prayers for the prosperity and health of spouses<br>
+      - Decorating homes with vibrant colors and flowers
+    </p>
+  </div>
+</div>
+
+<!-- Good Friday Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="good-friday" data-region="pan-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/good-friday.png" alt="Good Friday" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Good Friday</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Christian observance marking the crucifixion of Jesus Christ, observed with prayer, fasting, and reflections on sacrifice and redemption.
+  </p>
+  <button 
+    onclick="document.getElementById('good-friday-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Good Friday -->
+<div id="good-friday-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">✝️ Good Friday - Reflecting on Sacrifice and Redemption ✝️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Good Friday Celebrated?</strong><br>
+      Good Friday is observed to commemorate the crucifixion of Jesus Christ, a pivotal event in Christianity. It is a day of reflection on sacrifice, suffering, and redemption.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Christians observe Good Friday with prayer, fasting, and church services. Many reflect on Christ's suffering and death, often through the Stations of the Cross.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Good Friday:</strong><br>
+      - Attending church services and prayer meetings<br>
+      - Fasting and observing a solemn day of reflection<br>
+      - Participating in the Stations of the Cross<br>
+      - Engaging in charitable acts and volunteering<br>
+      - Contemplating the significance of Christ's sacrifice
+    </p>
+  </div>
+</div>
+<!-- Guru Gobind Singh Jayanti Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="guru-gobind-singh-jayanti" data-region="pan-india" data-season="winter">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/guru-gobind-singh-jayanti.png" alt="Guru Gobind Singh Jayanti" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Guru Gobind Singh Jayanti</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Winter</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrating the birth anniversary of Guru Gobind Singh, the 10th Sikh Guru, known for his bravery, leadership, and the creation of the Khalsa.
+  </p>
+  <button 
+    onclick="document.getElementById('guru-gobind-singh-jayanti-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Guru Gobind Singh Jayanti -->
+<div id="guru-gobind-singh-jayanti-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕊️ Guru Gobind Singh Jayanti - Celebrating the Tenth Sikh Guru 🕊️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Guru Gobind Singh Jayanti Celebrated?</strong><br>
+      Guru Gobind Singh Jayanti marks the birth anniversary of Guru Gobind Singh, the 10th Sikh Guru, who founded the Khalsa and was a champion of justice and equality.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Sikhs celebrate Guru Gobind Singh's birth with prayers, processions, and reading the Guru Granth Sahib. Many also reflect on his teachings of bravery, equality, and faith.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Guru Gobind Singh Jayanti:</strong><br>
+      - Reading of the Guru Granth Sahib<br>
+      - Processions and recitations of Sikh hymns<br>
+      - Offering prayers and paying respects to Guru Gobind Singh<br>
+      - Celebrations with family and community gatherings<br>
+      - Promoting the values of courage, equality, and service
+    </p>
+  </div>
+</div>
+<!-- Guru Nanak Jayanti Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="guru-nanak-jayanti" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/guru-nanak-jayanti.jpg" alt="Guru Nanak Jayanti" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Guru Nanak Jayanti (Gurpurab)</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Celebrating the birth of Guru Nanak, the first Sikh Guru, known for his teachings of equality, humanity, and devotion to God.
+  </p>
+  <button 
+    onclick="document.getElementById('guru-nanak-jayanti-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Guru Nanak Jayanti -->
+<div id="guru-nanak-jayanti-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌟 Guru Nanak Jayanti - Celebrating the Birth of the First Sikh Guru 🌟</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Guru Nanak Jayanti Celebrated?</strong><br>
+      Guru Nanak Jayanti marks the birth anniversary of Guru Nanak, the founder of Sikhism. His teachings focused on equality, love, and devotion to one God.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Sikhs celebrate this day with prayers, hymns, and processions. The reading of the Guru Granth Sahib and the singing of kirtans are common practices.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Guru Nanak Jayanti:</strong><br>
+      - Recitation of hymns and verses from the Guru Granth Sahib<br>
+      - Processions through cities and towns<br>
+      - Community service and charitable acts<br>
+      - Offering prayers and reflecting on the Guru's teachings<br>
+      - Celebrating unity and the oneness of God
+    </p>
+  </div>
+</div>
+<!-- Hariyali Teej Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="hariyali-teej" data-region="pan-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/haryali-teej.webp" alt="Hariyali Teej" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Hariyali Teej</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A celebration of the arrival of the monsoon season, particularly in Rajasthan, Haryana, and Uttar Pradesh, with women fasting and celebrating with traditional songs and dances.
+  </p>
+  <button 
+    onclick="document.getElementById('hariyali-teej-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Hariyali Teej -->
+<div id="hariyali-teej-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌿 Hariyali Teej - Celebrating the Monsoon and Womanhood 🌿</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Hariyali Teej Celebrated?</strong><br>
+      Hariyali Teej marks the arrival of the monsoon season and is a celebration of nature’s abundance. It is particularly significant for married women, who pray for the well-being of their husbands.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Women observe fasts, apply henna on their hands, and dress in traditional attire. There are vibrant processions, singing of folk songs, and dances to celebrate the season of abundance.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Hariyali Teej:</strong><br>
+      - Fasting and offering prayers for the well-being of husbands<br>
+      - Singing folk songs and traditional Teej songs<br>
+      - Henna application on hands<br>
+      - Dancing and celebrating with family and friends<br>
+      - Participating in processions and enjoying nature
+    </p>
+  </div>
+</div>
+
+<!-- Hartalika Teej Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="hartalika-teej" data-region="pan-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/hartalika-teej.jpg" alt="Hartalika Teej" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Hartalika Teej</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A festival dedicated to Goddess Parvati, celebrated by women seeking marital bliss and happiness, especially in northern India.
+  </p>
+  <button 
+    onclick="document.getElementById('hartalika-teej-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Hartalika Teej -->
+<div id="hartalika-teej-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🌸 Hartalika Teej - Celebrating the Power of Goddess Parvati 🌸</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Hartalika Teej Celebrated?</strong><br>
+      Hartalika Teej honors Goddess Parvati and her devotion to Lord Shiva. It is celebrated by women seeking marital happiness, and it also marks the bond between women and their families.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Women observe fasts and pray for marital bliss, often re-enacting the story of Parvati's devotion to Shiva. There are also processions, singing, and dancing.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Hartalika Teej:</strong><br>
+      - Observing fasts and performing prayers to Goddess Parvati<br>
+      - Henna application and wearing traditional attire<br>
+      - Participating in processions and singing devotional songs<br>
+      - Dancing and celebrating with family and friends<br>
+      - Visiting temples and offering prayers
+    </p>
+  </div>
+</div>
+
+<!-- Hola Mohalla Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="hola-mohalla" data-region="pan-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/hola-mohalla.jpeg" alt="Hola Mohalla" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Hola Mohalla</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Sikh festival celebrated with martial arts displays, processions, and devotional singing, honoring Guru Gobind Singh's contributions to Sikhism.
+  </p>
+  <button 
+    onclick="document.getElementById('hola-mohalla-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Hola Mohalla -->
+<div id="hola-mohalla-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🏇 Hola Mohalla - The Sikh Festival of Valor 🏇</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Hola Mohalla Celebrated?</strong><br>
+      Hola Mohalla is celebrated to honor the martial arts and military prowess of the Sikh community. It was established by Guru Gobind Singh to showcase the bravery, strength, and courage of the Sikhs.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The festival includes displays of martial arts like gatka, processions, and the singing of devotional hymns. Sikhs come together to celebrate and reaffirm their community's values of strength, courage, and service.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Hola Mohalla:</strong><br>
+      - Display of martial arts and military drills<br>
+      - Processions and chanting of devotional hymns<br>
+      - Kirtans and community prayers<br>
+      - Community service and charitable activities<br>
+      - Cultural events and celebrations
+    </p>
+  </div>
+</div>
+
+<!-- Independence Day Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="independence-day" data-region="pan-india" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/independence-day.jpeg" alt="Independence Day" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Independence Day</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A national holiday in India, celebrating the nation's independence from British rule, marked by flag hoisting, parades, and patriotic activities.
+  </p>
+  <button 
+    onclick="document.getElementById('independence-day-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Independence Day -->
+<div id="independence-day-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🇮🇳 Independence Day - Honoring Freedom 🇮🇳</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Independence Day Celebrated?</strong><br>
+      Independence Day commemorates the day India gained independence from British colonial rule on August 15, 1947. It is a day to remember the sacrifices made by freedom fighters and to celebrate India's sovereignty.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The day begins with the Prime Minister hoisting the national flag at the Red Fort in Delhi, followed by the national anthem. Parades, cultural performances, and flag hoisting ceremonies are organized across the country.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Independence Day:</strong><br>
+      - Flag hoisting and singing of the national anthem<br>
+      - Parades and cultural performances<br>
+      - Patriotic speeches and events<br>
+      - Educational programs and discussions on freedom fighters<br>
+      - National and local celebrations honoring India's heritage
+    </p>
+  </div>
+</div>
+
+<!-- Jhulan Yatra Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="jhulan-yatra" data-region="pan-india" data-season="monsoon">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/jhulan-yatra.jpeg" alt="Jhulan Yatra" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Jhulan Yatra</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Monsoon</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A festival that celebrates the divine love between Lord Krishna and Radha, with swing processions and devotional songs.
+  </p>
+  <button 
+    onclick="document.getElementById('jhulan-yatra-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Jhulan Yatra -->
+<div id="jhulan-yatra-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🎉 Jhulan Yatra - Celebrating Krishna and Radha 🎉</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Jhulan Yatra Celebrated?</strong><br>
+      Jhulan Yatra celebrates the divine love between Lord Krishna and Radha. It is observed in the monsoon season when devotees swing idols of Krishna and Radha on swings, symbolizing their divine bond.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees celebrate the festival by swinging the idols of Lord Krishna and Radha on decorated swings, accompanied by devotional songs and dances. The festival is marked by processions, temple visits, and cultural performances.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Jhulan Yatra:</strong><br>
+      - Swinging idols of Krishna and Radha<br>
+      - Devotional songs and dances<br>
+      - Processions and cultural performances<br>
+      - Temple visits and prayers to Lord Krishna<br>
+      - Offering flowers and sweets to the idols
+    </p>
+  </div>
+</div>
+
+<!-- Kabir Jayanti Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="kabir-jayanti" data-region="pan-india" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/kabir-jayanti.png" alt="Kabir Jayanti" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Kabir Jayanti</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A celebration of the birth anniversary of the poet-saint Kabir, known for his devotional songs and poetry, promoting unity, peace, and spiritual enlightenment.
+  </p>
+  <button 
+    onclick="document.getElementById('kabir-jayanti-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Kabir Jayanti -->
+<div id="kabir-jayanti-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Kabir Jayanti - A Day of Unity and Spiritual Wisdom 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Kabir Jayanti Celebrated?</strong><br>
+      Kabir Jayanti is celebrated to honor the birth anniversary of the poet-saint Kabir, who emphasized devotion to the formless and preached against religious divisions. His teachings advocate for simplicity, unity, and love for all humanity.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees gather at Kabir temples and perform prayers and kirtans (devotional singing). The day is marked with discussions on Kabir's philosophy, readings of his poetry, and various religious gatherings.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Kabir Jayanti:</strong><br>
+      - Prayers and kirtans in temples<br>
+      - Discourses on Kabir’s teachings<br>
+      - Reading and singing of his devotional poems (bhajans)<br>
+      - Community meals (langars) and service to the needy<br>
+      - Processions and religious gatherings to honor his legacy
+    </p>
+  </div>
+</div>
+
+
+
+<!-- Kali Puja Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="kali-puja" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/kali-puja.png" alt="Kali Puja" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Kali Puja</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Hindu festival dedicated to Goddess Kali, symbolizing the triumph of good over evil, celebrated with prayers, offerings, and rituals.
+  </p>
+  <button 
+    onclick="document.getElementById('kali-puja-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Kali Puja -->
+<div id="kali-puja-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Kali Puja - A Celebration of Strength and Protection 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Kali Puja Celebrated?</strong><br>
+      Kali Puja is dedicated to Goddess Kali, the fierce and powerful embodiment of the divine feminine. It is celebrated to seek her blessings for strength, protection, and the eradication of evil forces from one's life.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees perform elaborate rituals, offer flowers, fruits, and sweets to Goddess Kali, and chant mantras. The celebration often includes grand processions, firecrackers, and community feasts.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Kali Puja:</strong><br>
+      - Ritual worship of Goddess Kali with offerings and mantras<br>
+      - Lighting lamps and candles to signify the triumph of light over darkness<br>
+      - Community feasts and processions<br>
+      - Fireworks and celebrations<br>
+      - Devotional songs and dances honoring Kali's power
+    </p>
+  </div>
+</div>
+
+
+<!-- Karma Puja Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="karma-puja" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/karma-puja.png" alt="Karma Puja" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Karma Puja</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A festival dedicated to the worship of the god of action, Lord Karma, celebrated in certain regions of India to seek blessings for success and prosperity.
+  </p>
+  <button 
+    onclick="document.getElementById('karma-puja-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Karma Puja -->
+<div id="karma-puja-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Karma Puja - A Celebration of Action and Prosperity 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Karma Puja Celebrated?</strong><br>
+      Karma Puja is celebrated to honor Lord Karma, who is believed to govern the outcomes of actions. This puja seeks blessings for good deeds, prosperity, and success in life.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The puja is celebrated by performing rituals, offering prayers to Lord Karma, and seeking his blessings for positive outcomes in various undertakings. People also observe fasts and engage in charitable acts.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Karma Puja:</strong><br>
+      - Prayers and offerings to Lord Karma<br>
+      - Lighting lamps and chanting mantras<br>
+      - Charitable acts and donations<br>
+      - Fasting and community gatherings<br>
+      - Seeking blessings for prosperity and success in work
+    </p>
+  </div>
+</div>
+
+<!-- Karthigai Deepam Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="karthigai-deepam" data-region="pan-india" data-season="winter">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/karthigai-deepam.png" alt="Karthigai Deepam" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Karthigai Deepam</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Winter</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Tamil festival celebrating the victory of light over darkness, where people light lamps to honor Lord Murugan and seek his blessings for prosperity and well-being.
+  </p>
+  <button 
+    onclick="document.getElementById('karthigai-deepam-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Karthigai Deepam -->
+<div id="karthigai-deepam-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Karthigai Deepam - A Festival of Light and Prosperity 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Karthigai Deepam Celebrated?</strong><br>
+      Karthigai Deepam is celebrated in honor of Lord Murugan, the god of war and wisdom. The festival signifies the victory of light over darkness and is marked by the lighting of thousands of oil lamps.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      People decorate their homes with lamps, light firecrackers, and offer prayers to Lord Murugan for good health and prosperity. The highlight is the grand lighting of the Karthigai Deepam, a giant lamp in temples.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Karthigai Deepam:</strong><br>
+      - Lighting oil lamps in homes and temples<br>
+      - Prayers and offerings to Lord Murugan<br>
+      - Firecrackers and festive processions<br>
+      - Singing devotional songs and participating in cultural activities<br>
+      - Seeking blessings for prosperity, good health, and spiritual growth
+    </p>
+  </div>
+</div>
+
+<!-- Kartik Purnima Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="kartik-purnima" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/kartik-purnima.png" alt="Kartik Purnima" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Kartik Purnima</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Hindu festival that falls on the full moon night of the Kartika month, celebrated with prayers, rituals, and a grand celebration of light and spirituality.
+  </p>
+  <button 
+    onclick="document.getElementById('kartik-purnima-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Kartik Purnima -->
+<div id="kartik-purnima-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Kartik Purnima - A Festival of Light and Spirituality 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Kartik Purnima Celebrated?</strong><br>
+      Kartik Purnima marks the full moon day of the Kartika month and holds great significance in Hindu mythology. It is celebrated to honor Lord Vishnu, Lord Shiva, and Goddess Lakshmi, and to seek blessings for well-being.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The festival is celebrated by taking holy dips in rivers, especially the Ganges, offering prayers, lighting lamps, and performing rituals in temples. Devotees also visit pilgrimage sites and participate in cultural activities.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Kartik Purnima:</strong><br>
+      - Taking holy dips in rivers like the Ganges<br>
+      - Offering prayers to Lord Vishnu, Lord Shiva, and Goddess Lakshmi<br>
+      - Lighting diyas and lamps in temples and homes<br>
+      - Fasting and observing spiritual practices<br>
+      - Pilgrimages and cultural processions
+    </p>
+  </div>
+</div>
+
+<!-- Khordad Sal Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="khordad-sal" data-region="pan-india" data-season="spring">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/Khordad Sal.png" alt="Khordad Sal" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Khordad Sal</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Spring</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A Zoroastrian festival celebrating the birth of Prophet Zarathustra (Zoroaster), observed by the Parsi community with prayers and religious rituals.
+  </p>
+  <button 
+    onclick="document.getElementById('khordad-sal-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Khordad Sal -->
+<div id="khordad-sal-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Khordad Sal - A Celebration of Zoroastrianism 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Khordad Sal Celebrated?</strong><br>
+      Khordad Sal marks the birthday of Prophet Zarathustra, the founder of Zoroastrianism. It is an important festival for the Parsi community to honor his teachings and contributions to spirituality and philosophy.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees gather at fire temples, offer prayers, and perform rituals to honor Prophet Zarathustra. The day is marked with family gatherings, feasts, and cultural events.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Khordad Sal:</strong><br>
+      - Prayers and rituals at fire temples<br>
+      - Reading of Zoroastrian scriptures<br>
+      - Family feasts and cultural events<br>
+      - Offering charity and good deeds<br>
+      - Visiting friends and relatives
+    </p>
+  </div>
+</div>
+
+<!-- Kojagari Lakshmi Puja Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="kojagari-lakshmi-puja" data-region="pan-india" data-season="autumn">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/Kojagari Lakshmi Puja.webp" alt="Kojagari Lakshmi Puja" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Kojagari Lakshmi Puja</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Autumn</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    A festival dedicated to Goddess Lakshmi, the deity of wealth, where devotees offer prayers for prosperity and abundance.
+  </p>
+  <button 
+    onclick="document.getElementById('kojagari-lakshmi-puja-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Kojagari Lakshmi Puja -->
+<div id="kojagari-lakshmi-puja-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Kojagari Lakshmi Puja - A Celebration of Wealth and Prosperity 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Kojagari Lakshmi Puja Celebrated?</strong><br>
+      Kojagari Lakshmi Puja is celebrated to honor Goddess Lakshmi, the goddess of wealth and prosperity. The festival marks the arrival of the full moon and is observed to invoke blessings for financial well-being and prosperity.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Devotees observe a night of fasting and vigil, offering prayers to Goddess Lakshmi. Homes and temples are decorated with oil lamps, and sweets are prepared as offerings. People also perform traditional rituals and sing devotional songs.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Kojagari Lakshmi Puja:</strong><br>
+      - Offering prayers to Goddess Lakshmi<br>
+      - Lighting oil lamps and decorating homes<br>
+      - Preparing sweets and other offerings<br>
+      - Observing a night vigil and fasting<br>
+      - Participating in cultural performances and devotional singing
+    </p>
+  </div>
+</div>
+
+<!-- Kumbh Mela Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="kumbh-mela" data-region="pan-india" data-season="winter">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/kumbh.jpeg" alt="Kumbh Mela" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Kumbh Mela</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Pan-India</span>
+    <span>Winter</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    The Kumbh Mela is one of the largest religious gatherings in the world, where millions of devotees gather for a sacred dip in the holy rivers to cleanse themselves of sins.
+  </p>
+  <button 
+    onclick="document.getElementById('kumbh-mela-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Kumbh Mela -->
+<div id="kumbh-mela-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕉️ Kumbh Mela - A Grand Spiritual Gathering 🕉️</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Kumbh Mela Celebrated?</strong><br>
+      The Kumbh Mela is celebrated to mark the auspicious occasion when the nectar of immortality was spilled during the churning of the ocean. Devotees gather to take a holy dip in the rivers, which is believed to cleanse their sins and bring spiritual upliftment.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      The Mela is celebrated at four locations: Allahabad, Haridwar, Ujjain, and Nashik. Devotees bathe in the sacred rivers during specific dates based on astrology. The event also features religious discourses, cultural programs, and processions.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Kumbh Mela:</strong><br>
+      - Taking a dip in the holy river<br>
+      - Listening to spiritual discourses and prayers<br>
+      - Participating in religious processions<br>
+      - Offering prayers to the river deities<br>
+      - Engaging in meditation and other spiritual activities
+    </p>
+  </div>
+</div>
+
+<!-- Laylat al-Qadr Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="laylat-al-qadr" data-region="global" data-season="ramadan">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/Laylat al-Qadr.jpg" alt="Laylat al-Qadr" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Laylat al-Qadr</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Global</span>
+    <span>Ramadan</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Laylat al-Qadr, known as the Night of Power, is considered the holiest night in Islam. It is believed to be the night when the Quran was revealed to the Prophet Muhammad (PBUH).
+  </p>
+  <button 
+    onclick="document.getElementById('laylat-al-qadr-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Laylat al-Qadr -->
+<div id="laylat-al-qadr-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🕋 Laylat al-Qadr - The Night of Power 🕋</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Laylat al-Qadr Celebrated?</strong><br>
+      Laylat al-Qadr is celebrated as the night when the Quran was revealed to Prophet Muhammad (PBUH) by the Angel Jibril. It is a night of immense spiritual significance, and prayers on this night are believed to carry immense reward.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Muslims observe the night with prayers, supplications, and recitation of the Quran. The night is spent seeking Allah’s mercy and blessings, particularly during the last ten nights of Ramadan, when Laylat al-Qadr is believed to fall.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Laylat al-Qadr:</strong><br>
+      - Offering extra prayers (Tahajjud)<br>
+      - Reciting the Quran<br>
+      - Seeking forgiveness and mercy from Allah<br>
+      - Making special supplications<br>
+      - Engaging in acts of charity and good deeds
+    </p>
+  </div>
+</div>
+
+<!-- Lohri Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="lohri" data-region="north-india" data-season="winter">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/Lohri.jpeg" alt="Lohri" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Lohri</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>North India</span>
+    <span>Winter</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    Lohri is a popular festival celebrated in North India to mark the end of winter and the beginning of the harvest season, especially the harvest of sugarcane.
+  </p>
+  <button 
+    onclick="document.getElementById('lohri-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Lohri -->
+<div id="lohri-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🔥 Lohri - A Festival of Harvest and Fire 🔥</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Lohri Celebrated?</strong><br>
+      Lohri marks the end of winter and the arrival of the harvest season, especially the harvest of sugarcane in Punjab. It is also a celebration of the agricultural community's hard work and the blessings of a bountiful harvest.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      People light bonfires, sing traditional folk songs, dance the Bhangra and Gidda, and offer food items like sesame seeds, jaggery, and sugarcane into the fire as an offering. Families gather around the bonfire to celebrate the harvest and the coming warmth of spring.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Lohri:</strong><br>
+      - Lighting bonfires<br>
+      - Singing and dancing to traditional folk music<br>
+      - Offering sesame seeds, jaggery, and sugarcane to the fire<br>
+      - Sharing festive foods like til (sesame seeds) and revri<br>
+      - Gathering with friends and family for celebrations
+    </p>
+  </div>
+</div>
+
+<!-- Jagannath Rath Yatra Festival Card -->
+<div class="bg-gray-800 p-4 rounded-lg border border-pink-500 transition-colors cursor-pointer festival-item relative" data-festival="jagannath-rath-yatra" data-region="odisha" data-season="summer">
+  <div class="overflow-hidden rounded-lg mb-3">
+    <img src="images/jagannath-rath-yatra.jpeg" alt="Jagannath Rath Yatra" class="w-full h-32 object-cover object-center festival-image">
+  </div>
+  <h3 class="font-semibold mb-2 text-white">Jagannath Rath Yatra</h3>
+  <div class="flex justify-between text-sm text-gray-400 mb-2">
+    <span>Odisha</span>
+    <span>Summer</span>
+  </div>
+  <p class="text-xs text-gray-400 mb-3">
+    The Jagannath Rath Yatra is one of the most famous festivals in India, celebrated in Puri, Odisha, where the deities of Lord Jagannath, Balabhadra, and Subhadra are taken in grand chariots through the streets.
+  </p>
+  <button 
+    onclick="document.getElementById('jagannath-rath-yatra-details').classList.remove('hidden')" 
+    class="festival-details-btn w-full py-1 text-sm border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-500 hover:text-white transition-colors"
+  >
+    View Details
+  </button>
+</div>
+
+<!-- Inline Modal for Jagannath Rath Yatra -->
+<div id="jagannath-rath-yatra-details" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+  <div class="bg-gray-900 text-white max-w-lg w-full p-6 rounded-2xl shadow-lg relative">
+    <button onclick='this.parentElement.parentElement.classList.add("hidden")' class="absolute top-2 right-4 text-pink-500 hover:text-white text-lg font-bold">×</button>
+    <h2 class="text-2xl font-bold mb-4 text-pink-400">🛕 Jagannath Rath Yatra - A Spiritual Journey 🛕</h2>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>Why is Jagannath Rath Yatra Celebrated?</strong><br>
+      The Jagannath Rath Yatra celebrates the annual journey of Lord Jagannath, along with his siblings Balabhadra and Subhadra, from their temple in Puri to the Gundicha temple. It is believed that Lord Jagannath visits his aunt during this festival.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed mb-2">
+      <strong>How is it Celebrated?</strong><br>
+      Thousands of devotees pull the chariots of Lord Jagannath, Balabhadra, and Subhadra along a 3-km route in Puri, Odisha. The event is marked by processions, chanting of hymns, and various rituals dedicated to the deities.
+    </p>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      <strong>Activities During Jagannath Rath Yatra:</strong><br>
+      - Pulling the chariots of Lord Jagannath, Balabhadra, and Subhadra<br>
+      - Participating in devotional processions and chants<br>
+      - Offering prayers and taking part in rituals<br>
+      - Viewing cultural performances and music<br>
+      - Engaging in religious discussions and prayers
+    </p>
+  </div>
+</div>
+
+
 
   </section>
 
@@ -2088,11 +4116,11 @@
         <div>
           <h4 class="text-lg font-semibold mb-4">Resources</h4>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Blog</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Cultural Guides</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Outfit Dictionary</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">Regional Styles</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-pink-500 transition-colors">FAQ</a></li>
+            <li><a href="blog.html" class="text-gray-400 hover:text-pink-500 transition-colors">Blog</a></li>
+            <li><a href="Cultural Guides.html" class="text-gray-400 hover:text-pink-500 transition-colors">Cultural Guides</a></li>
+            <li><a href="Outfit Dictionary.html" class="text-gray-400 hover:text-pink-500 transition-colors">Outfit Dictionary</a></li>
+            <li><a href="Regional Styles.html" class="text-gray-400 hover:text-pink-500 transition-colors">Regional Styles</a></li>
+            <li><a href="FAQ.html" class="text-gray-400 hover:text-pink-500 transition-colors">FAQ</a></li>
           </ul>
         </div>
         
@@ -2116,7 +4144,6 @@
     </div>
   </footer>
 
-<script src="auth.js"></script>
 </body>
 </html>
 
