@@ -26,6 +26,50 @@
     @keyframes shimmer {
       100% { left: 100%; }
     }
+    
+    /* Added styles for prompt help section */
+    .prompt-tip {
+      border-left: 3px solid #ec4899;
+      padding-left: 16px;
+    }
+    
+    /* Generated image container */
+    .generated-image {
+      position: relative;
+      display: none;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      border: 2px solid #374151;
+    }
+    
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 24, 39, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 10;
+    }
+    
+    .spinner {
+      border: 4px solid rgba(236, 72, 153, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid #ec4899;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body class="bg-gray-900 text-white font-sans antialiased">
@@ -69,36 +113,39 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-center pt-24 pb-16">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
-        <div class="animate-fade-in-up">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            <span class="text-pink-500">Welcome to VastraVerse </span>
-          </h1>
-          <p class="text-xl md:text-2xl text-gray-300 mb-8">
-            A Cultural Dressing Virtual Photoshoot & Festival Guide Powered by Generative AI
-          </p>
-          <p class="text-gray-400 mb-10">
-            Experience the rich diversity of Indian traditions with our AI-powered cultural outfit visualizer
-          </p>
-          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-            <button class="px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-pink-400 shadow-lg">
-              Get Started
-            </button>
-            <button class="px-8 py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:bg-opacity-10 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400">
-              Learn More
-            </button>
-          </div>
+  <!-- Hero Section (moved and restyled) -->
+  <section id="hero" class="min-h-screen flex items-center justify-center pt-24 pb-16" style="min-height:100vh;">
+    <div class="container mx-auto px-4 flex flex-col items-center justify-center text-center">
+      <div class="animate-fade-in-up">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <span class="text-pink-500">Welcome to VastraVerse </span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8">
+          A Cultural Dressing Virtual Photoshoot & Festival Guide Powered by Generative AI
+        </p>
+        <p class="text-gray-400 mb-10">
+          Experience the rich diversity of Indian traditions with our AI-powered cultural outfit visualizer
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="#photoshoot" class="px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-pink-400 shadow-lg">
+            Get Started
+          </a>
+          <a href="#learn-more" class="px-8 py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:bg-opacity-10 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400">
+            Learn More
+          </a>
         </div>
       </div>
-      
-      <div class="md:w-1/2 md:pl-10 animate-fade-in">
-        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700">
+    </div>
+  </section>
+
+  <!-- AI Virtual Photoshoot Section (full width, no empty left column) -->
+  <section id="photoshoot" class="min-h-screen flex items-center justify-center w-full" style="min-height:100vh;">
+    <div class="container mx-auto px-4 flex flex-col items-center justify-center w-full h-full">
+      <div class="w-full md:w-2/3 lg:w-1/2 animate-fade-in flex items-center justify-center h-full">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700 w-full max-w-2xl mx-auto">
           <div class="text-center mb-6">
-            <h2 class="text-2xl font-semibold">Virtual Try-On</h2>
-            <p class="text-gray-400">Upload your photo to try traditional Indian outfits</p>
+            <h2 class="text-2xl font-semibold">AI Virtual Photoshoot</h2>
+            <p class="text-gray-400">Transform your photo with traditional Indian outfits</p>
           </div>
           
           <div class="mb-6">
@@ -120,33 +167,134 @@
             </div>
           </div>
           
-          <div class="mb-4">
-            <label class="block text-gray-300 mb-2">Select Festival/Occasion:</label>
-            <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
-              <option value="diwali">Diwali</option>
-              <option value="holi">Holi</option>
-              <option value="navaratri">Navaratri</option>
-              <option value="wedding">Traditional Wedding</option>
-              <option value="durga-puja">Durga Puja</option>
-              <option value="onam">Onam</option>
-              <option value="pongal">Pongal</option>
-            </select>
-          </div>
+          
+          
+          
           
           <div class="mb-4">
-            <label class="block text-gray-300 mb-2">Choose Region:</label>
-            <select class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
-              <option value="north">North India</option>
-              <option value="south">South India</option>
-              <option value="east">East India</option>
-              <option value="west">West India</option>
-              <option value="northeast">Northeast India</option>
-            </select>
+            <label class="block text-gray-300 mb-2">Transformation Prompt:</label>
+            <textarea id="transformPrompt" rows="4" class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="A full-body photograph of the same person in the input image, wearing a traditional red silk saree..."></textarea>
           </div>
           
-          <button id="tryOnButton" class="w-full py-3 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-pink-400 disabled:opacity-50">
-            Try On Outfit
+          <div class="mb-6 bg-gray-700 p-4 rounded-lg prompt-tip">
+            <h4 class="font-semibold mb-2 text-pink-400">Prompt Tips:</h4>
+            <p class="text-gray-300 text-sm mb-2">For best results, include these elements in your prompt:</p>
+            <ul class="text-gray-300 text-sm list-disc pl-5 space-y-1">
+              <li>Reference to "the same person in the input image"</li>
+              <li>Specific outfit description (color, fabric, style)</li>
+              <li>Preservation of face and identity</li>
+              <li>Quality descriptors (photorealistic, DSLR quality)</li>
+              <li>Lighting and setting details</li>
+            </ul>
+            <p class="text-gray-400 text-xs mt-2">Example: "A full-body photograph of the same woman in the input image, in the exact same pose and expression, now wearing a traditional red silk saree with a gold-embroidered border draped over her shoulder, preserving her face, hairstyle, and posture, photorealistic, DSLR quality, rich colors, studio lighting"</p>
+          </div>
+          
+          <button id="generateButton" class="w-full py-3 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-pink-400 disabled:opacity-50">
+            Generate Cultural Outfit Image
           </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Generated Image Section -->
+  <section id="generatedImageSection" class="py-12 bg-gray-800 hidden">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Your Cultural Transformation</h2>
+      
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+        <div class="w-full md:w-1/3">
+          <div class="bg-gray-900 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-3 text-center">Original Image</h3>
+            <div class="h-80 flex items-center justify-center overflow-hidden rounded-lg">
+              <img id="originalImage" src="#" alt="Original uploaded image" class="max-w-full max-h-full">
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-full md:w-1/3">
+          <div class="bg-gray-900 p-4 rounded-lg shadow-lg">
+            <h3 class="text-xl font-bold mb-3 text-center">AI-Generated Outfit</h3>
+            <div class="generated-image h-80 relative rounded-lg">
+              <div class="loading-overlay">
+                <div class="spinner"></div>
+                <p class="text-white">Generating your cultural outfit...</p>
+              </div>
+              <img id="generatedImage" src="#" alt="AI-generated outfit" class="max-w-full max-h-full mx-auto">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center">
+        <button id="downloadButton" class="px-6 py-3 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors mr-4">
+          <i class="fas fa-download mr-2"></i> Download Image
+        </button>
+        <button id="shareButton" class="px-6 py-3 rounded-full border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors">
+          <i class="fas fa-share-alt mr-2"></i> Share
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prompt Learning Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Master the Art of Outfit Prompts</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Learn how to create effective prompts for stunning cultural outfit transformations</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Describe Outfit Details</h3>
+          <p class="text-gray-400">Be specific about colors, patterns, fabrics, and cultural elements. For example, "royal blue silk saree with gold zari border" or "cream sherwani with maroon embroidery."</p>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Preserve Identity</h3>
+          <p class="text-gray-400">Always include phrases like "preserving the face and identity of the person in the input image" to maintain resemblance and personal features.</p>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-camera"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Specify Quality</h3>
+          <p class="text-gray-400">Include terms like "photorealistic," "high resolution," "professional photography," and "studio lighting" for better visual quality.</p>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Add Cultural Context</h3>
+          <p class="text-gray-400">Mention the specific region or occasion to enhance authenticity. For example, "dressed for a South Indian wedding" or "celebrating Diwali in a traditional Gujarati style."</p>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-gem"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Include Accessories</h3>
+          <p class="text-gray-400">Don't forget to mention traditional jewelry, headwear, or other accessories that complete the cultural look, like "with a kundan necklace" or "wearing a traditional pagdi."</p>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div class="text-pink-500 text-3xl mb-4">
+            <i class="fas fa-magic"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Sample Prompt Template</h3>
+          <p class="text-gray-400 mb-2">Copy and customize this proven template:</p>
+          <div class="bg-gray-900 p-3 rounded text-sm text-gray-300 overflow-x-auto">
+            "A full-body photograph of the same [person] in the input image, in the exact same pose and expression, now wearing a [color] [fabric] [outfit type] with [distinctive features], preserving their face, hairstyle, and posture, photorealistic, DSLR quality, rich colors, [lighting] lighting"
+          </div>
         </div>
       </div>
     </div>
@@ -341,7 +489,182 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Image upload preview functionality
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreview');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+    const removeImage = document.getElementById('removeImage');
+    const outfitStyle = document.getElementById('outfitStyle');
+    const regionSelect = document.getElementById('regionSelect');
+    const transformPrompt = document.getElementById('transformPrompt');
+    const generateButton = document.getElementById('generateButton');
+    const generatedImageSection = document.getElementById('generatedImageSection');
+    const originalImage = document.getElementById('originalImage');
+    const generatedImage = document.getElementById('generatedImage');
+    const downloadButton = document.getElementById('downloadButton');
+    const shareButton = document.getElementById('shareButton');
+    
+    // Image upload handling
+    imageUpload.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          originalImage.src = e.target.result;
+          imagePreviewContainer.classList.remove('hidden');
+          imagePreviewContainer.classList.add('flex');
+          uploadPlaceholder.classList.add('hidden');
+          generateButton.disabled = false;
+        }
+        
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    
+    // Remove uploaded image
+    removeImage.addEventListener('click', function() {
+      imagePreview.src = '#';
+      imageUpload.value = '';
+      imagePreviewContainer.classList.add('hidden');
+      imagePreviewContainer.classList.remove('flex');
+      uploadPlaceholder.classList.remove('hidden');
+      generateButton.disabled = true;
+      generatedImageSection.classList.add('hidden');
+    });
+    
+    // Drag and drop functionality
+    uploadPlaceholder.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      this.classList.add('border-pink-500');
+    });
+    
+    uploadPlaceholder.addEventListener('dragleave', function(e) {
+      e.preventDefault();
+      this.classList.remove('border-pink-500');
+    });
+    
+    uploadPlaceholder.addEventListener('drop', function(e) {
+      e.preventDefault();
+      this.classList.remove('border-pink-500');
+      
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        imageUpload.files = e.dataTransfer.files;
+        const event = new Event('change');
+        imageUpload.dispatchEvent(event);
+      }
+    });
+    
+    // Handle outfit style selection to update prompt
+    outfitStyle.addEventListener('change', function() {
+      const style = this.value;
+      const region = regionSelect.value;
+      
+      // Set default prompt based on outfit style and region selection
+      let defaultPrompt = "";
+      
+      if (style === 'saree') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional silk saree`;
+        
+        if (region === 'south') {
+          defaultPrompt += ` in South Indian Kanjeevaram style with gold zari border draped elegantly,`;
+        } else if (region === 'east') {
+          defaultPrompt += ` in Bengali Tant style with red border draped over shoulder,`;
+        } else if (region === 'west') {
+          defaultPrompt += ` in Gujarati style with decorative Bandhani pattern,`;
+        } else {
+          defaultPrompt += ` with a gold-embroidered border draped over shoulder,`;
+        }
+      } else if (style === 'lehenga') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional embroidered lehenga choli`;
+      } else if (style === 'kurta') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional kurta pajama`;
+      } else if (style === 'sherwani') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional embroidered sherwani`;
+      } else if (style === 'salwar') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional salwar kameez`;
+      } else if (style === 'dhoti') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional white dhoti kurta`;
+      } else if (style === 'custom') {
+        defaultPrompt = `A full-body photograph of the same person in the input image, in the exact same pose and expression, now wearing a traditional Indian outfit`;
+      }
+      
+      // Add quality descriptors to all prompts
+      defaultPrompt += ` preserving their face, hairstyle, and posture, photorealistic, DSLR quality, rich colors, studio lighting`;
+      
+      // Update the prompt textarea
+      transformPrompt.value = defaultPrompt;
+    });
+    
+    // Update prompt when region changes too
+    regionSelect.addEventListener('change', function() {
+      // Trigger the outfit style change handler to update prompt with region
+      const event = new Event('change');
+      outfitStyle.dispatchEvent(event);
+    });
+    
+    // Generate button functionality
+    generateButton.addEventListener('click', function() {
+      if (!imageUpload.files[0]) {
+        alert('Please upload an image first');
+        return;
+      }
+      
+      if (!transformPrompt.value.trim()) {
+        alert('Please provide a transformation prompt');
+        return;
+      }
+      
+      // Show the generated image section
+      generatedImageSection.classList.remove('hidden');
+      
+      // Scroll to the generated image section
+      generatedImageSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Show loading animation
+      document.querySelector('.generated-image').style.display = 'block';
+      document.querySelector('.loading-overlay').style.display = 'flex';
+      
+      // Simulate image generation (in a real app, this would call your AI image generation API)
+      setTimeout(function() {
+        // Hide loading animation
+        document.querySelector('.loading-overlay').style.display = 'none';
+        
+        // In a real implementation, you would set the actual generated image
+        // For now, we'll just use a placeholder
+        generatedImage.src = 'https://via.placeholder.com/500x700/4a5568/FFFFFF/?text=AI+Generated+Cultural+Outfit';
+      }, 3000);
+    });
+    
+    // Download button functionality
+    downloadButton.addEventListener('click', function() {
+      // In a real implementation, this would download the actual generated image
+      alert('In a complete implementation, this would download your generated image');
+    });
+    
+    // Share button functionality
+    shareButton.addEventListener('click', function() {
+      // In a real implementation, this would open sharing options
+      alert('In a complete implementation, this would open sharing options for your image');
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Set default prompt on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      const event = new Event('change');
+      outfitStyle.dispatchEvent(event);
+      generateButton.disabled = true;
+    });
+  </script>
   <script src="auth.js"></script>
 </body>
 </html>
